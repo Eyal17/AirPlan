@@ -12,6 +12,7 @@ public class Plane extends Aircraft {
 	}
 	
 	public int getPlaneID() {
+		//sdasdadssdas
 		return planeID;
 	}
 	
