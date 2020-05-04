@@ -12,7 +12,6 @@ public class Plane extends Aircraft {
 	}
 	
 	public int getPlaneID() {
-		System.out.println(planeID);
 		return planeID;
 	}
 	
