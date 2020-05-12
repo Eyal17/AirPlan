@@ -10,6 +10,7 @@ public class Main {
 		//a.setSeatNum(3);
 		//a.print();
 		Plane b = new Plane("727");
+		Plane c = new Plane("737");
 		//Plane a = new Plane("727");
 		//a.print();
 		//Date a = new Date();
