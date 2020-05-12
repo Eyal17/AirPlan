@@ -19,6 +19,7 @@ public class Plane extends Aircraft {
 	}
 	
 	public void setPlaneID(int p) {
+		//2nd line to test
 		planeID = p;
 	}
 	
