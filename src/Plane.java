@@ -14,7 +14,7 @@ public class Plane extends Aircraft {
 	public int getPlaneID() {
 		//change for w
 		//test 12.5.20 15:13
-		//a new line to test
+		//commit without push
 		return planeID;
 	}
 	
