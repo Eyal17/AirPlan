@@ -13,6 +13,7 @@ public class Plane extends Aircraft {
 	
 	public int getPlaneID() {
 		//sdasdadssdas
+		//test 12.5.20 13:23
 		return planeID;
 	}
 	
