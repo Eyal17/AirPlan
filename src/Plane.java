@@ -23,7 +23,7 @@ public class Plane extends Aircraft {
 		System.out.println("name: " + this.getName());
 		System.out.println("fuel per KM: " + this.getFuelPerKm());
 		System.out.println("fuel tank size: " + this.getFuelTank());
-		System.out.println("number of seats: " + this.getNumOfSeats());
+		System.out.println("number of seats: " + this.getnumOfRows());
 		System.out.println("plane ID: " + planeID);
 	}
 

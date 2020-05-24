@@ -15,14 +15,14 @@ public class Aircraft {
 			fuelTank = 150000;
 			maxKm = 15000;
 			fuelPerKm = 10;
-			numOfRows = new int[]{4, 4, 20};
+			setnumOfRows(4, 4, 20);
 			break;
 		case "737":
 			name = m;
 			fuelTank = 200000;
 			maxKm = 20000;
 			fuelPerKm = 10;
-			numOfRows = new int[]{8, 8, 40};
+			setnumOfRows(8, 8, 40);
 			break;
 		default:
 			//throw/exception
@@ -44,8 +44,8 @@ public class Aircraft {
 	public int getFuelPerKm() {
 		return fuelPerKm;
 	}
-	public int getNumOfSeats() {
-		return numOfSeats;
+	public int[] getnumOfRows() {
+		return numOfRows;
 	}
 	
 	
@@ -61,8 +61,8 @@ public class Aircraft {
 	public void setFuelPerKm(int f) {
 		fuelPerKm = f;
 	}
-	public void setNumOfSeats(int n) {
-		numOfSeats = n;
+	public void setnumOfRows(int a,int b,int c) {
+		numOfRows = new int[]{a, b, c};
 	}
 	
 }
