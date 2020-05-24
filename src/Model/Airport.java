@@ -1,3 +1,4 @@
+package Model;
 
 public class Airport extends Destination {
 	int localTax;

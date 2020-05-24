@@ -1,5 +1,8 @@
 import java.util.*;
 
+import Controllers.FlightBoardController;
+import Model.Plane;
+
 @SuppressWarnings("unused")
 public class Main {
 
@@ -12,6 +15,7 @@ public class Main {
 		//a.print();
 		Plane b = new Plane("727");
 		Plane c = new Plane("737");
+		//FlightBoardController flightCtrl = new FlightBoardController();
 		//Plane a = new Plane("727");
 		//a.print();
 		//Date a = new Date();
