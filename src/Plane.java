@@ -12,14 +12,10 @@ public class Plane extends Aircraft {
 	}
 	
 	public int getPlaneID() {
-		//change for w
-		//test 12.5.20 15:13
-		//commit without push
 		return planeID;
 	}
 	
 	public void setPlaneID(int p) {
-		//2nd line to test
 		planeID = p;
 	}
 	
