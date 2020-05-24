@@ -1,4 +1,5 @@
 package Model;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Flight {
@@ -6,20 +7,20 @@ public class Flight {
 	//int distance;
 	//double cost;
 	Plane plane;
-	Date arrival;
-	Date departure;
-	//ArrayList<Seat> passengers;
-	Airport origin;
-	Airport dest;
+	//Date arrival;
+	//Date departure;
+	ArrayList<ArrayList<Seat>> passengers;
+	//Airport origin;
+	//Airport dest;
 	
-	public Flight(Plane p, Date a, Date d, Airport orig, Airport des) {
+	public Flight(Plane p) {//, Date a, Date d, Airport orig, Airport des) {
 		plane = p;
-		arrival = a;
-		departure = d;
-		origin = orig;
-		dest = des;
+		//arrival = a;
+		//departure = d;
+		//origin = orig;
+		//dest = des;
 		flightID++;
-		//passengers = plane.seats;
+		passengers = plane.seats;
 	}
 	
 	public Plane getPlane() {
