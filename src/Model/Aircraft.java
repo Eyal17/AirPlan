@@ -1,7 +1,11 @@
 package Model;
 
+import java.util.Random;
+
 public class Aircraft {
 	
+	Random random = new Random();
+	static int planeCount = 1;
 	String name;
 	int fuelTank;
 	int maxKm;
@@ -45,8 +49,8 @@ public class Aircraft {
 	public int getFuelPerKm() {
 		return fuelPerKm;
 	}
-	public int[] getnumOfRows() {
-		return numOfRows;
+	public int getnumOfRows() {
+		return numOfRows[0]+numOfRows[1]+numOfRows[2];
 	}
 	
 	

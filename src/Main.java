@@ -1,7 +1,9 @@
 import java.util.*;
 
+import Controllers.FleetController;
 import Controllers.FlightBoardController;
 import Model.Plane;
+import Model.Repository.FleetRepositorylmpl;
 
 @SuppressWarnings("unused")
 public class Main {
@@ -13,8 +15,22 @@ public class Main {
 		//a.setCheckIn(4);
 		//a.setSeatNum(3);
 		//a.print();
-		Plane b = new Plane("727");
-		Plane c = new Plane("737");
+		//Plane b = new Plane("727");
+		//Plane c = new Plane("737");
+		FleetRepositorylmpl r = new FleetRepositorylmpl();
+		FleetController fleetCtrl = new FleetController(r);
+		fleetCtrl.addPlane("727");
+		fleetCtrl.print();
+		System.out.println("**************\n");
+		fleetCtrl.addPlane("737");
+		fleetCtrl.print();
+		fleetCtrl.deletePlane(1);
+		System.out.println("**************\n");
+		fleetCtrl.print();
+		//fleetCtrl.addPlane("727");
+		//fleetCtrl.print();
+
+
 		//FlightBoardController flightCtrl = new FlightBoardController();
 		//Plane a = new Plane("727");
 		//a.print();

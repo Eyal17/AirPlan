@@ -1,6 +1,7 @@
 package Controllers;
 
 import Model.Flight;
+import Model.Plane;
 import Model.Repository.FlightRepository;
 import Model.Repository.FlightRepositoryImpl;
 
@@ -12,8 +13,8 @@ public class FlightBoardController {
 		this.repo = r;
 	}
 	
-	void addFlight() {
-		Flight f = new Flight(p,x,c,v,d);
+	void addFlight(Plane p) {
+		Flight f = new Flight(p);
 		repo.add(f);
 	}
 	
