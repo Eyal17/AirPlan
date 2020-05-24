@@ -9,7 +9,7 @@ public class Plane extends Aircraft {
 	public Plane(String model) {
 		super(model);
 		setSeats(numOfRows[0] + numOfRows[1] + numOfRows[2]);
-		planeID = random.nextInt(9999)+1000;
+		planeID = random.nextInt(9000)+1000;
 	}
 	
 	public int getPlaneID() {

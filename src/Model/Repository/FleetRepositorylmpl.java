@@ -22,8 +22,14 @@ public class FleetRepositorylmpl implements FleetRepository {
 	@Override
 	public void print() {
 		for(Map.Entry i: fleet.entrySet()) {
-			System.out.println(i);
+			System.out.println(i + "\n");
+			
 		}
+	}
+
+	@Override
+	public Plane find(int id) {
+		return fleet.get(id);
 	}
 	
 

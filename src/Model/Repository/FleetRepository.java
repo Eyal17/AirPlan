@@ -6,4 +6,5 @@ public interface FleetRepository {
 	public void add(Plane p);
 	public void delete(int id);
 	public void print();
+	public Plane find(int id);
 }

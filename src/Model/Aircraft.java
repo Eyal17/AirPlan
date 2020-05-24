@@ -5,7 +5,6 @@ import java.util.Random;
 public class Aircraft {
 	
 	Random random = new Random();
-	static int planeCount = 1;
 	String name;
 	int fuelTank;
 	int maxKm;

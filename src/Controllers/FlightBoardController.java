@@ -2,20 +2,31 @@ package Controllers;
 
 import Model.Flight;
 import Model.Plane;
+import Model.Repository.FleetRepository;
+import Model.Repository.FleetRepositorylmpl;
 import Model.Repository.FlightRepository;
-import Model.Repository.FlightRepositoryImpl;
+import Model.Repository.FlightRepositorylmpl;
 
 public class FlightBoardController {
 	
-	private FlightRepository repo;
+	private FlightRepository flightRepo;
+	private FleetRepository fleetRepo;
 	
-	public FlightBoardController(FlightRepositoryImpl r){
-		this.repo = r;
+	public FlightBoardController(FlightRepositorylmpl r, FleetRepositorylmpl s){
+		flightRepo = r;
+		fleetRepo = s;
 	}
 	
-	void addFlight(Plane p) {
-		Flight f = new Flight(p);
-		repo.add(f);
+	public void addFlight(int planeID) {
+		Plane p = fleetRepo.find(planeID);
+		if(p != null) {
+			Flight f = new Flight(p);
+			flightRepo.add(f);
+		}
+		else {
+			System.out.println("Error!");
+		}
+		flightRepo.print();
 	}
 	
 	void editFlight() { 
@@ -28,10 +39,12 @@ public class FlightBoardController {
 	}
 	
 	Flight searchFlight(int id) {
-		return repo.find(id);
+		return flightRepo.find(id);
 	}
 	
-	
+	public void print() {
+		flightRepo.print();
+	}
 	
 	// list of flights getFlights()
 }
