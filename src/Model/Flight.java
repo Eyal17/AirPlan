@@ -2,8 +2,10 @@ package Model;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 public class Flight {
-	static int flightID = 1000;
+	public static int flightCounter = 1000;
+	int flightID;
 	//int distance;
 	//double cost;
 	Plane plane;
@@ -19,7 +21,7 @@ public class Flight {
 		//departure = d;
 		//origin = orig;
 		//dest = des;
-		flightID++;
+		flightID = flightCounter++;
 		passengers = plane.seats;
 	}
 	
@@ -38,6 +40,9 @@ public class Flight {
 	public Airport getDest() {
 		return dest;
 	}
+	public int getFlightID() {
+		return flightID;
+	}
 	
 	
 	public void setPlane(Plane p) {
@@ -54,6 +59,11 @@ public class Flight {
 	}
 	public void setDest(Airport d) {
 		dest = d;
+	}
+
+	@Override
+	public String toString() {
+		return "Flight [flightID=" + flightID + ", plane=" + plane + ", passengers=" + passengers + "]";
 	}
 	
 	
