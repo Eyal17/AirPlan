@@ -6,4 +6,5 @@ public interface FlightRepository {
 
 	void add(Flight f);
 	void delete(int id);
+	Flight find(int id);
 }
