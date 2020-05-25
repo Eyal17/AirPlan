@@ -6,10 +6,15 @@ public class Plane extends Aircraft {
 	final int planeID; 
 	ArrayList<ArrayList<Seat>> seats;
 	
-	public Plane(String model) {
+	public Plane(String model, int id) {
 		super(model);
 		setSeats(numOfRows[0] + numOfRows[1] + numOfRows[2]);
-		planeID = random.nextInt(9000)+1000;
+		if(id == 0) {
+			planeID = random.nextInt(9000)+1000;
+		}
+		else {
+			planeID = id;
+		}
 	}
 	
 	public int getPlaneID() {

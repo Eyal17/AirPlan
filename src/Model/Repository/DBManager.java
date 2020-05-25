@@ -1,4 +1,4 @@
-package Model;
+package Model.Repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ import java.text.MessageFormat;
 
 
 
-public class DBMain {
+public class DBManager {
 	private static Connection connection;
 	private static ResultSet resultSet;
 	public static void main(String[] args) throws Exception {
@@ -65,9 +65,9 @@ public class DBMain {
 		}
 	}
 	
-	public boolean deleteFromDB(String sql) {
+	public static boolean deleteFromDB(String sql) {
 		try {
-			connect().createStatement().executeQuery(sql);
+			connect().createStatement().executeUpdate(sql);
 			return true;
 		}
 		catch (SQLException e) {
@@ -79,8 +79,9 @@ public class DBMain {
 	public static void printResultSet(ResultSet resultSet) throws SQLException {
 		while (resultSet.next()) { //.next() return true if we have more result + move to the next result (row)
 			//Plane p = (Plane) resultSet.getObject("Plane");
-			String name = resultSet.getString("plane");
-			System.out.println(MessageFormat.format("Plane={0}", name));
+			//String name = resultSet.getString("plane");
+			String id = resultSet.getString("id");
+			System.out.println(MessageFormat.format("PlaneID={0}", id));
 		}
 	}
 
