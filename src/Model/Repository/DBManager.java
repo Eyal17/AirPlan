@@ -23,7 +23,7 @@ public class DBManager {
 		printResultSet(resultSet);
 	}
 	
-
+//
 //	public static void addToDB(Plane p,Connection c) throws SQLException {
 //		if(p != null) {
 //			PreparedStatement preparedStatement = c.prepareStatement("INSERT INTO fleet(plane,id)" + "VALUES (?,?)"); // Query all entry in user table
