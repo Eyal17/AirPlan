@@ -94,7 +94,7 @@ public class Main {
 			    break;
 			  case 0:
 			  default:
-					  System.out.println("Goodbye!");
+					  System.out.println("Goodbye! ");
 					  System.exit(0);
 			 }
 		}
