@@ -1,36 +1,29 @@
 package Model.Repository;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import Model.Plane;
 
-public class FleetRepositorylmpl implements FleetRepository {
-	
+// the new one
+public class FleetRepositoryImpl implements templateRepository<Integer, Plane> {
 	Map<Integer,Plane> fleet = new HashMap<Integer,Plane>();
 	@Override
-	public void add(Plane p) {
-		fleet.put(p.getPlaneID(), p);
+	public void add(Plane v) {
+		fleet.put(v.getPlaneID(), v);
 	}
-
 	@Override
-	public void delete(int id) {
-		fleet.remove(id);
+	public void delete(Integer k) {
+		fleet.remove(k);		
 	}
-
 	@Override
 	public void print() {
 		for(Map.Entry i: fleet.entrySet()) {
 			System.out.println(i + "\n");
-			
 		}
 	}
-
 	@Override
-	public Plane find(int id) {
-		return fleet.get(id);
+	public Plane find(Integer k) {
+		return fleet.get(k);
 	}
-	
-
 }
