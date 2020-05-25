@@ -2,17 +2,16 @@ package Controllers;
 
 import Model.Flight;
 import Model.Plane;
-import Model.Repository.FleetRepository;
-import Model.Repository.FleetRepositorylmpl;
-import Model.Repository.FlightRepository;
-import Model.Repository.FlightRepositorylmpl;
+import Model.Repository.templateRepository;
+import Model.Repository.FleetRepositoryImpl;
+import Model.Repository.FlightRepositoryImpl;
 
 public class FlightBoardController {
 	
-	private FlightRepository flightRepo;
-	private FleetRepository fleetRepo;
+	private templateRepository<Integer, Flight> flightRepo;
+	private templateRepository<Integer, Plane> fleetRepo;
 	
-	public FlightBoardController(FlightRepositorylmpl r, FleetRepositorylmpl s){
+	public FlightBoardController(FlightRepositoryImpl r, FleetRepositoryImpl s){
 		flightRepo = r;
 		fleetRepo = s;
 	}
@@ -33,9 +32,8 @@ public class FlightBoardController {
 		
 	}
 	
-	void deleteFlight() {
-		// new flight
-		//repo.add(f);
+	void deleteFlight(int id) { // omer added
+		flightRepo.delete(id);
 	}
 	
 	Flight searchFlight(int id) {

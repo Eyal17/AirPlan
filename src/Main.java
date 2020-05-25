@@ -3,16 +3,16 @@ import java.util.*;
 import Controllers.FleetController;
 import Controllers.FlightBoardController;
 import Model.Plane;
-import Model.Repository.FleetRepositorylmpl;
-import Model.Repository.FlightRepositorylmpl;
+import Model.Repository.FleetRepositoryImpl;
+import Model.Repository.FlightRepositoryImpl;
 
 @SuppressWarnings("unused")
 public class Main {
 	public static int flightCounter = 1000;
 	public static void main(String[] args) {
-		FleetRepositorylmpl r = new FleetRepositorylmpl();
+		FleetRepositoryImpl r = new FleetRepositoryImpl();
 		FleetController fleetCtrl = new FleetController(r);
-		FlightRepositorylmpl f = new FlightRepositorylmpl();
+		FlightRepositoryImpl f = new FlightRepositoryImpl();
 		FlightBoardController flightCtrl = new FlightBoardController(f, r);
 		Scanner myObj = new Scanner(System.in); // Create a Scanner object
 		while(true) {
@@ -21,7 +21,7 @@ public class Main {
 			switch (choose) {
 			  case 1:
 			  {
-					 System.out.println("Here is the Fleet menu.\n");
+					 System.out.println("Here is the check in menu.\n");
 					 System.out.println("Press 1 to add a new plane. \nPress 2 to delete an existing plane.");
 					 int c1 = myObj.nextInt(); 
 					 switch (c1) {
@@ -37,7 +37,7 @@ public class Main {
 			  }
 			  case 2:
 					 System.out.println("Here is the fleet menu.\n");
-					 System.out.println("Press 1 to add a new flight. \nPress 2 to delete an existing flight. \nPress 3 to search a flight. \nPress 4 to edit flight.\nPress 5 to print");
+					 System.out.println("Press 1 to add a new plane. \nPress 2 to delete an existing plane. \nPress 3 to search a plane. \nPress 4 to edit plane.\nPress 5 to print");
 					 int c2 = myObj.nextInt(); 
 					 switch (c2) {
 					  case 1:
@@ -57,7 +57,7 @@ public class Main {
 						    System.out.println("Added succefully!");
 					    break;
 					  case 2:
-						  	System.out.println("its our fleet, lets delete a flight");
+						  	System.out.println("its our fleet, lets delete a plane");
 						  	fleetCtrl.print();
 						  	System.out.println("which airplane would you like to delete?\nPlease choose the plane ID");
 						  	int id = myObj.nextInt();
@@ -86,11 +86,15 @@ public class Main {
 							flightCtrl.addFlight(id);
 							System.out.println("Flight added!\n");
 					    break;
+					  case 2:
+						  	System.out.println("Which flight would you like to delete?\nPlease enter flight ID.\n");
+						  	
+					    break;
 					 }
 			    break;
 			  case 0:
 			  default:
-					  System.out.println("Goodbye!");
+					  System.out.println("Goodbye! ");
 					  System.exit(0);
 			 }
 		}

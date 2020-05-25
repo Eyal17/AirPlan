@@ -1,15 +1,15 @@
 package Controllers;
 
 import Model.Plane;
-import Model.Repository.FleetRepository;
-import Model.Repository.FleetRepositorylmpl;
+import Model.Repository.templateRepository;
+import Model.Repository.FleetRepositoryImpl;
 
 
 public class FleetController {
 
-	private FleetRepository repFleet;
+	private templateRepository<Integer, Plane> repFleet;
 	
-	public FleetController(FleetRepositorylmpl r){
+	public FleetController(FleetRepositoryImpl r){
 		repFleet = r;
 	}
 	
