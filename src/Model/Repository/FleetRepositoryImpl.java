@@ -1,11 +1,9 @@
 package Model.Repository;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import Model.Plane;
 
-// the new one
+// the new one1
 public class FleetRepositoryImpl implements templateRepository<Integer, Plane> {
 	Map<Integer,Plane> fleet = new HashMap<Integer,Plane>();
 	@Override
