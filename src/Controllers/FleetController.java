@@ -19,7 +19,7 @@ public class FleetController {
 			System.out.println(model + " not correct");
 		}
 		else {
-			Plane p = new Plane(model);
+			Plane p = new Plane(model,0);
 			repFleet.add(p);
 		}
 	}
