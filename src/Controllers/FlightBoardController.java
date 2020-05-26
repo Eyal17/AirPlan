@@ -32,7 +32,7 @@ public class FlightBoardController {
 		
 	}
 	
-	void deleteFlight(int id) { // omer added
+	public void deleteFlight(int id) { // omer added
 		flightRepo.delete(id);
 	}
 	
