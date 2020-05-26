@@ -2,6 +2,7 @@ package Model.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +29,7 @@ public class FlightRepositoryImpl implements templateRepository<Integer, Flight>
 //			System.out.println(i + "\n");
 //		}
 		try {
-			DBManager.printResultSet(DBManager.readFromDB("SELECT * from flightboard"));
+			FleetRepositoryImpl.printResultSet(DBManager.readFromDB("SELECT * from flightboard"));
 		} catch (SQLException e) {
 			System.out.println("Error in printing!");
 			e.printStackTrace();
@@ -52,6 +53,11 @@ public class FlightRepositoryImpl implements templateRepository<Integer, Flight>
 	public void checkIn()
 	{
 		
+	}
+	@Override
+	public ArrayList<Flight> getTable() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

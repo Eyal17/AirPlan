@@ -1,15 +1,14 @@
 package View;
 
 import java.util.List;
-
 import javax.swing.table.AbstractTableModel;
-
 import Model.Plane;
-@SuppressWarnings("serial")
+
 public class FleetTableModel extends AbstractTableModel {
 
 	private final String[] col = {"planeid", "model" };
 	private List<Plane> fleetList;
+	
 	@Override
 	public int getRowCount() {
 		return fleetList.size();
