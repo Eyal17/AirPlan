@@ -19,6 +19,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.awt.CardLayout;
 
 public class HomeBuilder extends JFrame {
@@ -46,8 +47,9 @@ public class HomeBuilder extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public HomeBuilder() {
+	public HomeBuilder() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 680);
 		contentPane = new JPanel();
