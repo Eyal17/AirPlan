@@ -88,6 +88,8 @@ public class Main {
 					    break;
 					  case 2:
 						  	System.out.println("Which flight would you like to delete?\nPlease enter flight ID.\n");
+						  	int flightid = myObj.nextInt();
+						  	flightCtrl.deleteFlight(flightid);
 						  	
 					    break;
 					 }
