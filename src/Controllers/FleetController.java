@@ -1,5 +1,7 @@
 package Controllers;
 
+import java.util.ArrayList;
+
 import Model.Plane;
 import Model.Repository.templateRepository;
 import Model.Repository.FleetRepositoryImpl;
@@ -29,6 +31,10 @@ public class FleetController {
 	
 	public void print() {
 		repFleet.print();
+	}
+	
+	public ArrayList<Plane> getTable(){
+		return repFleet.getTable();
 	}
 	
 }

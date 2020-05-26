@@ -1,4 +1,5 @@
 package Model.Repository;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import Model.Airport;
@@ -22,6 +23,11 @@ public class AirportRepositoryImpl implements templateRepository<String, Airport
 	@Override
 	public Airport find(String k) {
 		return airports.get(k);
+	}
+	@Override
+	public ArrayList<Airport> getTable() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
