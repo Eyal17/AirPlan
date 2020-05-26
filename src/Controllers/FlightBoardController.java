@@ -32,11 +32,11 @@ public class FlightBoardController {
 		
 	}
 	
-	void deleteFlight(int id) { // omer added
+	public void deleteFlight(int id) { // omer added
 		flightRepo.delete(id);
 	}
 	
-	Flight searchFlight(int id) {
+	public Flight searchFlight(int id) {
 		return flightRepo.find(id);
 	}
 	
@@ -45,4 +45,5 @@ public class FlightBoardController {
 	}
 	
 	// list of flights getFlights()
+	
 }

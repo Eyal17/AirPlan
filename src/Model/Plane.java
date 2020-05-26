@@ -52,6 +52,8 @@ public class Plane extends Aircraft {
             	}
             }
         } 
+        
+
 
   
         //for (int i = 0; i < rows; i++) { 
