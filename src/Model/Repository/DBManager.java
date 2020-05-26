@@ -80,7 +80,7 @@ public class DBManager {
 		while (resultSet.next()) { //.next() return true if we have more result + move to the next result (row)
 			//Plane p = (Plane) resultSet.getObject("Plane");
 			//String name = resultSet.getString("plane");
-			String id = resultSet.getString("id");
+			String id = resultSet.getString("planeid");
 			System.out.println(MessageFormat.format("PlaneID={0}", id));
 		}
 	}

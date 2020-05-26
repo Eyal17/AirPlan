@@ -8,14 +8,14 @@ public class FleetRepositoryImpl implements templateRepository<Integer, Plane> {
 	
 	@Override
 	public void add(Plane p) {
-		String query = "INSERT INTO fleet(plane,id)" + "VALUES (" + p.getName() + "," + p.getPlaneID() + ")";
+		String query = "INSERT INTO fleet(model,planeid)" + "VALUES (" + p.getName() + "," + p.getPlaneID() + ")";
 		DBManager.addToDB(query);
 	}
 
 	@Override
 	public void delete(Integer id) {
 		//fleet.remove(id);
-		String query = "DELETE from fleet WHERE fleet.id=" + id;
+		String query = "DELETE from fleet WHERE fleet.planeid=" + id;
 		DBManager.deleteFromDB(query);
 	}
 
@@ -34,7 +34,7 @@ public class FleetRepositoryImpl implements templateRepository<Integer, Plane> {
 	@Override
 	public Plane find(Integer id) {
 		//return fleet.get(id);
-		String query = "SELECT * from fleet WHERE fleet.id =" + id;
+		String query = "SELECT * from fleet WHERE fleet.planeid =" + id;
 		try {
 			ResultSet result = DBManager.readFromDB(query);
 			if (result.next())
