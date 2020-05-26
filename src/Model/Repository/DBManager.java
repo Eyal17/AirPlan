@@ -40,7 +40,7 @@ public class DBManager {
 //		preparedStatement.executeUpdate(); 
 //	}
 	
-	private static Connection connect() throws SQLException {
+	public static Connection connect() throws SQLException {
 		if (connection == null) {
 			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/AirPlanDB", "postgres", "postgres");
 			System.out.println("Connected succesfully to DB!");
