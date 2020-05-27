@@ -19,11 +19,11 @@ import javax.swing.JTable;
 public class FlightSchedulePanel extends JPanel {
 	private JTable FlightTable;
 	private FlightTableModel flightModel;
-
-	FlightRepositoryImpl rflight = new FlightRepositoryImpl();
-	FleetRepositoryImpl rfleet = new FleetRepositoryImpl();
-	FleetController fleetCtrl = new FleetController(rfleet);
-	FlightBoardController flightCtrl = new FlightBoardController(rflight,rfleet);
+	private FlightRepositoryImpl rflight;
+	private FleetRepositoryImpl rfleet;
+	private FleetController fleetCtrl;
+	private FlightBoardController flightCtrl;
+	private JLabel lblFlightBoard;
 
 	/**
 	 * Create the panel.
@@ -31,24 +31,34 @@ public class FlightSchedulePanel extends JPanel {
 	public FlightSchedulePanel() {
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
+		rflight = new FlightRepositoryImpl();
+		rfleet = new FleetRepositoryImpl();
+		fleetCtrl = new FleetController(rfleet);
+		flightCtrl = new FlightBoardController(rflight,rfleet);
+
+		initialize();
 		
+		buildTable();
+
+	}
+	
+	public void initialize() {
 		flightModel = new FlightTableModel();
 		FlightTable = new JTable(flightModel);
-		
-		
 		//FlightTable = new JTable();
 		FlightTable.setBounds(77, 107, 684, 330);
 		add(FlightTable);
-		
 	
-		JLabel lblFlightBoard = new JLabel("Flight Board");
+		
+		lblFlightBoard = new JLabel("Flight Board");
 		lblFlightBoard.setBounds(303, 30, 230, 49);
 		lblFlightBoard.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFlightBoard.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		add(lblFlightBoard);
-		
+	}
+	
+	public void buildTable() {
 	    ArrayList<Flight> test2 = flightCtrl.getTable();
 	    flightModel.setList(test2);
-		
 	}
 }

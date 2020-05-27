@@ -9,7 +9,7 @@ public class FleetTableModel extends AbstractTableModel {
 
 	private final String[] col = {"planeid", "model" };
 	//private ArrayList<Plane> fleetList;  // tried to change to arraylist 
-	private List<Plane> fleetList;
+	private ArrayList<Plane> fleetList;
 
 	@Override
 	public int getRowCount() {
@@ -30,8 +30,8 @@ public class FleetTableModel extends AbstractTableModel {
 		return temp;
 	}
 
-	public void setList(List<Plane> fleetReadyTable) {
+	public void setList(ArrayList<Plane> fleetReadyTable) {
 		// TODO Auto-generated method stub
-		this.fleetList= fleetReadyTable;
+		fleetList = fleetReadyTable;
 	}
 }

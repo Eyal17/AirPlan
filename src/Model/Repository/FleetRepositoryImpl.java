@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import Model.Plane;
 
 public class FleetRepositoryImpl implements templateRepository<Integer, Plane> {
-	ArrayList<Plane> fleet = new ArrayList<>();
+	ArrayList<Plane> fleet;
 	@Override
 	public void add(Plane p) {
 		String query = "INSERT INTO fleet(model,planeid)" + "VALUES (" + p.getName() + "," + p.getPlaneID() + ")";
@@ -49,6 +49,7 @@ public class FleetRepositoryImpl implements templateRepository<Integer, Plane> {
 	@Override
 	public ArrayList<Plane> getTable() {
 		ResultSet resultSet;
+		fleet = new ArrayList<Plane>();
 		//
 		// here we need to split to load from db for the first time and update the list after each func
 		// get table shuold take only the list

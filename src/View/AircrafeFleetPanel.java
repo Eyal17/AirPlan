@@ -27,94 +27,141 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-public class AircrafeFleetPanel extends JPanel {
+public class AircrafeFleetPanel extends JPanel implements ActionListener{
+	
 	private JTable FleetTable;
 	private FleetTableModel fleetModel;
-	
-	FleetRepositoryImpl r = new FleetRepositoryImpl();
-	FleetController fleetCtrl = new FleetController(r);
+	private JLabel lblAircraftFleet;
+	private JScrollPane scrollPane;
+	private JComboBox planeChoice;
+	private JButton btnNewButton;
+	private JButton deleteBtn;
+
+	private FleetRepositoryImpl r;
+	private FleetController fleetCtrl; 
 
 	public AircrafeFleetPanel() {
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
+		r = new FleetRepositoryImpl();
+		fleetCtrl = new FleetController(r);
+		initialize();
+		setListeners();
+		buildTable();
+	}
+	
+	public void initialize() {
 		fleetModel = new FleetTableModel();
 		FleetTable = new JTable(fleetModel);
 		//FleetTable = new JTable(); // to design 
 
-		JLabel lblAircraftFleet = new JLabel("AirCraft Fleet");
+		
+		lblAircraftFleet = new JLabel("AirCraft Fleet");
 		lblAircraftFleet.setBounds(303, 30, 230, 49);
 		lblAircraftFleet.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAircraftFleet.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		add(lblAircraftFleet);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(241, 90, 554, 378);
 		add(scrollPane);
 		scrollPane.setViewportView(FleetTable);
-		JButton btnNewButton = new JButton("Add new plane");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				fleetCtrl.addPlane("727");	
-				scrollPane.setVisible(false);
-				//buildTable();
-				scrollPane.setVisible(true);
-				//FleetTable.setModel(fleetModel);
-				//FleetTable.invalidate();
-				//FleetTable.repaint();
-			}
-		});
-		btnNewButton.setBounds(10, 118, 130, 23);
-		add(btnNewButton);
 		
-		
-		String[] planeTypes = {"none", "737", "727"};
-		JComboBox planeChoice = new JComboBox(planeTypes);
+		planeChoice = new JComboBox();
+		planeChoice.addItem("");
+		planeChoice.addItem("727");
+		planeChoice.addItem("737");
+		planeChoice.setSelectedItem("");
 		planeChoice.setSelectedIndex(0);
 		planeChoice.setBounds(150, 118, 60, 22);
 		add(planeChoice);
 		
-		buildTable();
-	
+		btnNewButton = new JButton("Add new plane");
+		btnNewButton.setBounds(10, 118, 130, 23);
+		add(btnNewButton);
 		
-		
-//		try {
-//			connection = DBManager.connect();
-//			String query = "select * from fleet";
-//			ResultSet rs = connection.createStatement().executeQuery(query);
-//			
-//			//FleetTable.setModel(DbUtils.resultSetToTableModel(rs));
-//			
-//			ArrayList<Plane> test = ParseResultSet(rs);
-//			fleetModel.setList(test);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		}
-//	
-//	public ArrayList<Plane> ParseResultSet(ResultSet rs)
-//	{
-//		ArrayList<Plane> list = new ArrayList<>();
-//		try {
-//			while(rs.next())
-//			{
-//				Plane plane = new Plane(rs.getString(1),rs.getInt(2));
-//				list.add(plane);
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return list;
+		deleteBtn = new JButton("Delete plane");
+		deleteBtn.setBounds(10, 173, 130, 23);
+		add(deleteBtn);
 	}
+	
+	public void setListeners() {
+		btnNewButton.addActionListener(this);
+		btnNewButton.setActionCommand("add plane");
+		deleteBtn.addActionListener(this);
+		deleteBtn.setActionCommand("delete plane");
+	}
+	
 	public void buildTable()
 	{
 		ArrayList<Plane> fleetArrayFromDB = fleetCtrl.getTable();
 		fleetModel.setList(fleetArrayFromDB);
-		//FleetTable.invalidate();
+	}
+
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getActionCommand().equals("add plane")) {
+			scrollPane.setVisible(false);
+			String selectedBox = planeChoice.getSelectedItem().toString();
+			fleetCtrl.addPlane(selectedBox);	
+			buildTable();
+			FleetTable.invalidate();
+			FleetTable.repaint();
+			scrollPane.setVisible(true);	
+		}
+		if(e.getActionCommand().equals("delete plane")) {
+			//scrollPane.setVisible(false);
+			int selectedRow = -1;
+			selectedRow = FleetTable.getSelectedRow();
+			if (selectedRow != -1) {
+				System.out.println("what are you doing here?!?!?");
+				int p =  (int) fleetModel.getValueAt(selectedRow, 0);
+				//System.out.println(p);
+				fleetCtrl.deletePlane(p);	
+				buildTable();
+				FleetTable.repaint();
+				//selectedRow = -1;
+			//	FleetTable.invalidate();
+				//scrollPane.setVisible(true);
+			}
+		}
+		
 	}
 }
+//try {
+//connection = DBManager.connect();
+//String query = "select * from fleet";
+//ResultSet rs = connection.createStatement().executeQuery(query);
+//
+////FleetTable.setModel(DbUtils.resultSetToTableModel(rs));
+//
+//ArrayList<Plane> test = ParseResultSet(rs);
+//fleetModel.setList(test);
+//} catch (SQLException e) {
+//// TODO Auto-generated catch block
+//e.printStackTrace();
+//}
+//
+//}
+//
+//public ArrayList<Plane> ParseResultSet(ResultSet rs)
+//{
+//ArrayList<Plane> list = new ArrayList<>();
+//try {
+//while(rs.next())
+//{
+//	Plane plane = new Plane(rs.getString(1),rs.getInt(2));
+//	list.add(plane);
+//}
+//} catch (SQLException e) {
+//// TODO Auto-generated catch block
+//e.printStackTrace();
+//}
+//return list;
