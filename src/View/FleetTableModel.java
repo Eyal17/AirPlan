@@ -1,5 +1,6 @@
 package View;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import Model.Plane;
@@ -7,8 +8,9 @@ import Model.Plane;
 public class FleetTableModel extends AbstractTableModel {
 
 	private final String[] col = {"planeid", "model" };
+	//private ArrayList<Plane> fleetList;  // tried to change to arraylist 
 	private List<Plane> fleetList;
-	
+
 	@Override
 	public int getRowCount() {
 		return fleetList.size();
@@ -28,8 +30,8 @@ public class FleetTableModel extends AbstractTableModel {
 		return temp;
 	}
 
-	public void setList(List<Plane> test) {
+	public void setList(List<Plane> fleetReadyTable) {
 		// TODO Auto-generated method stub
-		this.fleetList= test;
+		this.fleetList= fleetReadyTable;
 	}
 }

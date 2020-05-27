@@ -50,11 +50,8 @@ public class FleetRepositoryImpl implements templateRepository<Integer, Plane> {
 	public ArrayList<Plane> getTable() {
 		ResultSet resultSet;
 		//
-		
-		
 		// here we need to split to load from db for the first time and update the list after each func
 		// get table shuold take only the list
-		
 		//
 		
 		try {

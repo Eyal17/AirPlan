@@ -24,6 +24,11 @@ import Model.Repository.DBManager;
 import Model.Repository.FleetRepositoryImpl;
 
 import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import javax.swing.JComboBox;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 public class AircrafeFleetPanel extends JPanel {
 	private JTable FleetTable;
 	private FleetTableModel fleetModel;
@@ -36,7 +41,8 @@ public class AircrafeFleetPanel extends JPanel {
 		setLayout(null);
 		fleetModel = new FleetTableModel();
 		FleetTable = new JTable(fleetModel);
-		
+		//FleetTable = new JTable(); // to design 
+
 		JLabel lblAircraftFleet = new JLabel("AirCraft Fleet");
 		lblAircraftFleet.setBounds(303, 30, 230, 49);
 		lblAircraftFleet.setHorizontalAlignment(SwingConstants.CENTER);
@@ -44,13 +50,34 @@ public class AircrafeFleetPanel extends JPanel {
 		add(lblAircraftFleet);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(150, 108, 554, 378);
+		scrollPane.setBounds(241, 90, 554, 378);
 		add(scrollPane);
 		scrollPane.setViewportView(FleetTable);
+		JButton btnNewButton = new JButton("Add new plane");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				fleetCtrl.addPlane("727");	
+				scrollPane.setVisible(false);
+				//buildTable();
+				scrollPane.setVisible(true);
+				//FleetTable.setModel(fleetModel);
+				//FleetTable.invalidate();
+				//FleetTable.repaint();
+			}
+		});
+		btnNewButton.setBounds(10, 118, 130, 23);
+		add(btnNewButton);
 		
-		 ArrayList<Plane> test2 = fleetCtrl.getTable();
-		fleetModel.setList(test2);
 		
+		String[] planeTypes = {"none", "737", "727"};
+		JComboBox planeChoice = new JComboBox(planeTypes);
+		planeChoice.setSelectedIndex(0);
+		planeChoice.setBounds(150, 118, 60, 22);
+		add(planeChoice);
+		
+		buildTable();
+	
 		
 		
 //		try {
@@ -83,5 +110,11 @@ public class AircrafeFleetPanel extends JPanel {
 //			e.printStackTrace();
 //		}
 //		return list;
+	}
+	public void buildTable()
+	{
+		ArrayList<Plane> fleetArrayFromDB = fleetCtrl.getTable();
+		fleetModel.setList(fleetArrayFromDB);
+		//FleetTable.invalidate();
 	}
 }
