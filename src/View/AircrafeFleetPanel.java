@@ -113,7 +113,6 @@ public class AircrafeFleetPanel extends JPanel implements ActionListener{
 			fleetCtrl.addPlane(selectedBox);	
 			buildTable();
 			FleetTable.invalidate();
-			FleetTable.repaint();
 			scrollPane.setVisible(true);	
 		}
 		if(e.getActionCommand().equals("delete plane")) {
@@ -126,42 +125,13 @@ public class AircrafeFleetPanel extends JPanel implements ActionListener{
 				//System.out.println(p);
 				fleetCtrl.deletePlane(p);	
 				buildTable();
-				FleetTable.repaint();
 				//selectedRow = -1;
 			//	FleetTable.invalidate();
 				//scrollPane.setVisible(true);
 			}
+			FleetTable.repaint();
+
 		}
 		
 	}
 }
-//try {
-//connection = DBManager.connect();
-//String query = "select * from fleet";
-//ResultSet rs = connection.createStatement().executeQuery(query);
-//
-////FleetTable.setModel(DbUtils.resultSetToTableModel(rs));
-//
-//ArrayList<Plane> test = ParseResultSet(rs);
-//fleetModel.setList(test);
-//} catch (SQLException e) {
-//// TODO Auto-generated catch block
-//e.printStackTrace();
-//}
-//
-//}
-//
-//public ArrayList<Plane> ParseResultSet(ResultSet rs)
-//{
-//ArrayList<Plane> list = new ArrayList<>();
-//try {
-//while(rs.next())
-//{
-//	Plane plane = new Plane(rs.getString(1),rs.getInt(2));
-//	list.add(plane);
-//}
-//} catch (SQLException e) {
-//// TODO Auto-generated catch block
-//e.printStackTrace();
-//}
-//return list;
