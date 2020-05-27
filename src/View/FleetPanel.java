@@ -32,20 +32,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-public class AircrafeFleetPanel extends JPanel implements ActionListener{
+public class FleetPanel extends JPanel implements ActionListener{
 	
 	private JTable FleetTable;
 	private FleetTableModel fleetModel;
 	private JLabel lblAircraftFleet;
 	private JScrollPane scrollPane;
-	private JComboBox planeChoice;
+	private JComboBox<String> planeChoice;
 	private JButton btnNewButton;
 	private JButton deleteBtn;
 
 	private FleetRepositoryImpl r;
 	private FleetController fleetCtrl; 
 
-	public AircrafeFleetPanel() {
+	public FleetPanel() {
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
 		r = new FleetRepositoryImpl();
@@ -72,7 +72,7 @@ public class AircrafeFleetPanel extends JPanel implements ActionListener{
 		add(scrollPane);
 		scrollPane.setViewportView(FleetTable);
 		
-		planeChoice = new JComboBox();
+		planeChoice = new JComboBox<String>();
 		planeChoice.addItem("");
 		planeChoice.addItem("727");
 		planeChoice.addItem("737");

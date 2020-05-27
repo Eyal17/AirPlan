@@ -7,7 +7,11 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.swing.SwingConstants;
 
@@ -21,8 +25,9 @@ import Model.Repository.FlightRepositoryImpl;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import java.awt.Color;
+import javax.swing.JComboBox;
 
-public class FlightSchedulePanel extends JPanel implements ActionListener {
+public class FlightBoardPanel extends JPanel implements ActionListener {
 	
 	private JTable flightTable;
 	private JTable fleetTable;
@@ -38,11 +43,14 @@ public class FlightSchedulePanel extends JPanel implements ActionListener {
 	private JButton deleteBtn;
 	private JTextField txtPlaneTable;
 	private JScrollPane PlaneTable;
+	private JComboBox<Integer> dayBox;
+	private JComboBox<Integer>monthBox;
+	private JComboBox<Integer>yearBox;
 
 	/**
 	 * Create the panel.
 	 */
-	public FlightSchedulePanel() {
+	public FlightBoardPanel() {
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
 		rflight = new FlightRepositoryImpl();
@@ -61,14 +69,13 @@ public class FlightSchedulePanel extends JPanel implements ActionListener {
 	public void initialize() {
 		flightModel = new FlightTableModel();
 		flightTable = new JTable(flightModel);
-		//FlightTable = new JTable();
-		flightTable.setBounds(77, 107, 684, 330);
-		//add(FlightTable);
+		//flightTable = new JTable();//design
 		fleetModel = new FleetTableModel();
 		fleetTable = new JTable(fleetModel);
+		//fleetTable = new JTable();//design
+				
+		flightTable.setBounds(77, 107, 684, 330);
 
-	
-		
 		lblFlightBoard = new JLabel("Flight Board");
 		lblFlightBoard.setBounds(303, 30, 230, 49);
 		lblFlightBoard.setHorizontalAlignment(SwingConstants.CENTER);
@@ -85,12 +92,12 @@ public class FlightSchedulePanel extends JPanel implements ActionListener {
 		addBtn.setBounds(10, 118, 130, 23);
 		add(addBtn);
 		
-		deleteBtn = new JButton("Delete plane");
+		deleteBtn = new JButton("Delete flight");
 		deleteBtn.setBounds(10, 173, 130, 23);
 		add(deleteBtn);
 		
 		PlaneTable = new JScrollPane();
-		PlaneTable.setBounds(658, 89, 188, 378);
+		PlaneTable.setBounds(830, 89, 188, 378);
 		add(PlaneTable);
 		PlaneTable.setViewportView(fleetTable);
 
@@ -101,6 +108,30 @@ public class FlightSchedulePanel extends JPanel implements ActionListener {
 		txtPlaneTable.setBounds(689, 40, 124, 39);
 		add(txtPlaneTable);
 		txtPlaneTable.setColumns(10);
+		
+		dayBox = new JComboBox<Integer>();
+		for (int i = 1;i < 32;i++) {
+			dayBox.addItem(i);
+		}
+		//dayBox.setSelectedIndex(0);
+		dayBox.setBounds(580, 104, 57, 23);
+		add(dayBox);
+		
+		monthBox = new JComboBox<Integer>();
+		for (int i = 1;i < 13;i++) {
+			monthBox.addItem(i);
+		}
+		//monthBox.setSelectedIndex(0);
+		monthBox.setBounds(650, 104, 57, 23);
+		add(monthBox);
+		
+		yearBox = new JComboBox<Integer>();
+		for (int i = 2020;i < 2030;i++) {
+			yearBox.addItem(i);
+		}
+		//yearBox.setSelectedIndex(0);
+		yearBox.setBounds(720, 104, 57, 23);
+		add(yearBox);
 	}
 	
 	public void setListeners() {
@@ -126,6 +157,18 @@ public class FlightSchedulePanel extends JPanel implements ActionListener {
 		if(e.getActionCommand().equals("add flight")) {
 			scrollPane.setVisible(false);
 			int selectedRow = fleetTable.getSelectedRow();
+			
+			int day = (int)dayBox.getSelectedItem();
+			int month = (int)monthBox.getSelectedItem();
+			int year = (int)yearBox.getSelectedItem();
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			//Date date = new Date();
+		//	System.out.println(dateFormat.format(date)); //2016/11/16 12:08:43
+			
+			//System.out.println(day + " " +  month + " " + year);
+			Date selectedBox = new GregorianCalendar(year,month - 1,day).getTime();
+			System.out.println(dateFormat.format(selectedBox));
+			
 			int p =  (int) fleetModel.getValueAt(selectedRow, 0);
 			flightCtrl.addFlight(p);	
 			buildFlightTable();
@@ -144,5 +187,4 @@ public class FlightSchedulePanel extends JPanel implements ActionListener {
 		}
 		flightTable.repaint();
 	}
-		
 }

@@ -27,8 +27,8 @@ public class HomeBuilder extends JFrame {
 	private JPanel contentPane;
 	
 	private HomePanel HomeP;
-	private AircrafeFleetPanel AirCraftP;
-	private FlightSchedulePanel FlightBoardP;
+	private FleetPanel AirCraftP;
+	private FlightBoardPanel FlightBoardP;
 	private MapControllerPanel MapContP;
 
 
@@ -113,8 +113,8 @@ public class HomeBuilder extends JFrame {
 		Viewpanel.setLayout(new CardLayout(0, 0));
 		
 		HomeP = new HomePanel();
-		AirCraftP = new AircrafeFleetPanel();
-		FlightBoardP = new FlightSchedulePanel();
+		AirCraftP = new FleetPanel();
+		FlightBoardP = new FlightBoardPanel();
 		MapContP = new MapControllerPanel();
 		
 		Viewpanel.add(HomeP, "name_78750354984400");
