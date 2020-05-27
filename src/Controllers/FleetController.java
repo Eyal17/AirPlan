@@ -36,5 +36,4 @@ public class FleetController {
 	public ArrayList<Plane> getTable(){
 		return repFleet.getTable();
 	}
-	
 }
