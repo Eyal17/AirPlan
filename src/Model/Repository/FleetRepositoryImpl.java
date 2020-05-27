@@ -56,7 +56,7 @@ public class FleetRepositoryImpl implements templateRepository<Integer, Plane> {
 		//
 		
 		try {
-			resultSet = DBManager.readFromDB("SELECT * from fleet");
+			resultSet = DBManager.readFromDB("SELECT * from fleet ORDER BY planeid ASC");
 			while (resultSet.next()) { //.next() return true if we have more result + move to the next result (row)
 					Plane plane = new Plane(resultSet.getString(1),resultSet.getInt(2));
 					fleet.add(plane);
