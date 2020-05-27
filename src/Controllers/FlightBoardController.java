@@ -21,7 +21,7 @@ public class FlightBoardController {
 	public void addFlight(int planeID) {
 		Plane p = fleetRepo.find(planeID);
 		if(p != null) {
-			Flight f = new Flight(p);
+			Flight f = new Flight(p,0);
 			flightRepo.add(f);
 		}
 		else {
@@ -48,6 +48,10 @@ public class FlightBoardController {
 	
 	public ArrayList<Flight> getTable(){
 		return flightRepo.getTable();
+	}
+	
+	public int getMax() {
+		return flightRepo.getMaxID();
 	}
 
 

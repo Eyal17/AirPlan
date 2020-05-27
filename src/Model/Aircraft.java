@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Aircraft {
 	
-	Random random = new Random();
+	//Random random = new Random();
 	String name;
 	int fuelTank;
 	int maxKm;

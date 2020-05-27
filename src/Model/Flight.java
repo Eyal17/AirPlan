@@ -1,27 +1,40 @@
 package Model;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import Controllers.FleetController;
+import Controllers.FlightBoardController;
+import Model.Repository.FleetRepositoryImpl;
+import Model.Repository.FlightRepositoryImpl;
+
 
 public class Flight {
-	public static int flightCounter = 1000;
 	int flightID;
 	//int distance;
 	//double cost;
 	Plane plane;
 	//Date arrival;
 	//Date departure;
-	ArrayList<ArrayList<Seat>> passengers;
 	//Airport origin;
 	//Airport dest;
+	ArrayList<ArrayList<Seat>> passengers;
+	FlightRepositoryImpl flightRep = new FlightRepositoryImpl();
+	FleetRepositoryImpl fleetRep = new FleetRepositoryImpl();
+	FlightBoardController flightCtrl = new FlightBoardController(flightRep, fleetRep);
 	
-	public Flight(Plane p) {//, Date a, Date d, Airport orig, Airport des) {
+	public Flight(Plane p,int id) {//, Date a, Date d, Airport orig, Airport des) {
 		plane = p;
 		//arrival = a;
 		//departure = d;
 		//origin = orig;
 		//dest = des;
-		flightID = flightCounter++;
+		if (id == 0) {
+			flightID = (flightCtrl.getMax()) + 1;
+		}
+		else{
+			flightID = id;
+		}
 		passengers = plane.seats;
 	}
 	
