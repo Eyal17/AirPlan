@@ -11,6 +11,8 @@ import Model.Plane;
 
 public class FlightRepositoryImpl implements templateRepository<Integer, Flight> {
 	Map<Integer, Flight> flights = new HashMap<Integer, Flight>();
+	ArrayList<Flight> flightsList = new ArrayList<>();
+
 	@Override
 	public void add(Flight v) {
 		flights.put(v.getFlightID(), v);
@@ -56,9 +58,29 @@ public class FlightRepositoryImpl implements templateRepository<Integer, Flight>
 	}
 	@Override
 	public ArrayList<Flight> getTable() {
-		// TODO Auto-generated method stub
-		return null;
+		ResultSet resultSet;
+		//
+		
+		
+		// here we need to split to load from db for the first time and update the list after each func
+		// get table shuold take only the list
+		
+		//
+		try {
+			resultSet = DBManager.readFromDB("SELECT * from flightboard");
+			while (resultSet.next()) { //.next() return true if we have more result + move to the next result (row)
+					//System.out.println("test flight");
+					Flight flight = new Flight(new Plane(resultSet.getString(1),resultSet.getInt(2)));
+					flightsList.add(flight);
+			}
+		} catch (SQLException e) {
+			System.out.println("Error in reading from DB!");
+			e.printStackTrace();
+		}
+		return flightsList;
 	}
+	
+	
 	
 	
 }

@@ -1,5 +1,7 @@
 package Controllers;
 
+import java.util.ArrayList;
+
 import Model.Flight;
 import Model.Plane;
 import Model.Repository.templateRepository;
@@ -43,6 +45,12 @@ public class FlightBoardController {
 	public void print() {
 		flightRepo.print();
 	}
+	
+	public ArrayList<Flight> getTable(){
+		return flightRepo.getTable();
+	}
+
+
 	
 	// list of flights getFlights()
 }
