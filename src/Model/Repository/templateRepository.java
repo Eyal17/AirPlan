@@ -7,6 +7,7 @@ public interface templateRepository <K,V> {
 	public void print();
 	public V find(K k);	
 	public ArrayList<V> getTable();
+	public int getMaxID();
 }
 
 

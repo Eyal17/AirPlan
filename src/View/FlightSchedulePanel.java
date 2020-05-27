@@ -19,19 +19,25 @@ import Model.Repository.FleetRepositoryImpl;
 import Model.Repository.FlightRepositoryImpl;
 
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import java.awt.Color;
 
 public class FlightSchedulePanel extends JPanel implements ActionListener {
 	
-	private JTable FlightTable;
+	private JTable flightTable;
+	private JTable fleetTable;
 	private FlightTableModel flightModel;
 	private FlightRepositoryImpl rflight;
 	private FleetRepositoryImpl rfleet;
 	private FleetController fleetCtrl;
+	private FleetTableModel fleetModel;
 	private FlightBoardController flightCtrl;
 	private JLabel lblFlightBoard;
 	private JScrollPane scrollPane;
 	private JButton addBtn;
 	private JButton deleteBtn;
+	private JTextField txtPlaneTable;
+	private JScrollPane PlaneTable;
 
 	/**
 	 * Create the panel.
@@ -45,17 +51,22 @@ public class FlightSchedulePanel extends JPanel implements ActionListener {
 		flightCtrl = new FlightBoardController(rflight,rfleet);
 
 		initialize();
+		setListeners();
 		
-		buildTable();
+		buildFlightTable();
+		buildFleetTable();
 
 	}
 	
 	public void initialize() {
 		flightModel = new FlightTableModel();
-		FlightTable = new JTable(flightModel);
+		flightTable = new JTable(flightModel);
 		//FlightTable = new JTable();
-		FlightTable.setBounds(77, 107, 684, 330);
+		flightTable.setBounds(77, 107, 684, 330);
 		//add(FlightTable);
+		fleetModel = new FleetTableModel();
+		fleetTable = new JTable(fleetModel);
+
 	
 		
 		lblFlightBoard = new JLabel("Flight Board");
@@ -65,9 +76,9 @@ public class FlightSchedulePanel extends JPanel implements ActionListener {
 		add(lblFlightBoard);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(241, 90, 554, 378);
+		scrollPane.setBounds(176, 89, 368, 378);
 		add(scrollPane);
-		scrollPane.setViewportView(FlightTable);
+		scrollPane.setViewportView(flightTable);
 		
 		
 		addBtn = new JButton("Add new flight");
@@ -77,6 +88,19 @@ public class FlightSchedulePanel extends JPanel implements ActionListener {
 		deleteBtn = new JButton("Delete plane");
 		deleteBtn.setBounds(10, 173, 130, 23);
 		add(deleteBtn);
+		
+		PlaneTable = new JScrollPane();
+		PlaneTable.setBounds(658, 89, 188, 378);
+		add(PlaneTable);
+		PlaneTable.setViewportView(fleetTable);
+
+		
+		txtPlaneTable = new JTextField();
+		txtPlaneTable.setBackground(Color.WHITE);
+		txtPlaneTable.setText("Plane Table");
+		txtPlaneTable.setBounds(689, 40, 124, 39);
+		add(txtPlaneTable);
+		txtPlaneTable.setColumns(10);
 	}
 	
 	public void setListeners() {
@@ -86,21 +110,39 @@ public class FlightSchedulePanel extends JPanel implements ActionListener {
 		deleteBtn.setActionCommand("delete flight");
 	}
 	
-	public void buildTable() {
-	    ArrayList<Flight> test2 = flightCtrl.getTable();
-	    flightModel.setList(test2);
+	public void buildFlightTable() {
+	    flightModel.setList(flightCtrl.getTable());
 	}
+	
+	public void buildFleetTable()
+	{
+		fleetModel.setList(fleetCtrl.getTable());
+	}
+
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("add plane")) {
+		if(e.getActionCommand().equals("add flight")) {
 			scrollPane.setVisible(false);
-			//String selectedBox = planeChoice.getSelectedItem().toString();
-			//fleetCtrl.addPlane(selectedBox);	
-			buildTable();
-			FlightTable.invalidate();
-			FlightTable.repaint();
+			int selectedRow = fleetTable.getSelectedRow();
+			int p =  (int) fleetModel.getValueAt(selectedRow, 0);
+			flightCtrl.addFlight(p);	
+			buildFlightTable();
+			flightTable.invalidate();
 			scrollPane.setVisible(true);
 	}
+		if(e.getActionCommand().equals("delete flight")) {
+			int selectedRow = -1;
+			selectedRow = flightTable.getSelectedRow();
+			if (selectedRow != -1) {
+				int f =  (int) flightModel.getValueAt(selectedRow, 0);
+				//System.out.println(p);
+				flightCtrl.deleteFlight(f);	
+				buildFlightTable();
+			}
+		}
+		flightTable.repaint();
 	}
+		
 }

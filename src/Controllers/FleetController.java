@@ -36,4 +36,9 @@ public class FleetController {
 	public ArrayList<Plane> getTable(){
 		return repFleet.getTable();
 	}
+	
+	public int getMax() {
+		return repFleet.getMaxID();
+	}
+
 }

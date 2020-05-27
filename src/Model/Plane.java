@@ -1,16 +1,22 @@
 package Model;
 import java.util.ArrayList;
 
+import Controllers.FleetController;
+import Controllers.FlightBoardController;
+import Model.Repository.FleetRepositoryImpl;
+
 
 public class Plane extends Aircraft {
 	final int planeID; 
 	ArrayList<ArrayList<Seat>> seats;
+	FleetRepositoryImpl fleetRep = new FleetRepositoryImpl();
+	FleetController fleetCtrl = new FleetController(fleetRep);
 	
 	public Plane(String model, int id) {
 		super(model);
 		setSeats(numOfRows[0] + numOfRows[1] + numOfRows[2]);
 		if(id == 0) {
-			planeID = random.nextInt(9000)+1000;
+			planeID = fleetCtrl.getMax() + 1;
 		}
 		else {
 			planeID = id;

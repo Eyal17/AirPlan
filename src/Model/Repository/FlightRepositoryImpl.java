@@ -11,7 +11,7 @@ import Model.Plane;
 
 public class FlightRepositoryImpl implements templateRepository<Integer, Flight> {
 	Map<Integer, Flight> flights = new HashMap<Integer, Flight>();
-	ArrayList<Flight> flightsList = new ArrayList<>();
+	ArrayList<Flight> flightsList;
 
 	@Override
 	public void add(Flight v) {
@@ -23,6 +23,7 @@ public class FlightRepositoryImpl implements templateRepository<Integer, Flight>
 	public void delete(Integer id) {
 		flights.remove(id);		
 		String query = "DELETE from flightboard WHERE flightboard.flightid=" + id;
+		System.out.println(id);
 		DBManager.deleteFromDB(query);
 	}
 	@Override
@@ -59,6 +60,8 @@ public class FlightRepositoryImpl implements templateRepository<Integer, Flight>
 	@Override
 	public ArrayList<Flight> getTable() {
 		ResultSet resultSet;
+		flightsList = new ArrayList<Flight>();
+
 		//
 		
 		
@@ -67,10 +70,10 @@ public class FlightRepositoryImpl implements templateRepository<Integer, Flight>
 		
 		//
 		try {
-			resultSet = DBManager.readFromDB("SELECT * from flightboard");
+			resultSet = DBManager.readFromDB("SELECT * from flightboard join fleet using(planeid)");
 			while (resultSet.next()) { //.next() return true if we have more result + move to the next result (row)
 					//System.out.println("test flight");
-					Flight flight = new Flight(new Plane(resultSet.getString(1),resultSet.getInt(2)));
+					Flight flight = new Flight(new Plane(resultSet.getString(3),resultSet.getInt(1)),resultSet.getInt(2));
 					flightsList.add(flight);
 			}
 		} catch (SQLException e) {
@@ -78,6 +81,22 @@ public class FlightRepositoryImpl implements templateRepository<Integer, Flight>
 			e.printStackTrace();
 		}
 		return flightsList;
+	}
+	
+	public int getMaxID(){
+		ResultSet resultSet = null;
+		int max = 0;
+		try {
+			resultSet = DBManager.readFromDB("SELECT max(flightid) from flightboard");
+			resultSet.next();
+			max = resultSet.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if(max == 0) {
+			return 999;
+		}
+		return max;
 	}
 	
 	

@@ -74,4 +74,21 @@ public class FleetRepositoryImpl implements templateRepository<Integer, Plane> {
 			System.out.println(MessageFormat.format("PlaneID={0}", id));
 		}
 	}
+
+	@Override
+	public int getMaxID() {
+		ResultSet resultSet = null;
+		int max = 0;
+		try {
+			resultSet = DBManager.readFromDB("SELECT max(planeid) from fleet");
+			resultSet.next();
+			max = resultSet.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if(max == 0) {
+			return 999;
+		}
+		return max;
+	}
 }
