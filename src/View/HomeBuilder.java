@@ -186,6 +186,7 @@ public class HomeBuilder extends JFrame {
 		});
 	}
 	
+	
 	//Functions
 	
 			public void MenuClicked(JPanel panel) {
