@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseMotionAdapter;
+import java.sql.SQLException;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.JToggleButton; 
@@ -114,7 +115,13 @@ public class LogInPage extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if(textField.getText().equals("admin") && passwordField.getText().equals("admin123")) {
 					JOptionPane.showMessageDialog(null, "Log in Success!");
-					HomeBuilder Home = new HomeBuilder();
+					HomeBuilder Home = null;
+					try {
+						Home = new HomeBuilder();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					Home.setVisible(true);
 				}
 				else
