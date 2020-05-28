@@ -29,5 +29,10 @@ public class AirportRepositoryImpl implements templateRepository<String, Airport
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public int getMaxID() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

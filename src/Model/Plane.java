@@ -1,8 +1,7 @@
 package Model;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import Controllers.FleetController;
-import Controllers.FlightBoardController;
 import Model.Repository.FleetRepositoryImpl;
 
 
@@ -14,7 +13,7 @@ public class Plane extends Aircraft {
 	
 	public Plane(String model, int id) {
 		super(model);
-		setSeats(numOfRows[0] + numOfRows[1] + numOfRows[2]);
+		setSeats(rowsPerClass[0] + rowsPerClass[1] + rowsPerClass[2]);
 		if(id == 0) {
 			planeID = fleetCtrl.getMax() + 1;
 		}
@@ -28,45 +27,36 @@ public class Plane extends Aircraft {
 	}
 	
 	// toString
-	public void print() {
-		System.out.println("name: " + this.getName());
-		System.out.println("fuel per KM: " + this.getFuelPerKm());
-		System.out.println("fuel tank size: " + this.getFuelTank());
-		System.out.println("number of rows: " + this.getnumOfRows());
-		System.out.println("plane ID: " + planeID);
-	}
+//	public void print() {
+//		System.out.println("name: " + this.getName());
+//		System.out.println("fuel per KM: " + this.getFuelPerKm());
+//		System.out.println("fuel tank size: " + this.getFuelTank());
+//		System.out.println("number of rows: " + this.getnumOfRows());
+//		System.out.println("plane ID: " + planeID);
+//	}
 
 
 	public void setSeats(int rows) {
 		//int rows = numOfRows[0] + numOfRows[1] + numOfRows[2];
-		ArrayList<Seat>[] seats = new ArrayList[rows];
+		ArrayList<Seat>[] seats =  new ArrayList[rows];
         for (int i = 0; i < rows; i++) { 
             seats[i] = new ArrayList<Seat>();
-            if(i < numOfRows[0]) {
-            	for(int j = 1; j < 3; j++) {
-            		seats[i].add(new Seat(1,j));
-            	}
+            if(i < rowsPerClass[0]) {
+            		seats[i].add(new Seat("FIRST","A",0));
+            		seats[i].add(new Seat("FIRST","B",0));
             }
-            else if(i < (numOfRows[1]+numOfRows[0]) && i < numOfRows[2]) {
-            	for(int j = 1; j < 4; j++) {
-            		seats[i].add(new Seat(2,j));
-            	}
+            else if(i < (rowsPerClass[1]+rowsPerClass[0]) && i < rowsPerClass[2]) {
+            		seats[i].add(new Seat("BUSINESS","A",0));
+            		seats[i].add(new Seat("BUSINESS","B",0));
+            		seats[i].add(new Seat("BUSINESS","C",0));
             }
             else {
-            	for(int j = 1; j < 5; j++) {
-            		seats[i].add(new Seat(3,j));
-            	}
+            		seats[i].add(new Seat("ECONOMY","A",0));
+            		seats[i].add(new Seat("ECONOMY","B",0));
+            		seats[i].add(new Seat("ECONOMY","C",0));
+            		seats[i].add(new Seat("ECONOMY","D",0));
             }
         } 
-
-  
-        //for (int i = 0; i < rows; i++) { 
-        //	System.out.print("Row number " + (i+1) + "\n");
-          //  for (int j = 0; j < seats[i].size(); j++) { 
-            //	seats[i].get(j).print();
-            //} 
-            //System.out.print("\n");
-        //}
 	}
 	
 	@Override

@@ -1,31 +1,29 @@
 package Model;
 
-import java.util.Random;
-
 public class Aircraft {
-	
-	//Random random = new Random();
-	String name;
-	int fuelTank;
-	int maxKm;
+	String planeModel;
+	int fuelTankSize;
+	int maxKmPerFlight;
 	int fuelPerKm;
-	int []numOfRows;//FIRST, BUSINESS, ECONOMY
+	int speed;
+	int []rowsPerClass = new int[3] ;//FIRST, BUSINESS, ECONOMY
 	
 	public Aircraft(String m) {
-		numOfRows = new int [3];
 		switch(m) {
 		case "727":
-			name = m;
-			fuelTank = 150000;
-			maxKm = 15000;
+			planeModel = m;
+			fuelTankSize = 150000;
+			maxKmPerFlight = 15000;
 			fuelPerKm = 10;
+			speed = 900;
 			setnumOfRows(4, 4, 20);
 			break;
 		case "737":
-			name = m;
-			fuelTank = 200000;
-			maxKm = 20000;
+			planeModel = m;
+			fuelTankSize = 200000;
+			maxKmPerFlight = 20000;
 			fuelPerKm = 10;
+			speed = 1000;
 			setnumOfRows(8, 8, 40);
 			break;
 		default:
@@ -35,38 +33,39 @@ public class Aircraft {
 		
 	};
 
-	
 	public String getName() {
-		return name;
+		return planeModel;
 	}
 	public int getFuelTank() {
-		return fuelTank;
+		return fuelTankSize;
 	}
 	public int getMaxKm() {
-		return maxKm;
+		return maxKmPerFlight;
 	}
 	public int getFuelPerKm() {
 		return fuelPerKm;
 	}
 	public int getnumOfRows() {
-		return numOfRows[0]+numOfRows[1]+numOfRows[2];
+		return rowsPerClass[0]+rowsPerClass[1]+rowsPerClass[2];
 	}
 	
 	
 	public void setName(String n) {
-		name = n;
+		planeModel = n;
 	}
 	public void setFuelTank(int f) {
-		fuelTank = f;
+		fuelTankSize = f;
 	}
 	public void setMaxKm(int m) {
-		maxKm = m;
+		maxKmPerFlight = m;
 	}
 	public void setFuelPerKm(int f) {
 		fuelPerKm = f;
 	}
 	public void setnumOfRows(int a,int b,int c) {
-		numOfRows = new int[]{a, b, c};
+		rowsPerClass[0] = a;
+		rowsPerClass[1] = b;
+		rowsPerClass[2] = c;
 	}
 	
 }

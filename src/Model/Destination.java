@@ -1,9 +1,9 @@
 package Model;
 public class Destination {
 	String country;
-	double distFromBase;
+	int distFromBase;
 	//coordinate
-	public Destination(String c, double d) { //ctor
+	public Destination(String c, int d) { //ctor
 		country = c;
 		distFromBase = d;
 		

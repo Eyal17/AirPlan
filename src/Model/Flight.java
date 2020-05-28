@@ -1,9 +1,7 @@
 package Model;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.Date;
-
-import Controllers.FleetController;
 import Controllers.FlightBoardController;
 import Model.Repository.FleetRepositoryImpl;
 import Model.Repository.FlightRepositoryImpl;
@@ -11,24 +9,25 @@ import Model.Repository.FlightRepositoryImpl;
 
 public class Flight {
 	int flightID;
-	//int distance;
-	//double cost;
+	int distance;
+	double cost;
 	Plane plane;
-	//Date arrival;
-	//Date departure;
-	//Airport origin;
-	//Airport dest;
+	Date arrival;
+	Date departure;
+	Airport origin;
+	Airport dest;
 	ArrayList<ArrayList<Seat>> passengers;
 	FlightRepositoryImpl flightRep = new FlightRepositoryImpl();
 	FleetRepositoryImpl fleetRep = new FleetRepositoryImpl();
 	FlightBoardController flightCtrl = new FlightBoardController(flightRep, fleetRep);
 	
-	public Flight(Plane p,int id) {//, Date a, Date d, Airport orig, Airport des) {
+	public Flight(Plane p,int id) {//Date arv,Airport orig, Airport des) {
 		plane = p;
-		//arrival = a;
+		//arrival = arv;
 		//departure = d;
 		//origin = orig;
 		//dest = des;
+		distance = origin.distFromBase + dest.distFromBase;
 		if (id == 0) {
 			flightID = (flightCtrl.getMax()) + 1;
 		}
@@ -57,7 +56,6 @@ public class Flight {
 		return flightID;
 	}
 	
-	
 	public void setPlane(Plane p) {
 		plane = p;
 	}
@@ -73,11 +71,15 @@ public class Flight {
 	public void setDest(Airport d) {
 		dest = d;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Flight [flightID=" + flightID + ", plane=" + plane + ", passengers=" + passengers + "]";
 	}
 	
+	Date getFlightDuration() {
+		//Date time = arrival + distance*plane.speed;
+		return arrival; // return time
 	
+	}
 }
