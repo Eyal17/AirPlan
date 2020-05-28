@@ -25,8 +25,7 @@ public class DBManager {
 	
 	public static boolean addToDB(String sql){
 		try {
-			PreparedStatement preparedStatement = connect().prepareStatement(sql);
-			preparedStatement.executeUpdate();
+			connect().createStatement().executeUpdate(sql);
 			System.out.println("Added succesfully!");
 			return true;
 		}

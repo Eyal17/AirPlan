@@ -4,7 +4,7 @@ public class Airport extends Destination {
 	int localTax;
 	double fuelPrice;
 	
-	public Airport(int tax, int fuelP, String c, double d) {
+	public Airport(int tax, int fuelP, String c, int d) {
 		super(c,d);
 		localTax = tax;
 		fuelPrice = fuelP;
