@@ -49,11 +49,8 @@ public class DBManager {
 			return true;
 		}
 		catch (SQLException e) {
-			System.out.println("Error in deleteToDB!");
+			System.out.println("Error in deleteFromDB!");
 			return false;
 		}
 	}
-//
-//
-	
 }
