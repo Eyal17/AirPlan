@@ -17,27 +17,27 @@ public class FlightRepositoryImpl implements templateRepository<Integer, Flight>
 	public void add(Flight v) {
 		flights.put(v.getFlightID(), v);
 		String query = "INSERT INTO flightboard(flightid,planeid)" + "VALUES (" + v.getFlightID() + "," + v.getPlane().getPlaneID() + ")";
-		DBManager.addToDB(query);
+		DBManager.getInstance().addToDB(query);
 	}
 	@Override
 	public void delete(Integer id) {
 		flights.remove(id);		
 		String query = "DELETE from flightboard WHERE flightboard.flightid=" + id;
 		System.out.println(id);
-		DBManager.deleteFromDB(query);
+		DBManager.getInstance().deleteFromDB(query);
 	}
-	@Override
-	public void print() {
-//		for(Map.Entry i: flights.entrySet()) {
-//			System.out.println(i + "\n");
+//	@Override
+//	public void print() {
+////		for(Map.Entry i: flights.entrySet()) {
+////			System.out.println(i + "\n");
+////		}
+//		try {
+//			FleetRepositoryImpl.printResultSet(DBManager.readFromDB("SELECT * from flightboard"));
+//		} catch (SQLException e) {
+//			System.out.println("Error in printing!");
+//			e.printStackTrace();
 //		}
-		try {
-			FleetRepositoryImpl.printResultSet(DBManager.readFromDB("SELECT * from flightboard"));
-		} catch (SQLException e) {
-			System.out.println("Error in printing!");
-			e.printStackTrace();
-		}
-	}
+//	}
 	
 	@Override
 	public Flight find(Integer id) {
@@ -70,7 +70,7 @@ public class FlightRepositoryImpl implements templateRepository<Integer, Flight>
 		
 		//
 		try {
-			resultSet = DBManager.readFromDB("SELECT * from flightboard join fleet using(planeid)");
+			resultSet = DBManager.getInstance().readFromDB("SELECT * from flightboard join fleet using(planeid)");
 			while (resultSet.next()) { //.next() return true if we have more result + move to the next result (row)
 					//System.out.println("test flight");
 					Flight flight = new Flight(new Plane(resultSet.getString(3),resultSet.getInt(1)),resultSet.getInt(2));
@@ -87,7 +87,7 @@ public class FlightRepositoryImpl implements templateRepository<Integer, Flight>
 		ResultSet resultSet = null;
 		int max = 0;
 		try {
-			resultSet = DBManager.readFromDB("SELECT max(flightid) from flightboard");
+			resultSet = DBManager.getInstance().readFromDB("SELECT max(flightid) from flightboard");
 			resultSet.next();
 			max = resultSet.getInt(1);
 		} catch (SQLException e) {

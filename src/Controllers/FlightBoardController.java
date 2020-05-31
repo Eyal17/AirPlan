@@ -27,7 +27,6 @@ public class FlightBoardController {
 		else {
 			System.out.println("Error!");
 		}
-		flightRepo.print();
 	}
 	
 	void editFlight() { 
@@ -42,9 +41,9 @@ public class FlightBoardController {
 		return flightRepo.find(id);
 	}
 	
-	public void print() {
-		flightRepo.print();
-	}
+//	public void print() {
+//		flightRepo.print();
+//	}
 	
 	public ArrayList<Flight> getTable(){
 		return flightRepo.getTable();
