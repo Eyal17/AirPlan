@@ -16,22 +16,22 @@ public class FleetController {
 	}
 	
 	 public void addPlane(String model){
-		if (model != "727" && model != "737") {
-			// throw exepction
-			System.out.println(model + " not correct");
-		}
-		else {
-			Plane p = new Plane(model,0);
-			repFleet.add(p);
-		}
+//		if (model != "727" && model != "737") {
+//			// throw exepction
+//			System.out.println(model + " not correct");
+//		}
+//		else {
+		Plane p = new Plane(model,0);
+		repFleet.add(p);
+//		}
 	}
 	public void deletePlane(int id){
 		repFleet.delete(id);
 	}
 	
-	public void print() {
-		repFleet.print();
-	}
+//	public void print() {
+//		repFleet.print();
+//	}
 	
 	public ArrayList<Plane> getTable(){
 		return repFleet.getTable();

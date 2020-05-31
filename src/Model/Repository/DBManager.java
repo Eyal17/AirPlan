@@ -11,7 +11,15 @@ import java.text.MessageFormat;
 public class DBManager {
 	private static Connection connection;
 	
-	public static  Connection connect() throws SQLException {
+	// Design pattern - Singletone
+	private static final DBManager instance= new DBManager();
+	private DBManager( ) {} // constructor 
+	public static DBManager getInstance() 
+	{
+		return instance;
+	}
+	
+	private static  Connection connect() throws SQLException {
 		if (connection == null) {
 			// (connection type : DB type : DB host IP : DB port / DB name), username, password)
 			//connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/AirPlanDB", "postgres", "postgres");
@@ -20,12 +28,12 @@ public class DBManager {
 		}
 		return connection;
 	}
-	public static ResultSet readFromDB(String sql) throws SQLException {
-		System.out.println("Reading...");
+	ResultSet readFromDB(String sql) throws SQLException {
+		System.out.println("@" + sql);
 		return connect().createStatement().executeQuery(sql);
 	}
 	
-	public static boolean addToDB(String sql){
+	boolean addToDB(String sql){
 		try {
 			connect().createStatement().executeUpdate(sql);
 			System.out.println("Added succesfully!");
@@ -37,7 +45,7 @@ public class DBManager {
 		}
 	}
 	
-	public static boolean deleteFromDB(String sql) {
+	boolean deleteFromDB(String sql) {
 		try {
 			connect().createStatement().executeUpdate(sql);
 			return true;

@@ -39,6 +39,7 @@ public class HomeBuilder extends JFrame {
 					HomeBuilder frame = new HomeBuilder();
 					frame.setVisible(true);
 					frame.setResizable(false);
+					frame.setTitle("AirPlan");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

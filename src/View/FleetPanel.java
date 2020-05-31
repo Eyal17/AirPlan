@@ -37,7 +37,7 @@ import java.awt.event.MouseEvent;
 public class FleetPanel extends JPanel implements ActionListener{
 	
 	/* Private variables we use in this page  */
-	private JTable FleetTable;
+	private JTable fleetTable;
 	private FleetTableModel fleetModel;
 	private JLabel lblAircraftFleet;
 	private JScrollPane scrollPane;
@@ -61,7 +61,7 @@ public class FleetPanel extends JPanel implements ActionListener{
 	/* A Function to initialize the graphical parameters in the page */
 	public void initialize() {
 		fleetModel = new FleetTableModel();
-		FleetTable = new JTable(fleetModel);
+		fleetTable = new JTable(fleetModel);
 		//FleetTable = new JTable(); // to design 
 
 		
@@ -77,7 +77,7 @@ public class FleetPanel extends JPanel implements ActionListener{
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(241, 90, 554, 378);
 		add(scrollPane);
-		scrollPane.setViewportView(FleetTable);
+		scrollPane.setViewportView(fleetTable);
 		
 		
 		/* Choosing plane type combobox parameters */ 
@@ -129,7 +129,7 @@ public class FleetPanel extends JPanel implements ActionListener{
 			if(selectedBox != ""){  /* Add plane functionality */
 				fleetCtrl.addPlane(selectedBox);	
 				buildTable();
-				FleetTable.invalidate();
+				fleetTable.invalidate();
 			}
 			else { /* The user must choose a plane type */
 				JOptionPane.showMessageDialog(null, "Please choose plane type. ");
@@ -139,19 +139,18 @@ public class FleetPanel extends JPanel implements ActionListener{
 		/* Delete plane functionality when pressing the button */
 		if(e.getActionCommand().equals("delete plane")) {
 			int selectedRow = -1;
-			selectedRow = FleetTable.getSelectedRow();
+			selectedRow = fleetTable.getSelectedRow();
 			if (selectedRow != -1) {
 				int p =  (int) fleetModel.getValueAt(selectedRow, 0);
 				fleetCtrl.deletePlane(p);	
 				buildTable();
-				FleetTable.invalidate();
+				fleetTable.invalidate();
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Choose a plane to delete.");
 			}
-			FleetTable.repaint();
-
+			fleetTable.repaint();	
 		}
-		
+		fleetTable.clearSelection();
 	}
 }
