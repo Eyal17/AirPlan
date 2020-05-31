@@ -5,6 +5,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class MapControllerPanel extends JPanel {
 
@@ -12,6 +13,7 @@ public class MapControllerPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public MapControllerPanel() {
+		setBackground(Color.WHITE);
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
 		

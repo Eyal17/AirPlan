@@ -2,10 +2,12 @@ package View;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -20,6 +22,7 @@ import Model.Repository.FlightRepositoryImpl;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import java.awt.Color;
 
 public class FlightBoardPanel extends JPanel implements ActionListener {
 	
@@ -43,10 +46,12 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	private JComboBox<Integer> dayBox;
 	private JComboBox<Integer>monthBox;
 	private JComboBox<Integer>yearBox;
+	private JLabel refLbl;
 
 	/* Constructor uses functions to initialize the page */
 
 	public FlightBoardPanel() {
+		setBackground(Color.WHITE);
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
 		rflight = new FlightRepositoryImpl();
@@ -64,13 +69,13 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	public void initialize() {
 		flightModel = new FlightTableModel();
 		
-		flightTable = new JTable(flightModel);
-		//flightTable = new JTable();//design
+		//flightTable = new JTable(flightModel);
+		flightTable = new JTable();//design
 		
 		fleetModel = new FleetTableModel();
 		
-		fleetTable = new JTable(fleetModel);
-		//fleetTable = new JTable();//design
+		//fleetTable = new JTable(fleetModel);
+		fleetTable = new JTable();//design
 				
 		flightTable.setBounds(77, 107, 684, 330);
 
@@ -91,6 +96,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		
 		/* scrollPane parameters */ 
 		scrollPane = new JScrollPane();
+		scrollPane.setBackground(Color.WHITE);
 		scrollPane.setBounds(176, 89, 368, 378);
 		add(scrollPane);
 		scrollPane.setViewportView(flightTable);
@@ -108,6 +114,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		
 		/* scrollPane for PlaneTable parameters */
 		PlaneTable = new JScrollPane();
+		PlaneTable.setBackground(Color.WHITE);
 		PlaneTable.setBounds(787, 89, 188, 378);
 		add(PlaneTable);
 		PlaneTable.setViewportView(fleetTable);
@@ -137,6 +144,12 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		//yearBox.setSelectedIndex(0);
 		yearBox.setBounds(720, 104, 57, 23);
 		add(yearBox);
+		
+		refLbl = new JLabel("");
+		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
+		refLbl.setIcon(new ImageIcon(refreshIcon));
+		refLbl.setBounds(571, 449, 35, 35);
+		add(refLbl);
 	}
 	
 	/*A Function to set all the listeners in the page */
