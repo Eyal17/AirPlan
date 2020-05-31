@@ -27,7 +27,7 @@ public class Flight {
 		//departure = d;
 		//origin = orig;
 		//dest = des;
-		distance = origin.distFromBase + dest.distFromBase;
+		//distance = origin.distFromBase + dest.distFromBase;
 		if (id == 0) {
 			flightID = (flightCtrl.getMax()) + 1;
 		}
