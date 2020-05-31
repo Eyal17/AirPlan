@@ -20,10 +20,10 @@ public class AirportRepositoryImpl implements templateRepository<String, Airport
 //			System.out.println(i + "\n");
 //		}
 //	}
-	@Override
-	public Airport find(String k) {
-		return airports.get(k);
-	}
+//	@Override
+//	public Airport find(String k) {
+//		return airports.get(k);
+//	}
 	@Override
 	public ArrayList<Airport> getTable() {
 		// TODO Auto-generated method stub

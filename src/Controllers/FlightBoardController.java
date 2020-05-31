@@ -4,16 +4,15 @@ import java.util.ArrayList;
 
 import Model.Flight;
 import Model.Plane;
-import Model.Repository.templateRepository;
 import Model.Repository.FleetRepositoryImpl;
 import Model.Repository.FlightRepositoryImpl;
 
 public class FlightBoardController {
 	
-	private templateRepository<Integer, Flight> flightRepo;
-	private templateRepository<Integer, Plane> fleetRepo;
+	private FlightRepositoryImpl flightRepo;
+	private FleetRepositoryImpl fleetRepo;
 	
-	public FlightBoardController(FlightRepositoryImpl r, FleetRepositoryImpl s){
+	public FlightBoardController(FlightRepositoryImpl r, FleetRepositoryImpl s) {
 		flightRepo = r;
 		fleetRepo = s;
 	}
@@ -37,8 +36,8 @@ public class FlightBoardController {
 		flightRepo.delete(id);
 	}
 	
-	Flight searchFlight(int id) {
-		return flightRepo.find(id);
+	boolean isPlaneExist(int id) {
+		return flightRepo.isPlaneExist(id);
 	}
 	
 //	public void print() {

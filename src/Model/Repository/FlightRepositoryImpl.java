@@ -39,20 +39,18 @@ public class FlightRepositoryImpl implements templateRepository<Integer, Flight>
 //		}
 //	}
 	
-	@Override
-	public Flight find(Integer id) {
-		return flights.get(id);
-//		String query = "SELECT * from fleet WHERE flightboard.flightid =" + id;
-//		try {
-//			ResultSet result = DBManager.readFromDB(query);
-//			if (result.next())
-//				return new Flight(new Plane(result));
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return new Plane("",0);
-//	}
+	public boolean isPlaneExist(int pID) {
+		String query = "SELECT * from flightboard WHERE flightboard.planeid =" + pID;
+		try {
+			ResultSet result = DBManager.getInstance().readFromDB(query);
+			if (result.next()) // check if there are flights with this plane id
+				return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
+
 	public void checkIn()
 	{
 		

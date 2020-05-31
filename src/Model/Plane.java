@@ -9,7 +9,7 @@ public class Plane extends Aircraft {
 	final int planeID; 
 	ArrayList<ArrayList<Seat>> seats;
 	FleetRepositoryImpl fleetRep = new FleetRepositoryImpl();
-	FleetController fleetCtrl = new FleetController(fleetRep);
+	FleetController fleetCtrl = new FleetController(null, fleetRep);
 	
 	public Plane(String model, int id) {
 		super(model);

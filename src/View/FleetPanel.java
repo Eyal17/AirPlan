@@ -10,6 +10,8 @@ import Controllers.FleetController;
 import javax.swing.JTable;
 import Model.Plane;
 import Model.Repository.FleetRepositoryImpl;
+import Model.Repository.FlightRepositoryImpl;
+
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,15 +28,17 @@ public class FleetPanel extends JPanel implements ActionListener{
 	private JComboBox<String> planeChoice;
 	private JButton addBtn;
 	private JButton deleteBtn;
-	private FleetRepositoryImpl r;
-	private FleetController fleetCtrl; 
+	private FleetRepositoryImpl fleetRep;
+	private FlightRepositoryImpl flightRep;
+	private FleetController fleetCtrl;
 
 	/* Constructor uses functions to initialize the page */
 	public FleetPanel() {
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
-		r = new FleetRepositoryImpl();
-		fleetCtrl = new FleetController(r);
+		fleetRep = new FleetRepositoryImpl();
+		flightRep = new FlightRepositoryImpl();
+		fleetCtrl = new FleetController(flightRep, fleetRep);
 		initialize();
 		setListeners();
 		buildTable();
@@ -124,13 +128,13 @@ public class FleetPanel extends JPanel implements ActionListener{
 			selectedRow = fleetTable.getSelectedRow();
 			if (selectedRow != -1) {
 				int p =  (int) fleetModel.getValueAt(selectedRow, 0);
-				fleetCtrl.deletePlane(p);	
-				buildTable();
-				fleetTable.invalidate();
+				if (fleetCtrl.deletePlane(p)) {	
+					buildTable();
+					fleetTable.invalidate();
+				}
+				else {JOptionPane.showMessageDialog(null, "The plane is assigned to flights\nPlease delete the flights first.");}
 			}
-			else {
-				JOptionPane.showMessageDialog(null, "Choose a plane to delete.");
-			}
+			else {JOptionPane.showMessageDialog(null, "Choose a plane to delete.");}
 			fleetTable.repaint();	
 		}
 		fleetTable.clearSelection();

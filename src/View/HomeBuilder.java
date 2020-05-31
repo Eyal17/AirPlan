@@ -1,22 +1,12 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import Controllers.FlightBoardController;
-
 import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import javax.swing.UIManager;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -190,12 +180,10 @@ public class HomeBuilder extends JFrame {
 	
 	
 	//Functions
-	
 			public void MenuClicked(JPanel panel) {
 				HomeP.setVisible(false);
 				AirCraftP.setVisible(false);
 				FlightBoardP.setVisible(false);
 				panel.setVisible(true);
 			}
-			
 }

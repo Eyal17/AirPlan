@@ -31,7 +31,7 @@ public class FleetRepositoryImpl implements templateRepository<Integer, Plane> {
 //		}
 //	}
 
-	@Override
+	//@Override
 	public Plane find(Integer id) {
 		//return fleet.get(id);
 		String query = "SELECT * from fleet WHERE fleet.planeid =" + id;

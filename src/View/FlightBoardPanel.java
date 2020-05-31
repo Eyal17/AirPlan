@@ -51,7 +51,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		setLayout(null);
 		rflight = new FlightRepositoryImpl();
 		rfleet = new FleetRepositoryImpl();
-		fleetCtrl = new FleetController(rfleet);
+		fleetCtrl = new FleetController(rflight,rfleet);
 		flightCtrl = new FlightBoardController(rflight,rfleet);
 		initialize();
 		setListeners();
