@@ -13,7 +13,9 @@ public class DBManager {
 	
 	public static  Connection connect() throws SQLException {
 		if (connection == null) {
-			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/AirPlanDB", "postgres", "postgres");
+			// (connection type : DB type : DB host IP : DB port / DB name), username, password)
+			//connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/AirPlanDB", "postgres", "postgres");
+			connection = DriverManager.getConnection("jdbc:postgresql://ec2-34-225-82-212.compute-1.amazonaws.com:5432/d3q19tgb52t4up", "ptxcxqrycrcoep", "21ef1913fe59fd5e95151880ccaf98bc8bdbbc381d4820b95842124fa866e3b3");
 			System.out.println("Connected succesfully to DB!");
 		}
 		return connection;
