@@ -38,6 +38,7 @@ public class HomeBuilder extends JFrame {
 				try {
 					HomeBuilder frame = new HomeBuilder();
 					frame.setVisible(true);
+					frame.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
