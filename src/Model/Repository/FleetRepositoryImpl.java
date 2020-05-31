@@ -2,9 +2,7 @@ package Model.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.MessageFormat;
 import java.util.ArrayList;
-
 import Model.Plane;
 
 public class FleetRepositoryImpl implements templateRepository<Integer, Plane> {
