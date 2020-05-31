@@ -7,7 +7,7 @@ import Model.Repository.FleetRepositoryImpl;
 
 public class Plane extends Aircraft {
 	final int planeID; 
-	ArrayList<ArrayList<Seat>> seats;
+	ArrayList<Seat>[] seats;
 	FleetRepositoryImpl fleetRep = new FleetRepositoryImpl();
 	FleetController fleetCtrl = new FleetController(null, fleetRep);
 	
@@ -36,9 +36,10 @@ public class Plane extends Aircraft {
 //	}
 
 
-	public void setSeats(int rows) {
+	@SuppressWarnings("unchecked")
+	void setSeats(int rows) {
 		//int rows = numOfRows[0] + numOfRows[1] + numOfRows[2];
-		ArrayList<Seat>[] seats =  new ArrayList[rows];
+		seats =  new ArrayList[rows];
         for (int i = 0; i < rows; i++) { 
             seats[i] = new ArrayList<Seat>();
             if(i < rowsPerClass[0]) {

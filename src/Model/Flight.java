@@ -16,7 +16,7 @@ public class Flight {
 	Date departure;
 	Airport origin;
 	Airport dest;
-	ArrayList<ArrayList<Seat>> passengers;
+	ArrayList<Seat>[] passengers;
 	FlightRepositoryImpl flightRep = new FlightRepositoryImpl();
 	FleetRepositoryImpl fleetRep = new FleetRepositoryImpl();
 	FlightBoardController flightCtrl = new FlightBoardController(flightRep, fleetRep);

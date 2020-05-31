@@ -2,9 +2,7 @@ package View;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-
 import Model.Flight;
-import Model.Plane;
 
 public class FlightTableModel extends AbstractTableModel {
 
