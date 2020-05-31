@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.awt.CardLayout;
+import java.awt.Cursor;
 
 public class HomeBuilder extends JFrame {
 
@@ -57,6 +58,7 @@ public class HomeBuilder extends JFrame {
 		NavBar.setLayout(null);
 		
 		JPanel HomeBtn = new JPanel();
+		HomeBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		HomeBtn.setBackground(new Color(37,104,162));
 		HomeBtn.setBounds(0, 102, 236, 59);
 		NavBar.add(HomeBtn);
@@ -64,23 +66,25 @@ public class HomeBuilder extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Home");
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		lblNewLabel.setBounds(50, 11, 55, 37);
 		HomeBtn.add(lblNewLabel);
 		
 		JPanel AircraftFleetBtn = new JPanel();
+		AircraftFleetBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		AircraftFleetBtn.setLayout(null);
 		AircraftFleetBtn.setBackground(new Color(37,104,162));
 		AircraftFleetBtn.setBounds(0, 172, 236, 59);
 		NavBar.add(AircraftFleetBtn);
 		
-		JLabel lblAircraftFleet = new JLabel("Aircraft Fleet");
+		JLabel lblAircraftFleet = new JLabel("Planes Fleet");
 		lblAircraftFleet.setForeground(Color.WHITE);
-		lblAircraftFleet.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		lblAircraftFleet.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		lblAircraftFleet.setBounds(50, 11, 145, 37);
 		AircraftFleetBtn.add(lblAircraftFleet);
 		
 		JPanel FlightScheduleBtn = new JPanel();
+		FlightScheduleBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		FlightScheduleBtn.setLayout(null);
 		FlightScheduleBtn.setBackground(new Color(37,104,162));
 		FlightScheduleBtn.setBounds(0, 242, 236, 59);
@@ -88,11 +92,12 @@ public class HomeBuilder extends JFrame {
 		
 		JLabel lblFlightBoard = new JLabel("Flight Board");
 		lblFlightBoard.setForeground(Color.WHITE);
-		lblFlightBoard.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		lblFlightBoard.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		lblFlightBoard.setBounds(50, 11, 132, 37);
 		FlightScheduleBtn.add(lblFlightBoard);
 		
 		JPanel MapControllerBtn = new JPanel();
+		MapControllerBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		MapControllerBtn.setLayout(null);
 		MapControllerBtn.setBackground(new Color(37,104,162));
 		MapControllerBtn.setBounds(0, 312, 236, 59);
@@ -100,7 +105,7 @@ public class HomeBuilder extends JFrame {
 		
 		JLabel lblMapController = new JLabel("Map Controller");
 		lblMapController.setForeground(Color.WHITE);
-		lblMapController.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		lblMapController.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		lblMapController.setBounds(50, 11, 132, 37);
 		MapControllerBtn.add(lblMapController);
 		

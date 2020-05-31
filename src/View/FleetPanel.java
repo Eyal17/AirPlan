@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.Font;
+import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.SwingConstants;
 import Controllers.FleetController;
@@ -13,10 +14,12 @@ import Model.Repository.FleetRepositoryImpl;
 import Model.Repository.FlightRepositoryImpl;
 
 import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Color;
 
 public class FleetPanel extends JPanel implements ActionListener{
 	
@@ -34,6 +37,7 @@ public class FleetPanel extends JPanel implements ActionListener{
 
 	/* Constructor uses functions to initialize the page */
 	public FleetPanel() {
+		setBackground(Color.WHITE);
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
 		fleetRep = new FleetRepositoryImpl();
@@ -89,12 +93,14 @@ public class FleetPanel extends JPanel implements ActionListener{
 		add(deleteBtn);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(473, 0, 555, 681);
+		panel.setBounds(493, 0, 535, 681);
 		add(panel);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(329, 487, 46, 49);
-		add(lblNewLabel);
+		JLabel refreshLbl = new JLabel("");
+		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
+		refreshLbl.setIcon(new ImageIcon(refreshIcon));
+		refreshLbl.setBounds(329, 494, 35, 35);
+		add(refreshLbl);
 	}
 	
 	/*A Function to set all the listeners in the page */
