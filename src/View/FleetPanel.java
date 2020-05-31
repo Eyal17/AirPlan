@@ -47,13 +47,13 @@ public class FleetPanel extends JPanel implements ActionListener{
 	/* A Function to initialize the graphical parameters in the page */
 	public void initialize() {
 		fleetModel = new FleetTableModel();
-		fleetTable = new JTable(fleetModel);
-		//FleetTable = new JTable(); // to design 
+		//fleetTable = new JTable(fleetModel);
+		fleetTable = new JTable(); // to design 
 
 		
 		/* AirCraft title parameters */ 
 		lblAircraftFleet = new JLabel("AirCraft Fleet");
-		lblAircraftFleet.setBounds(303, 30, 230, 49);
+		lblAircraftFleet.setBounds(74, 23, 230, 49);
 		lblAircraftFleet.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAircraftFleet.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		add(lblAircraftFleet);
@@ -61,7 +61,7 @@ public class FleetPanel extends JPanel implements ActionListener{
 		/* scrollPane parameters */ 
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(241, 90, 554, 378);
+		scrollPane.setBounds(74, 104, 245, 425);
 		add(scrollPane);
 		scrollPane.setViewportView(fleetTable);
 		
@@ -73,20 +73,28 @@ public class FleetPanel extends JPanel implements ActionListener{
 		planeChoice.addItem("737");
 		planeChoice.setSelectedItem("");
 		planeChoice.setSelectedIndex(0);
-		planeChoice.setBounds(150, 118, 60, 22);
+		planeChoice.setBounds(221, 566, 60, 22);
 		add(planeChoice);
 		
 		
 		/* Add button parameters */ 
 		addBtn = new JButton("Add new plane");
-		addBtn.setBounds(10, 118, 130, 23);
+		addBtn.setBounds(36, 566, 130, 23);
 		add(addBtn);
 		
 		
 		/* Delete button parameters */ 
 		deleteBtn = new JButton("Delete plane");
-		deleteBtn.setBounds(10, 173, 130, 23);
+		deleteBtn.setBounds(36, 621, 130, 23);
 		add(deleteBtn);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(473, 0, 555, 681);
+		add(panel);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(329, 487, 46, 49);
+		add(lblNewLabel);
 	}
 	
 	/*A Function to set all the listeners in the page */

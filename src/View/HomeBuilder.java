@@ -42,6 +42,7 @@ public class HomeBuilder extends JFrame {
 	 * @throws SQLException 
 	 */
 	public HomeBuilder() throws SQLException {
+		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 680);
 		contentPane = new JPanel();
@@ -50,57 +51,61 @@ public class HomeBuilder extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel NavBar = new JPanel();
-		NavBar.setBackground(Color.WHITE);
-		NavBar.setBounds(0, 0, 236, 692);
+		NavBar.setBackground(new Color(37,104,162));
+		NavBar.setBounds(0, 0, 236, 680);
 		contentPane.add(NavBar);
 		NavBar.setLayout(null);
 		
 		JPanel HomeBtn = new JPanel();
-		HomeBtn.setBackground(Color.WHITE);
+		HomeBtn.setBackground(new Color(37,104,162));
 		HomeBtn.setBounds(0, 102, 236, 59);
 		NavBar.add(HomeBtn);
 		HomeBtn.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Home");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		lblNewLabel.setBounds(50, 11, 55, 37);
 		HomeBtn.add(lblNewLabel);
 		
 		JPanel AircraftFleetBtn = new JPanel();
 		AircraftFleetBtn.setLayout(null);
-		AircraftFleetBtn.setBackground(Color.WHITE);
+		AircraftFleetBtn.setBackground(new Color(37,104,162));
 		AircraftFleetBtn.setBounds(0, 172, 236, 59);
 		NavBar.add(AircraftFleetBtn);
 		
 		JLabel lblAircraftFleet = new JLabel("Aircraft Fleet");
+		lblAircraftFleet.setForeground(Color.WHITE);
 		lblAircraftFleet.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		lblAircraftFleet.setBounds(50, 11, 145, 37);
 		AircraftFleetBtn.add(lblAircraftFleet);
 		
 		JPanel FlightScheduleBtn = new JPanel();
 		FlightScheduleBtn.setLayout(null);
-		FlightScheduleBtn.setBackground(Color.WHITE);
+		FlightScheduleBtn.setBackground(new Color(37,104,162));
 		FlightScheduleBtn.setBounds(0, 242, 236, 59);
 		NavBar.add(FlightScheduleBtn);
 		
 		JLabel lblFlightBoard = new JLabel("Flight Board");
+		lblFlightBoard.setForeground(Color.WHITE);
 		lblFlightBoard.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		lblFlightBoard.setBounds(50, 11, 132, 37);
 		FlightScheduleBtn.add(lblFlightBoard);
 		
 		JPanel MapControllerBtn = new JPanel();
 		MapControllerBtn.setLayout(null);
-		MapControllerBtn.setBackground(Color.WHITE);
+		MapControllerBtn.setBackground(new Color(37,104,162));
 		MapControllerBtn.setBounds(0, 312, 236, 59);
 		NavBar.add(MapControllerBtn);
 		
 		JLabel lblMapController = new JLabel("Map Controller");
+		lblMapController.setForeground(Color.WHITE);
 		lblMapController.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		lblMapController.setBounds(50, 11, 132, 37);
 		MapControllerBtn.add(lblMapController);
 		
 		JPanel Viewpanel = new JPanel();
-		Viewpanel.setBounds(236, 0, 1028, 681);
+		Viewpanel.setBounds(236, 0, 1044, 681);
 		contentPane.add(Viewpanel);
 		Viewpanel.setLayout(new CardLayout(0, 0));
 		
@@ -126,7 +131,7 @@ public class HomeBuilder extends JFrame {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				HomeBtn.setBackground(Color.WHITE);
+				HomeBtn.setBackground(new Color(37,104,162));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -141,7 +146,7 @@ public class HomeBuilder extends JFrame {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				AircraftFleetBtn.setBackground(Color.WHITE);
+				AircraftFleetBtn.setBackground(new Color(37,104,162));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -156,7 +161,7 @@ public class HomeBuilder extends JFrame {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				FlightScheduleBtn.setBackground(Color.WHITE);
+				FlightScheduleBtn.setBackground(new Color(37,104,162));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -167,9 +172,11 @@ public class HomeBuilder extends JFrame {
 		MapControllerBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
+				MapControllerBtn.setBackground(new Color(180, 200, 255));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
+				MapControllerBtn.setBackground(new Color(37,104,162));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
