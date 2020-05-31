@@ -2,6 +2,8 @@ package View;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -12,6 +14,7 @@ public class HomePanel extends JPanel {
 	 */
 	public HomePanel() {
 		setBounds(0, 0, 1028, 681);
+		setBackground(Color.WHITE);
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Home");
