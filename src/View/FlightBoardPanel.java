@@ -5,28 +5,20 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
 import javax.swing.SwingConstants;
-
 import Controllers.FleetController;
 import Controllers.FlightBoardController;
-import Model.Flight;
-import Model.Plane;
 import Model.Repository.FleetRepositoryImpl;
 import Model.Repository.FlightRepositoryImpl;
-
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import java.awt.Color;
 import javax.swing.JComboBox;
 
 public class FlightBoardPanel extends JPanel implements ActionListener {
