@@ -2,10 +2,6 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Date;
-//import Controllers.FlightBoardController;
-import Model.Repository.FleetRepositoryImpl;
-import Model.Repository.FlightRepositoryImpl;
-
 
 public class Flight {
 	int flightID;
@@ -17,9 +13,6 @@ public class Flight {
 	Airport origin;
 	Airport dest;
 	ArrayList<Seat>[] passengers;
-//	FlightRepositoryImpl flightRep = new FlightRepositoryImpl();
-//	FleetRepositoryImpl fleetRep = new FleetRepositoryImpl();
-//	FlightBoardController flightCtrl = new FlightBoardController(flightRep, fleetRep);
 	
 	public Flight(Plane p,int id) {//Date arv,Airport orig, Airport des) {
 		plane = p;

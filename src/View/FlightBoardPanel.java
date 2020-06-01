@@ -6,7 +6,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.JTable;
+import javax.swing.JComboBox;
 import java.awt.Font;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,15 +18,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import javax.swing.SwingConstants;
-
 import Controllers.Controller;
-import Model.Repository.FleetRepositoryImpl;
-import Model.Repository.FlightRepositoryImpl;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import java.awt.Color;
+
+
 
 public class FlightBoardPanel extends JPanel implements ActionListener {
 	
@@ -48,7 +46,6 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	private JComboBox<String> destinationComboBox;
 
 	/* Constructor uses functions to initialize the page */
-
 	public FlightBoardPanel(Controller ctrl) {
 		
 		viewCtrl = ctrl;
@@ -61,17 +58,15 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		setListeners();
 		buildFlightTable();
 		buildFleetTable();
-
 	}
 	
 	/* A Function to initialize the graphical parameters in the page */
 	public void initialize() {
 		flightModel = new FlightTableModel();
+		fleetModel = new FleetTableModel();
 		
 		flightTable = new JTable(flightModel);
 		//flightTable = new JTable();//design
-		
-		fleetModel = new FleetTableModel();
 		
 		fleetTable = new JTable(fleetModel);
 		//fleetTable = new JTable();//design
@@ -147,8 +142,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		String [] destinationList = new String[] {"Choose a city", "New York","Sydney", "Rome", "Rio", "Johannesburg"};
 		destinationComboBox = new JComboBox<String>();
 		destinationComboBox.setBounds(580, 149, 116, 23);
-		for (String i : destinationList)
-		{
+		for (String i : destinationList) {
 			destinationComboBox.addItem(i);
 		}
 		destinationComboBox.setSelectedItem("");
@@ -176,12 +170,10 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	}
 	
 	/*A Function to build the fleet table from the database */
-	public void buildFleetTable()
-	{
+	public void buildFleetTable() {
 		fleetModel.setList(viewCtrl.getFleetTable());
 	}
 
-	
 	/*A Function for all of the actions performed buttons */
 	@Override
 	public void actionPerformed(ActionEvent e) {

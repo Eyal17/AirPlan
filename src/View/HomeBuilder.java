@@ -3,48 +3,25 @@ package View;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import Controllers.Controller;
-
-import java.awt.Color;
 import javax.swing.JLabel;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
 import java.awt.CardLayout;
 import java.awt.Cursor;
+import Controllers.Controller;
 
 public class HomeBuilder extends JFrame {
 
 	private JPanel contentPane;
-	
+	private Controller viewCtrl;
+
 	public HomePanel homePanel;
 	public FleetPanel fleetPanel;
 	public FlightBoardPanel flightBoardPanel;
 	public MapControllerPanel mapPanel;
-	private Controller viewCtrl;
 
-
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					HomeBuilder frame = new HomeBuilder();
-//					frame.setVisible(true);
-//					frame.setResizable(false);
-//					frame.setTitle("AirPlan");
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 */
 	public HomeBuilder(Controller ctrl) {
 		
 		viewCtrl = ctrl;
@@ -197,7 +174,6 @@ public class HomeBuilder extends JFrame {
 			}
 		});
 	}
-	
 	
 	//Functions
 			public void MenuClicked(JPanel panel) {

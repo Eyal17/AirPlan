@@ -10,11 +10,12 @@ public class View{
 	//public MapControllerPanel mapPanel;
 	
 	public LogInPage login;
-	public static HomeBuilder homeBulider;
+	public HomeBuilder homeBulider;
+	
 	private Controller viewCtrl;
 	
 //	public View() {
-//		// maybe need to delte ctor
+//		// maybe need to delete ctor
 //		//
 //		//
 //	
@@ -24,17 +25,15 @@ public class View{
 	public void setViewCtrl(Controller ctrl) {
 		this.viewCtrl = ctrl;
 	}
+	
 	public void build() {
 		login = new LogInPage(viewCtrl);
 		homeBulider = new HomeBuilder(viewCtrl);
 		
-
 		login.setVisible(true);
 		homeBulider.setVisible(false);
-//		
 //		login.setVisible(false);
 //		homeBulider.setVisible(true);
 	}
-	
 }
 

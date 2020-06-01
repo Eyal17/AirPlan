@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import Model.Plane;
 
-public class FleetRepositoryImpl implements templateRepository<Integer, Plane> {
+public class FleetRepositoryImpl implements TemplateRepository<Integer, Plane> {
 	
 	@Override
 	public void add(Plane p) {
@@ -19,16 +19,6 @@ public class FleetRepositoryImpl implements templateRepository<Integer, Plane> {
 		String query = "DELETE from fleet WHERE fleet.planeid=" + id;
 		DBManager.getInstance().deleteFromDB(query);
 	}
-
-//	@Override
-//	public void print() {
-//		try {
-//			printResultSet(DBManager.readFromDB("SELECT * from fleet"));
-//		} catch (SQLException e) {
-//			System.out.println("Error in printing!");
-//			e.printStackTrace();
-//		}
-//	}
 
 	//@Override
 	public Plane find(Integer id) {
@@ -66,13 +56,6 @@ public class FleetRepositoryImpl implements templateRepository<Integer, Plane> {
 		return fleet;
 	}
 	
-//	public static void printResultSet(ResultSet resultSet) throws SQLException {
-//		while (resultSet.next()) { //.next() return true if we have more result + move to the next result (row)
-//			String id = resultSet.getString("planeid");
-//			System.out.println(MessageFormat.format("PlaneID={0}", id));
-//		}
-//	}
-
 	@Override
 	public int getMaxID() {
 		ResultSet resultSet = null;

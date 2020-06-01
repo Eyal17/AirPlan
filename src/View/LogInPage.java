@@ -1,32 +1,19 @@
 package View;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.Image;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import Controllers.Controller;
-
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-
-import java.awt.Color;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-import java.awt.event.MouseMotionAdapter;
-import java.sql.SQLException;
+import java.awt.Image;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
-import javax.swing.JToggleButton; 
+import Controllers.Controller;
 
 public class LogInPage extends JFrame {
 
@@ -34,13 +21,10 @@ public class LogInPage extends JFrame {
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private Controller viewCtrl;
-
-	private boolean flag; // can delete
-	
+	private boolean flag;
 	int xMouse;
 	int yMouse;
 	
-
 	public LogInPage(Controller ctrl) {
 		
 		viewCtrl = ctrl;
@@ -106,20 +90,11 @@ public class LogInPage extends JFrame {
 		leftLbl.setIcon(new ImageIcon(managerSwitchIcon));
 		leftLbl.setBounds(167, 146, 120, 388);
 		contentPane.add(leftLbl);
+		
 		signInBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			//	if(textField.getText().equals("admin") && passwordField.getText().equals("admin123")) {
-				//String password = viewCtrl.loginValidation(textField.getText());
-				if(passwordField.getText().equals(viewCtrl.loginValidation(textField.getText()))) {
-					JOptionPane.showMessageDialog(null, "Log in Success!");
-					setVisible(false);
-					View.homeBulider.setVisible(true);
-				}
-				else
-					JOptionPane.showMessageDialog(null, "Failed!");
-				
-				//viewCtrl.loginValidation(textField.getText(), passwordField.getPassword());
+				viewCtrl.loginValidation(textField.getText(),passwordField.getText().toString());
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -134,18 +109,14 @@ public class LogInPage extends JFrame {
 		leftLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(flag) 
-				{
+				if(flag) {
 					leftLbl.setIcon(new ImageIcon(userSwitchIcon));
 					flag = false;
 				}
-				else
-				{
+				else {
 					leftLbl.setIcon(new ImageIcon(managerSwitchIcon));
 					flag = true;
 				}
-					
-				
 			}
 		});
 	}

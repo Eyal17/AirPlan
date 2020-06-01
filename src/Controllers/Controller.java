@@ -11,24 +11,16 @@ import Model.Plane;
 import Model.Repository.ModelRepository;
 
 public class Controller {
-	 //public FleetController fleetCtrl;
-	 //public FlightBoardController flightCtrl;
-	 //public MapController mapCtrl;
 	 
 	 private View view;
 	 private ModelRepository modelAP;
-	
 	 
 	 public Controller(ModelRepository m, View v) {
 		 modelAP = m;
 		 view = v;
-		 //modelAP = new ModelRepository();
-		 //fleetCtrl = new FleetController(r, s);
-		 //flightCtrl = new FlightBoardController(r, s);
-
 	 }
 	 
-	 public void addPlane(String model){
+	 public void addPlane(String model) {
 		int pID =modelAP.fleetRepo.getMaxID()+1;
 		Plane p = new Plane(model,pID);
 		modelAP.fleetRepo.add(p);
@@ -36,13 +28,14 @@ public class Controller {
 	 
 	public void deletePlane(int id){
 		if(modelAP.flightRepo.isPlaneExist(id)) {
-			JOptionPane.showMessageDialog(null, "The plane is assigned to flights\nPlease delete the flights first.");		}
+			JOptionPane.showMessageDialog(null, "The plane is assigned to flights\nPlease delete the flights first.");
+		}
 		else {
 			modelAP.fleetRepo.delete(id);
 		}
 	}
 	
-	public ArrayList<Plane> getFleetTable(){
+	public ArrayList<Plane> getFleetTable() {
 		return modelAP.fleetRepo.getTable();
 	}
 	
@@ -69,8 +62,12 @@ public class Controller {
 	public ArrayList<Flight> getFlightTable(){
 		return modelAP.flightRepo.getTable();
 	}
-	public String loginValidation(String user) {
-		return modelAP.loginRepo.valid(user);
+	public void loginValidation(String user,String password) {
+		if (password.equals(modelAP.loginRepo.valid(user))) {
+			view.login.setVisible(false);
+			view.homeBulider.setVisible(true);
+		}
+		else { JOptionPane.showMessageDialog(null, "Failed!");}
 	}
 
 }

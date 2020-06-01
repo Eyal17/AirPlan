@@ -1,17 +1,13 @@
 package View;
 
-import java.awt.Font;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import java.awt.Font;
 
 public class MapControllerPanel extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
 	public MapControllerPanel() {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1028, 681);
@@ -23,5 +19,4 @@ public class MapControllerPanel extends JPanel {
 		lblNewLabel.setBounds(242, 228, 544, 225);
 		add(lblNewLabel);
 	}
-
 }

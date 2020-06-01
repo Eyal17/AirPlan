@@ -32,9 +32,8 @@ public class FlightTableModel extends AbstractTableModel {
 		return temp;
 	}
 	/* A function to set the returned list to the table */
-	public void setList(List<Flight> test3) {
-		// TODO Auto-generated method stub
-		this.flightList= test3;
+	public void setList(List<Flight> flightReadyTable) {
+		this.flightList= flightReadyTable;
 	}
 	
 	public String getColumnName(int c) {

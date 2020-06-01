@@ -3,28 +3,18 @@ package View;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import java.awt.Font;
-import java.awt.Image;
-import java.util.ArrayList;
-import javax.swing.SwingConstants;
-
-import Controllers.*;
-
-//import Controllers.FleetController;
-import javax.swing.JTable;
-
-import Model.Plane;
-import Model.Repository.FleetRepositoryImpl;
-import Model.Repository.FlightRepositoryImpl;
-
 import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
+import javax.swing.JTable;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Driver;
 import java.awt.Color;
+import Controllers.Controller;
 
 public class FleetPanel extends JPanel implements ActionListener{
 	
@@ -36,22 +26,17 @@ public class FleetPanel extends JPanel implements ActionListener{
 	private JComboBox<String> planeChoice;
 	private JButton addBtn;
 	private JButton deleteBtn;
-//	private FleetRepositoryImpl fleetRep;
-//	private FlightRepositoryImpl flightRep;
-//	private FleetController fleetCtrl;
 	private Controller viewCtrl;
 
 	/* Constructor uses functions to initialize the page */
 	public FleetPanel(Controller ctrl) {
-		setBackground(Color.WHITE);
-		setBounds(0, 0, 1028, 681);
-		setLayout(null);
-//		fleetRep = new FleetRepositoryImpl();
-//		flightRep = new FlightRepositoryImpl();
-//		fleetCtrl = new FleetController(flightRep, fleetRep);
 		
 		viewCtrl = ctrl;
 		
+		setBackground(Color.WHITE);
+		setBounds(0, 0, 1028, 681);
+		setLayout(null);
+
 		initialize();
 		setListeners();
 		buildTable();
@@ -63,7 +48,6 @@ public class FleetPanel extends JPanel implements ActionListener{
 		fleetTable = new JTable(fleetModel);
 		//fleetTable = new JTable(); // to design 
 
-		
 		/* AirCraft title parameters */ 
 		lblAircraftFleet = new JLabel("AirCraft Fleet");
 		lblAircraftFleet.setBounds(74, 23, 230, 49);
@@ -72,7 +56,6 @@ public class FleetPanel extends JPanel implements ActionListener{
 		add(lblAircraftFleet);
 		
 		/* scrollPane parameters */ 
-
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(74, 104, 245, 425);
 		add(scrollPane);
@@ -123,8 +106,8 @@ public class FleetPanel extends JPanel implements ActionListener{
 	/*A Function to build the fleet table from the database */
 	public void buildTable()
 	{
-		ArrayList<Plane> fleetArrayFromDB = viewCtrl.getFleetTable();
-		fleetModel.setList(fleetArrayFromDB);
+		fleetModel.setList(viewCtrl.getFleetTable());
+		fleetTable.invalidate();
 	}
 
 	/*A Function for all of the actions performed buttons */
@@ -136,10 +119,9 @@ public class FleetPanel extends JPanel implements ActionListener{
 			String selectedBox = planeChoice.getSelectedItem().toString();
 			scrollPane.setVisible(true);	
 			if(selectedBox != ""){  /* Add plane functionality */
-//				fleetCtrl.addPlane(selectedBox);
 				viewCtrl.addPlane(selectedBox);
 				buildTable();
-				fleetTable.invalidate();
+				
 			}
 			else { /* The user must choose a plane type */
 				JOptionPane.showMessageDialog(null, "Please choose plane type. ");
@@ -152,10 +134,8 @@ public class FleetPanel extends JPanel implements ActionListener{
 			selectedRow = fleetTable.getSelectedRow();
 			if (selectedRow != -1) {
 				int p =  (int) fleetModel.getValueAt(selectedRow, 0);
-//				if (fleetCtrl.deletePlane(p)) {	
 				viewCtrl.deletePlane(p);
 				buildTable(); // should do it from controller
-				fleetTable.invalidate();
 			}
 			else {JOptionPane.showMessageDialog(null, "Choose a plane to delete.");}
 			fleetTable.repaint();	

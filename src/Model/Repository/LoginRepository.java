@@ -3,8 +3,6 @@ package Model.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import Model.Plane;
-
 public class LoginRepository {
 
 	public String valid(String user) {
