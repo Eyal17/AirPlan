@@ -1,21 +1,20 @@
 package Model;
 
 import java.util.ArrayList;
-import Controllers.FleetController;
 import Model.Repository.FleetRepositoryImpl;
 
 
 public class Plane extends Aircraft {
 	final int planeID; 
 	ArrayList<Seat>[] seats;
-	FleetRepositoryImpl fleetRep = new FleetRepositoryImpl();
-	FleetController fleetCtrl = new FleetController(null, fleetRep);
+//	FleetRepositoryImpl fleetRep = new FleetRepositoryImpl();
+//	FleetController fleetCtrl = new FleetController(null, fleetRep);
 	
 	public Plane(String model, int id) {
 		super(model);
 		setSeats(rowsPerClass[0] + rowsPerClass[1] + rowsPerClass[2]);
 		if(id == 0) {
-			planeID = fleetCtrl.getMax() + 1;
+			planeID = 8;//fleetCtrl.getMax() + 1;
 		}
 		else {
 			planeID = id;

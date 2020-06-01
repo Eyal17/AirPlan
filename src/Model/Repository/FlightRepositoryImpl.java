@@ -10,18 +10,18 @@ import Model.Flight;
 import Model.Plane;
 
 public class FlightRepositoryImpl implements templateRepository<Integer, Flight> {
-	Map<Integer, Flight> flights = new HashMap<Integer, Flight>();
+	//Map<Integer, Flight> flights = new HashMap<Integer, Flight>();
 	ArrayList<Flight> flightsList;
 
 	@Override
 	public void add(Flight v) {
-		flights.put(v.getFlightID(), v);
+		//flights.put(v.getFlightID(), v);
 		String query = "INSERT INTO flightboard(flightid,planeid)" + "VALUES (" + v.getFlightID() + "," + v.getPlane().getPlaneID() + ")";
 		DBManager.getInstance().addToDB(query);
 	}
 	@Override
 	public void delete(Integer id) {
-		flights.remove(id);		
+		//flights.remove(id);		
 		String query = "DELETE from flightboard WHERE flightboard.flightid=" + id;
 		System.out.println(id);
 		DBManager.getInstance().deleteFromDB(query);

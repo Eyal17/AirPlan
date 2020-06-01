@@ -1,20 +1,23 @@
 import java.awt.EventQueue;
 
-import View.HomeBuilder;
+import Controllers.*;
+import Model.Repository.*;
+import View.*;
 
 public class Driver {
-	ModelRepository model;
-	View view;
-	Controller controller;
-	public static void main(String[] args)
-	{
+
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@SuppressWarnings("unused")
 			public void run() {
 				try {
-					
-					
+					ModelRepository model = new ModelRepository();
+					View view = new View();
+					Controller ctrl = new Controller(model, view);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+		});
 	}
 }

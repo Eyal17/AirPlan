@@ -15,8 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.swing.SwingConstants;
-import Controllers.FleetController;
-import Controllers.FlightBoardController;
 import Model.Repository.FleetRepositoryImpl;
 import Model.Repository.FlightRepositoryImpl;
 import javax.swing.JTable;
@@ -31,17 +29,16 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	private JTable flightTable;
 	private JTable fleetTable;
 	private FlightTableModel flightModel;
-	private FlightRepositoryImpl rflight;
-	private FleetRepositoryImpl rfleet;
-	private FleetController fleetCtrl;
+	//private FlightRepositoryImpl rflight;
+	//private FleetRepositoryImpl rfleet;
+	//private FleetController fleetCtrl;
 	private FleetTableModel fleetModel;
-	private FlightBoardController flightCtrl;
+//	private FlightBoardController flightCtrl;
 	private JLabel lblFlightBoard;
 	private JLabel lblPlaneTable;
 	private JScrollPane scrollPane;
 	private JButton addBtn;
 	private JButton deleteBtn;
-	private JTextField txtPlaneTable;
 	private JScrollPane PlaneTable;
 	private JComboBox<Integer> dayBox;
 	private JComboBox<Integer>monthBox;
@@ -54,10 +51,10 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
-		rflight = new FlightRepositoryImpl();
-		rfleet = new FleetRepositoryImpl();
-		fleetCtrl = new FleetController(rflight,rfleet);
-		flightCtrl = new FlightBoardController(rflight,rfleet);
+		//rflight = new FlightRepositoryImpl();
+		//rfleet = new FleetRepositoryImpl();
+		//fleetCtrl = new FleetController(rflight,rfleet);
+		//flightCtrl = new FlightBoardController(rflight,rfleet);
 		initialize();
 		setListeners();
 		buildFlightTable();
@@ -162,13 +159,13 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	
 	/*A Function to build the flight table from the database */
 	public void buildFlightTable() {
-	    flightModel.setList(flightCtrl.getTable());
+	 //   flightModel.setList(flightCtrl.getTable());
 	}
 	
 	/*A Function to build the fleet table from the database */
 	public void buildFleetTable()
 	{
-		fleetModel.setList(fleetCtrl.getTable());
+	//	fleetModel.setList(fleetCtrl.getTable());
 	}
 
 	
@@ -193,7 +190,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 				Date selectedBox = new GregorianCalendar(year,month - 1,day).getTime();
 				System.out.println(dateFormat.format(selectedBox));
 				int p =  (int) fleetModel.getValueAt(selectedRow, 0);
-				flightCtrl.addFlight(p);	
+		//		flightCtrl.addFlight(p);	
 				buildFlightTable();
 				flightTable.invalidate();
 			}
@@ -207,7 +204,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 			selectedRow = flightTable.getSelectedRow();
 			if (selectedRow != -1) {
 				int f =  (int) flightModel.getValueAt(selectedRow, 0);
-				flightCtrl.deleteFlight(f);	
+			//	flightCtrl.deleteFlight(f);	
 				buildFlightTable();
 			}
 			else {
