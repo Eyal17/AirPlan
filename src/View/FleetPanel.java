@@ -51,8 +51,8 @@ public class FleetPanel extends JPanel implements ActionListener{
 	/* A Function to initialize the graphical parameters in the page */
 	public void initialize() {
 		fleetModel = new FleetTableModel();
-		//fleetTable = new JTable(fleetModel);
-		fleetTable = new JTable(); // to design 
+		fleetTable = new JTable(fleetModel);
+		//fleetTable = new JTable(); // to design 
 
 		
 		/* AirCraft title parameters */ 
