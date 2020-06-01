@@ -7,12 +7,13 @@ import Model.Repository.FleetRepositoryImpl;
 import Model.Repository.FlightRepositoryImpl;
 
 
+
 public class FleetController {
 
 	private FlightRepositoryImpl flightRepo;
 	private FleetRepositoryImpl fleetRepo;
 	
-	public FleetController(FlightRepositoryImpl r, FleetRepositoryImpl s) {
+	public FleetController(FlightRepositoryImpl r, FleetRepositoryImpl s) { // add view
 		flightRepo = r;
 		fleetRepo = s;
 	}
