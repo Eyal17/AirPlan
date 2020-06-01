@@ -91,6 +91,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		/* scrollPane parameters */ 
 		scrollPane = new JScrollPane();
 		scrollPane.setBackground(Color.WHITE);
+		scrollPane.getViewport().setBackground(Color.WHITE);
 		scrollPane.setBounds(176, 89, 368, 378);
 		add(scrollPane);
 		scrollPane.setViewportView(flightTable);
@@ -109,6 +110,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		/* scrollPane for PlaneTable parameters */
 		PlaneTable = new JScrollPane();
 		PlaneTable.setBackground(Color.WHITE);
+		PlaneTable.getViewport().setBackground(Color.WHITE);
 		PlaneTable.setBounds(787, 89, 188, 378);
 		add(PlaneTable);
 		PlaneTable.setViewportView(fleetTable);

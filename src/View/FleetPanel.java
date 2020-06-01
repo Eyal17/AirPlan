@@ -58,8 +58,11 @@ public class FleetPanel extends JPanel implements ActionListener{
 		/* scrollPane parameters */ 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(74, 104, 245, 425);
+		scrollPane.getViewport().setBackground(Color.WHITE);
 		add(scrollPane);
 		scrollPane.setViewportView(fleetTable);
+		fleetTable.getTableHeader().setBackground(Color.WHITE);
+		fleetTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		
 		/* Choosing plane type combobox parameters */ 
