@@ -4,6 +4,8 @@ import View.View;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import Model.Flight;
 import Model.Plane;
 import Model.Repository.ModelRepository;
@@ -20,23 +22,23 @@ public class Controller {
 	 public Controller(ModelRepository m, View v) {
 		 modelAP = m;
 		 view = v;
+		 //modelAP = new ModelRepository();
 		 //fleetCtrl = new FleetController(r, s);
 		 //flightCtrl = new FlightBoardController(r, s);
 
 	 }
 	 
 	 public void addPlane(String model){
-		Plane p = new Plane(model,0);
+		int pID =modelAP.fleetRepo.getMaxID()+1;
+		Plane p = new Plane(model,pID);
 		modelAP.fleetRepo.add(p);
 	}
 	 
-	public boolean deletePlane(int id){
+	public void deletePlane(int id){
 		if(modelAP.flightRepo.isPlaneExist(id)) {
-			return false;
-		}
+			JOptionPane.showMessageDialog(null, "The plane is assigned to flights\nPlease delete the flights first.");		}
 		else {
 			modelAP.fleetRepo.delete(id);
-			return true;
 		}
 	}
 	
@@ -44,14 +46,11 @@ public class Controller {
 		return modelAP.fleetRepo.getTable();
 	}
 	
-	public int getMaxPlaneID() {
-		return modelAP.fleetRepo.getMaxID();
-	}
-	
 	public void addFlight(int planeID) {
+		int fID = modelAP.flightRepo.getMaxID()+1;
 		Plane p = modelAP.fleetRepo.find(planeID);
 		if(p != null) {
-			Flight f = new Flight(p,0);
+			Flight f = new Flight(p,fID);
 			modelAP.flightRepo.add(f);
 		}
 		else {
@@ -70,8 +69,8 @@ public class Controller {
 	public ArrayList<Flight> getFlightTable(){
 		return modelAP.flightRepo.getTable();
 	}
-	
-	public int getMaxFlightID() {
-		return modelAP.flightRepo.getMaxID();
+	public String loginValidation(String user) {
+		return modelAP.loginRepo.valid(user);
 	}
+
 }

@@ -28,12 +28,7 @@ public class Flight {
 		//origin = orig;
 		//dest = des;
 		//distance = origin.distFromBase + dest.distFromBase;
-		if (id == 0) {
-			flightID = 9;//(flightCtrl.getMax()) + 1;
-		}
-		else{
-			flightID = id;
-		}
+		flightID = id;
 		passengers = plane.seats;
 	}
 	

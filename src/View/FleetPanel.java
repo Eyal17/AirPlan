@@ -23,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Driver;
 import java.awt.Color;
 
 public class FleetPanel extends JPanel implements ActionListener{
@@ -38,15 +39,18 @@ public class FleetPanel extends JPanel implements ActionListener{
 //	private FleetRepositoryImpl fleetRep;
 //	private FlightRepositoryImpl flightRep;
 //	private FleetController fleetCtrl;
+	private Controller viewCtrl;
 
 	/* Constructor uses functions to initialize the page */
-	public FleetPanel() {
+	public FleetPanel(Controller ctrl) {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
 //		fleetRep = new FleetRepositoryImpl();
 //		flightRep = new FlightRepositoryImpl();
 //		fleetCtrl = new FleetController(flightRep, fleetRep);
+		
+		viewCtrl = ctrl;
 		
 		initialize();
 		setListeners();
@@ -56,8 +60,8 @@ public class FleetPanel extends JPanel implements ActionListener{
 	/* A Function to initialize the graphical parameters in the page */
 	public void initialize() {
 		fleetModel = new FleetTableModel();
-		//fleetTable = new JTable(fleetModel);
-		fleetTable = new JTable(); // to design 
+		fleetTable = new JTable(fleetModel);
+		//fleetTable = new JTable(); // to design 
 
 		
 		/* AirCraft title parameters */ 
@@ -119,9 +123,8 @@ public class FleetPanel extends JPanel implements ActionListener{
 	/*A Function to build the fleet table from the database */
 	public void buildTable()
 	{
-//		ArrayList<Plane> fleetArrayFromDB = Controller.;
-//		ArrayList<Plane> fleetArrayFromDB = fleetCtrl.getTable();
-//		fleetModel.setList(fleetArrayFromDB);
+		ArrayList<Plane> fleetArrayFromDB = viewCtrl.getFleetTable();
+		fleetModel.setList(fleetArrayFromDB);
 	}
 
 	/*A Function for all of the actions performed buttons */
@@ -133,7 +136,8 @@ public class FleetPanel extends JPanel implements ActionListener{
 			String selectedBox = planeChoice.getSelectedItem().toString();
 			scrollPane.setVisible(true);	
 			if(selectedBox != ""){  /* Add plane functionality */
-//				fleetCtrl.addPlane(selectedBox);	
+//				fleetCtrl.addPlane(selectedBox);
+				viewCtrl.addPlane(selectedBox);
 				buildTable();
 				fleetTable.invalidate();
 			}
@@ -149,14 +153,13 @@ public class FleetPanel extends JPanel implements ActionListener{
 			if (selectedRow != -1) {
 				int p =  (int) fleetModel.getValueAt(selectedRow, 0);
 //				if (fleetCtrl.deletePlane(p)) {	
-					buildTable();
-					fleetTable.invalidate();
-				}
-				else {JOptionPane.showMessageDialog(null, "The plane is assigned to flights\nPlease delete the flights first.");}
+				viewCtrl.deletePlane(p);
+				buildTable(); // should do it from controller
+				fleetTable.invalidate();
 			}
 			else {JOptionPane.showMessageDialog(null, "Choose a plane to delete.");}
 			fleetTable.repaint();	
 		}
-//		fleetTable.clearSelection();
+		fleetTable.clearSelection();
 	}
-//}
+}

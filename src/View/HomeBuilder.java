@@ -3,6 +3,9 @@ package View;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controllers.Controller;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -20,6 +23,7 @@ public class HomeBuilder extends JFrame {
 	public FleetPanel fleetPanel;
 	public FlightBoardPanel flightBoardPanel;
 	public MapControllerPanel mapPanel;
+	private Controller viewCtrl;
 
 
 //	public static void main(String[] args) {
@@ -41,8 +45,10 @@ public class HomeBuilder extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public HomeBuilder() {
+	public HomeBuilder(Controller ctrl) {
 		
+		viewCtrl = ctrl;
+
 		setResizable(false);
 		setTitle("AirPlan");
 		setUndecorated(true);
@@ -117,8 +123,8 @@ public class HomeBuilder extends JFrame {
 		Viewpanel.setLayout(new CardLayout(0, 0));
 
 		homePanel = new HomePanel();
-		fleetPanel = new FleetPanel();
-		flightBoardPanel = new FlightBoardPanel();
+		fleetPanel = new FleetPanel(viewCtrl);
+		flightBoardPanel = new FlightBoardPanel(viewCtrl);
 		mapPanel = new MapControllerPanel();
 
 		Viewpanel.add(homePanel, "name_78750354984400");

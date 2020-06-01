@@ -1,7 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
-import Model.Repository.FleetRepositoryImpl;
+
 
 
 public class Plane extends Aircraft {
@@ -13,12 +13,7 @@ public class Plane extends Aircraft {
 	public Plane(String model, int id) {
 		super(model);
 		setSeats(rowsPerClass[0] + rowsPerClass[1] + rowsPerClass[2]);
-		if(id == 0) {
-			planeID = 8;//fleetCtrl.getMax() + 1;
-		}
-		else {
-			planeID = id;
-		}
+		planeID = id;
 	}
 	
 	public int getPlaneID() {

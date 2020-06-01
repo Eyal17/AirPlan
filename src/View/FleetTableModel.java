@@ -7,7 +7,7 @@ import Model.Plane;
 
 public class FleetTableModel extends AbstractTableModel {
 
-	private final String[] col = {"planeid", "model" };
+	private final String[] col = {"Plane ID", "Plane Model" };
 	//private ArrayList<Plane> fleetList;  // tried to change to arraylist 
 	private ArrayList<Plane> fleetList;
 
@@ -37,5 +37,9 @@ public class FleetTableModel extends AbstractTableModel {
 	public void setList(ArrayList<Plane> fleetReadyTable) {
 		// TODO Auto-generated method stub
 		fleetList = fleetReadyTable;
+	}
+	
+	public String getColumnName(int c) {
+		return col[c];
 	}
 }

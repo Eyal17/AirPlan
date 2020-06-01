@@ -6,7 +6,7 @@ import Model.Flight;
 
 public class FlightTableModel extends AbstractTableModel {
 
-	private final String[] col = {"flightid", "planeid" };
+	private final String[] col = {"Flight ID", "Plane ID" };
 	private List<Flight> flightList;
 	
 	/* A Function to return the amount of rows in the arrayList of planes */
@@ -35,5 +35,9 @@ public class FlightTableModel extends AbstractTableModel {
 	public void setList(List<Flight> test3) {
 		// TODO Auto-generated method stub
 		this.flightList= test3;
+	}
+	
+	public String getColumnName(int c) {
+		return col[c];
 	}
 }

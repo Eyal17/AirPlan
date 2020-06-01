@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controllers.Controller;
+
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -31,32 +33,18 @@ public class LogInPage extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
-	private boolean flag;
+	private Controller viewCtrl;
+
+	private boolean flag; // can delete
 	
 	int xMouse;
 	int yMouse;
 	
 
-
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
-	 * Create the frame.
-	 */
-	public LogInPage() {
+	public LogInPage(Controller ctrl) {
+		
+		viewCtrl = ctrl;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1255, 688);
 		contentPane = new JPanel();
@@ -121,19 +109,17 @@ public class LogInPage extends JFrame {
 		signInBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(textField.getText().equals("admin") && passwordField.getText().equals("admin123")) {
+			//	if(textField.getText().equals("admin") && passwordField.getText().equals("admin123")) {
+				//String password = viewCtrl.loginValidation(textField.getText());
+				if(passwordField.getText().equals(viewCtrl.loginValidation(textField.getText()))) {
 					JOptionPane.showMessageDialog(null, "Log in Success!");
-//					HomeBuilder Home = null;
-//					try {
-//						Home = new HomeBuilder();
-//					} catch (SQLException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
-//					Home.setVisible(true);
+					setVisible(false);
+					View.homeBulider.setVisible(true);
 				}
 				else
 					JOptionPane.showMessageDialog(null, "Failed!");
+				
+				//viewCtrl.loginValidation(textField.getText(), passwordField.getPassword());
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {

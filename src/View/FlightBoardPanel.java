@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.swing.SwingConstants;
+
+import Controllers.Controller;
 import Model.Repository.FleetRepositoryImpl;
 import Model.Repository.FlightRepositoryImpl;
 import javax.swing.JTable;
@@ -29,11 +31,10 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	private JTable flightTable;
 	private JTable fleetTable;
 	private FlightTableModel flightModel;
-	//private FlightRepositoryImpl rflight;
-	//private FleetRepositoryImpl rfleet;
-	//private FleetController fleetCtrl;
 	private FleetTableModel fleetModel;
-//	private FlightBoardController flightCtrl;
+	
+	private Controller viewCtrl;
+
 	private JLabel lblFlightBoard;
 	private JLabel lblPlaneTable;
 	private JScrollPane scrollPane;
@@ -44,17 +45,18 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	private JComboBox<Integer>monthBox;
 	private JComboBox<Integer>yearBox;
 	private JLabel refLbl;
+	private JComboBox<String> destinationComboBox;
 
 	/* Constructor uses functions to initialize the page */
 
-	public FlightBoardPanel() {
+	public FlightBoardPanel(Controller ctrl) {
+		
+		viewCtrl = ctrl;
+		
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
-		//rflight = new FlightRepositoryImpl();
-		//rfleet = new FleetRepositoryImpl();
-		//fleetCtrl = new FleetController(rflight,rfleet);
-		//flightCtrl = new FlightBoardController(rflight,rfleet);
+
 		initialize();
 		setListeners();
 		buildFlightTable();
@@ -66,13 +68,13 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	public void initialize() {
 		flightModel = new FlightTableModel();
 		
-		//flightTable = new JTable(flightModel);
-		flightTable = new JTable();//design
+		flightTable = new JTable(flightModel);
+		//flightTable = new JTable();//design
 		
 		fleetModel = new FleetTableModel();
 		
-		//fleetTable = new JTable(fleetModel);
-		fleetTable = new JTable();//design
+		fleetTable = new JTable(fleetModel);
+		//fleetTable = new JTable();//design
 				
 		flightTable.setBounds(77, 107, 684, 330);
 
@@ -142,6 +144,17 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		yearBox.setBounds(720, 104, 57, 23);
 		add(yearBox);
 		
+		String [] destinationList = new String[] {"Choose a city", "New York","Sydney", "Rome", "Rio", "Johannesburg"};
+		destinationComboBox = new JComboBox<String>();
+		destinationComboBox.setBounds(580, 149, 116, 23);
+		for (String i : destinationList)
+		{
+			destinationComboBox.addItem(i);
+		}
+		destinationComboBox.setSelectedItem("");
+		destinationComboBox.setSelectedIndex(0);
+		add(destinationComboBox);
+		
 		refLbl = new JLabel("");
 		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
 		refLbl.setIcon(new ImageIcon(refreshIcon));
@@ -159,13 +172,13 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	
 	/*A Function to build the flight table from the database */
 	public void buildFlightTable() {
-	 //   flightModel.setList(flightCtrl.getTable());
+	    flightModel.setList(viewCtrl.getFlightTable());
 	}
 	
 	/*A Function to build the fleet table from the database */
 	public void buildFleetTable()
 	{
-	//	fleetModel.setList(fleetCtrl.getTable());
+		fleetModel.setList(viewCtrl.getFleetTable());
 	}
 
 	
@@ -190,7 +203,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 				Date selectedBox = new GregorianCalendar(year,month - 1,day).getTime();
 				System.out.println(dateFormat.format(selectedBox));
 				int p =  (int) fleetModel.getValueAt(selectedRow, 0);
-		//		flightCtrl.addFlight(p);	
+				viewCtrl.addFlight(p);	
 				buildFlightTable();
 				flightTable.invalidate();
 			}
@@ -204,7 +217,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 			selectedRow = flightTable.getSelectedRow();
 			if (selectedRow != -1) {
 				int f =  (int) flightModel.getValueAt(selectedRow, 0);
-			//	flightCtrl.deleteFlight(f);	
+				viewCtrl.deleteFlight(f);	
 				buildFlightTable();
 			}
 			else {
