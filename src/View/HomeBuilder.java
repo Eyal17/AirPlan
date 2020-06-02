@@ -1,48 +1,33 @@
 package View;
 
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
 import javax.swing.JLabel;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
 import java.awt.CardLayout;
 import java.awt.Cursor;
+import Controllers.Controller;
 
 public class HomeBuilder extends JFrame {
 
 	private JPanel contentPane;
-	
-	private HomePanel HomeP;
-	private FleetPanel AirCraftP;
-	private FlightBoardPanel FlightBoardP;
-	private MapControllerPanel MapContP;
+	private Controller viewCtrl;
 
+	public HomePanel homePanel;
+	public FleetPanel fleetPanel;
+	public FlightBoardPanel flightBoardPanel;
+	public MapControllerPanel mapPanel;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HomeBuilder frame = new HomeBuilder();
-					frame.setVisible(true);
-					frame.setResizable(false);
-					frame.setTitle("AirPlan");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public HomeBuilder(Controller ctrl) {
+		
+		viewCtrl = ctrl;
 
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 */
-	public HomeBuilder() throws SQLException {
+		setResizable(false);
+		setTitle("AirPlan");
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 680);
@@ -113,19 +98,19 @@ public class HomeBuilder extends JFrame {
 		Viewpanel.setBounds(236, 0, 1044, 681);
 		contentPane.add(Viewpanel);
 		Viewpanel.setLayout(new CardLayout(0, 0));
+
+		homePanel = new HomePanel();
+		fleetPanel = new FleetPanel(viewCtrl);
+		flightBoardPanel = new FlightBoardPanel(viewCtrl);
+		mapPanel = new MapControllerPanel();
+
+		Viewpanel.add(homePanel, "name_78750354984400");
+		Viewpanel.add(fleetPanel, "name_78750381602200");
+		Viewpanel.add(flightBoardPanel, "name_78750403585200");
+		Viewpanel.add(mapPanel);
+
 		
-		HomeP = new HomePanel();
-		AirCraftP = new FleetPanel();
-		FlightBoardP = new FlightBoardPanel();
-		MapContP = new MapControllerPanel();
-		
-		Viewpanel.add(HomeP, "name_78750354984400");
-		Viewpanel.add(AirCraftP, "name_78750381602200");
-		Viewpanel.add(FlightBoardP, "name_78750403585200");
-		Viewpanel.add(MapContP);
-		
-		
-		MenuClicked(HomeP);
+		MenuClicked(homePanel);
 		
 		//Overrides
 		
@@ -140,7 +125,7 @@ public class HomeBuilder extends JFrame {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MenuClicked(HomeP);
+				MenuClicked(homePanel);
 			}
 		});
 		
@@ -155,7 +140,7 @@ public class HomeBuilder extends JFrame {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MenuClicked(AirCraftP);
+				MenuClicked(fleetPanel);
 			}
 		});
 		
@@ -170,7 +155,7 @@ public class HomeBuilder extends JFrame {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MenuClicked(FlightBoardP);
+				MenuClicked(flightBoardPanel);
 			}
 		});
 		
@@ -185,17 +170,16 @@ public class HomeBuilder extends JFrame {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MenuClicked(MapContP);
+				MenuClicked(mapPanel);
 			}
 		});
 	}
 	
-	
 	//Functions
 			public void MenuClicked(JPanel panel) {
-				HomeP.setVisible(false);
-				AirCraftP.setVisible(false);
-				FlightBoardP.setVisible(false);
+				homePanel.setVisible(false);
+				fleetPanel.setVisible(false);
+				flightBoardPanel.setVisible(false);
 				panel.setVisible(true);
 			}
 }

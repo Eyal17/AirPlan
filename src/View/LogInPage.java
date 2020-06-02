@@ -1,63 +1,34 @@
 package View;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.Image;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-
-import java.awt.Color;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-import java.awt.event.MouseMotionAdapter;
-import java.sql.SQLException;
+import java.awt.Image;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
-import javax.swing.JToggleButton; 
+import Controllers.Controller;
 
 public class LogInPage extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
+	private Controller viewCtrl;
 	private boolean flag;
-	
 	int xMouse;
 	int yMouse;
 	
-
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LogInPage frame = new LogInPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public LogInPage() {
+	public LogInPage(Controller ctrl) {
+		
+		viewCtrl = ctrl;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1255, 688);
 		contentPane = new JPanel();
@@ -119,22 +90,11 @@ public class LogInPage extends JFrame {
 		leftLbl.setIcon(new ImageIcon(managerSwitchIcon));
 		leftLbl.setBounds(167, 146, 120, 388);
 		contentPane.add(leftLbl);
+		
 		signInBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(textField.getText().equals("admin") && passwordField.getText().equals("admin123")) {
-					JOptionPane.showMessageDialog(null, "Log in Success!");
-					HomeBuilder Home = null;
-					try {
-						Home = new HomeBuilder();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					Home.setVisible(true);
-				}
-				else
-					JOptionPane.showMessageDialog(null, "Failed!");
+				viewCtrl.loginValidation(textField.getText(),passwordField.getText().toString());
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -149,18 +109,14 @@ public class LogInPage extends JFrame {
 		leftLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(flag) 
-				{
+				if(flag) {
 					leftLbl.setIcon(new ImageIcon(userSwitchIcon));
 					flag = false;
 				}
-				else
-				{
+				else {
 					leftLbl.setIcon(new ImageIcon(managerSwitchIcon));
 					flag = true;
 				}
-					
-				
 			}
 		});
 	}

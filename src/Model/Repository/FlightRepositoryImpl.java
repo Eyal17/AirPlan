@@ -3,42 +3,31 @@ package Model.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
+import Model.Airport;
 import Model.Flight;
 import Model.Plane;
 
-public class FlightRepositoryImpl implements templateRepository<Integer, Flight> {
-	Map<Integer, Flight> flights = new HashMap<Integer, Flight>();
-	ArrayList<Flight> flightsList;
+public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight> {
 
 	@Override
 	public void add(Flight v) {
-		flights.put(v.getFlightID(), v);
-		String query = "INSERT INTO flightboard(flightid,planeid)" + "VALUES (" + v.getFlightID() + "," + v.getPlane().getPlaneID() + ")";
+		//flights.put(v.getFlightID(), v);
+		String query = "INSERT INTO flightboard(flightid,planeid,origin,destination)" + "VALUES (" + 
+				v.getFlightID() + "," + 
+				v.getPlane().getPlaneID() +",'"+
+				v.getOrigin() + "','" + 
+				v.getDest()+ "')";
 		DBManager.getInstance().addToDB(query);
 	}
 	@Override
 	public void delete(Integer id) {
-		flights.remove(id);		
+		//flights.remove(id);		
 		String query = "DELETE from flightboard WHERE flightboard.flightid=" + id;
 		System.out.println(id);
 		DBManager.getInstance().deleteFromDB(query);
 	}
-//	@Override
-//	public void print() {
-////		for(Map.Entry i: flights.entrySet()) {
-////			System.out.println(i + "\n");
-////		}
-//		try {
-//			FleetRepositoryImpl.printResultSet(DBManager.readFromDB("SELECT * from flightboard"));
-//		} catch (SQLException e) {
-//			System.out.println("Error in printing!");
-//			e.printStackTrace();
-//		}
-//	}
-	
+
 	public boolean isPlaneExist(int pID) {
 		String query = "SELECT * from flightboard WHERE flightboard.planeid =" + pID;
 		try {
@@ -58,8 +47,7 @@ public class FlightRepositoryImpl implements templateRepository<Integer, Flight>
 	@Override
 	public ArrayList<Flight> getTable() {
 		ResultSet resultSet;
-		flightsList = new ArrayList<Flight>();
-
+		ArrayList<Flight> flightsList = new ArrayList<Flight>();
 		//
 		
 		
@@ -70,8 +58,7 @@ public class FlightRepositoryImpl implements templateRepository<Integer, Flight>
 		try {
 			resultSet = DBManager.getInstance().readFromDB("SELECT * from flightboard join fleet using(planeid)");
 			while (resultSet.next()) { //.next() return true if we have more result + move to the next result (row)
-					//System.out.println("test flight");
-					Flight flight = new Flight(new Plane(resultSet.getString(3),resultSet.getInt(1)),resultSet.getInt(2));
+					Flight flight = new Flight(new Plane(resultSet.getString(5),resultSet.getInt(1)),resultSet.getInt(2), new Airport(resultSet.getString(3)), new Airport(resultSet.getString(4)));
 					flightsList.add(flight);
 			}
 		} catch (SQLException e) {
@@ -92,7 +79,7 @@ public class FlightRepositoryImpl implements templateRepository<Integer, Flight>
 			e.printStackTrace();
 		}
 		if(max == 0) {
-			return 999;
+			return 4999;
 		}
 		return max;
 	}

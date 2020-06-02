@@ -6,7 +6,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.JTable;
+import javax.swing.JComboBox;
 import java.awt.Font;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,15 +18,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import javax.swing.SwingConstants;
-import Controllers.FleetController;
-import Controllers.FlightBoardController;
-import Model.Repository.FleetRepositoryImpl;
-import Model.Repository.FlightRepositoryImpl;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import java.awt.Color;
+import Controllers.Controller;
+
+
 
 public class FlightBoardPanel extends JPanel implements ActionListener {
 	
@@ -31,51 +29,49 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	private JTable flightTable;
 	private JTable fleetTable;
 	private FlightTableModel flightModel;
-	private FlightRepositoryImpl rflight;
-	private FleetRepositoryImpl rfleet;
-	private FleetController fleetCtrl;
 	private FleetTableModel fleetModel;
-	private FlightBoardController flightCtrl;
+	
+	private Controller viewCtrl;
+
 	private JLabel lblFlightBoard;
 	private JLabel lblPlaneTable;
 	private JScrollPane scrollPane;
 	private JButton addBtn;
 	private JButton deleteBtn;
-	private JTextField txtPlaneTable;
 	private JScrollPane PlaneTable;
 	private JComboBox<Integer> dayBox;
 	private JComboBox<Integer>monthBox;
 	private JComboBox<Integer>yearBox;
 	private JLabel refLbl;
+	private JComboBox<String> destinationComboBox;
+	private JComboBox<String> originComboBox;
+
 
 	/* Constructor uses functions to initialize the page */
-
-	public FlightBoardPanel() {
+	public FlightBoardPanel(Controller ctrl) {
+		
+		viewCtrl = ctrl;
+		
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
-		rflight = new FlightRepositoryImpl();
-		rfleet = new FleetRepositoryImpl();
-		fleetCtrl = new FleetController(rflight,rfleet);
-		flightCtrl = new FlightBoardController(rflight,rfleet);
+
 		initialize();
 		setListeners();
 		buildFlightTable();
 		buildFleetTable();
-
 	}
 	
 	/* A Function to initialize the graphical parameters in the page */
 	public void initialize() {
 		flightModel = new FlightTableModel();
-		
-		//flightTable = new JTable(flightModel);
-		flightTable = new JTable();//design
-		
 		fleetModel = new FleetTableModel();
 		
-		//fleetTable = new JTable(fleetModel);
-		fleetTable = new JTable();//design
+		flightTable = new JTable(flightModel);
+		//flightTable = new JTable();//design
+		
+		fleetTable = new JTable(fleetModel);
+		//fleetTable = new JTable();//design
 				
 		flightTable.setBounds(77, 107, 684, 330);
 
@@ -97,6 +93,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		/* scrollPane parameters */ 
 		scrollPane = new JScrollPane();
 		scrollPane.setBackground(Color.WHITE);
+		scrollPane.getViewport().setBackground(Color.WHITE);
 		scrollPane.setBounds(176, 89, 368, 378);
 		add(scrollPane);
 		scrollPane.setViewportView(flightTable);
@@ -115,6 +112,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		/* scrollPane for PlaneTable parameters */
 		PlaneTable = new JScrollPane();
 		PlaneTable.setBackground(Color.WHITE);
+		PlaneTable.getViewport().setBackground(Color.WHITE);
 		PlaneTable.setBounds(787, 89, 188, 378);
 		add(PlaneTable);
 		PlaneTable.setViewportView(fleetTable);
@@ -145,6 +143,23 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		yearBox.setBounds(720, 104, 57, 23);
 		add(yearBox);
 		
+		String [] destinationList = new String[] {"Choose a city", "New York","Sydney", "Rome", "Rio", "Johannesburg"};
+		destinationComboBox = new JComboBox<String>();
+		destinationComboBox.setBounds(580, 187, 116, 23);
+		for (String i : destinationList) {
+			destinationComboBox.addItem(i);
+		}
+		destinationComboBox.setSelectedIndex(0);
+		add(destinationComboBox);
+		
+		originComboBox = new JComboBox<String>();
+		originComboBox.setBounds(580, 153, 116, 23);
+		for (String i : destinationList) {
+			originComboBox.addItem(i);
+		}
+		originComboBox.setSelectedIndex(0);
+		add(originComboBox);
+		
 		refLbl = new JLabel("");
 		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
 		refLbl.setIcon(new ImageIcon(refreshIcon));
@@ -162,16 +177,14 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	
 	/*A Function to build the flight table from the database */
 	public void buildFlightTable() {
-	    flightModel.setList(flightCtrl.getTable());
+	    flightModel.setList(viewCtrl.getFlightTable());
 	}
 	
 	/*A Function to build the fleet table from the database */
-	public void buildFleetTable()
-	{
-		fleetModel.setList(fleetCtrl.getTable());
+	public void buildFleetTable() {
+		fleetModel.setList(viewCtrl.getFleetTable());
 	}
 
-	
 	/*A Function for all of the actions performed buttons */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -183,19 +196,27 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 			scrollPane.setVisible(true);
 	
 			if (selectedRow != -1) { /* Add flight functionallity */
-				int day = (int)dayBox.getSelectedItem();
-				int month = (int)monthBox.getSelectedItem();
-				int year = (int)yearBox.getSelectedItem();
-				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+				if(destinationComboBox.getSelectedItem().equals("Choose a city")) {
+					JOptionPane.showMessageDialog(null, "Select destination");
+				}
+				else {
+					int day = (int)dayBox.getSelectedItem();
+					int month = (int)monthBox.getSelectedItem();
+					int year = (int)yearBox.getSelectedItem();
+					DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+					String destination = destinationComboBox.getSelectedItem().toString();
+					String origin = originComboBox.getSelectedItem().toString();
+
 				//Date date = new Date();
 		     	//System.out.println(dateFormat.format(date)); //2016/11/16 12:08:43	
 				//System.out.println(day + " " +  month + " " + year);
-				Date selectedBox = new GregorianCalendar(year,month - 1,day).getTime();
-				System.out.println(dateFormat.format(selectedBox));
-				int p =  (int) fleetModel.getValueAt(selectedRow, 0);
-				flightCtrl.addFlight(p);	
-				buildFlightTable();
-				flightTable.invalidate();
+					Date selectedBox = new GregorianCalendar(year,month - 1,day).getTime();
+					System.out.println(dateFormat.format(selectedBox));
+					int planeID =  (int) fleetModel.getValueAt(selectedRow, 0); 
+					viewCtrl.addFlight(planeID, origin, destination);	
+					buildFlightTable();
+					flightTable.invalidate();
+				}
 			}
 			else { /* The user must choose a plane to add a flight */
 				JOptionPane.showMessageDialog(null, "Choose a plane in order to create a flight!");
@@ -207,7 +228,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 			selectedRow = flightTable.getSelectedRow();
 			if (selectedRow != -1) {
 				int f =  (int) flightModel.getValueAt(selectedRow, 0);
-				flightCtrl.deleteFlight(f);	
+				viewCtrl.deleteFlight(f);	
 				buildFlightTable();
 			}
 			else {

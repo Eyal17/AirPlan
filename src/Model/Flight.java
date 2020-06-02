@@ -2,10 +2,6 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Date;
-import Controllers.FlightBoardController;
-import Model.Repository.FleetRepositoryImpl;
-import Model.Repository.FlightRepositoryImpl;
-
 
 public class Flight {
 	int flightID;
@@ -17,23 +13,15 @@ public class Flight {
 	Airport origin;
 	Airport dest;
 	ArrayList<Seat>[] passengers;
-	FlightRepositoryImpl flightRep = new FlightRepositoryImpl();
-	FleetRepositoryImpl fleetRep = new FleetRepositoryImpl();
-	FlightBoardController flightCtrl = new FlightBoardController(flightRep, fleetRep);
 	
-	public Flight(Plane p,int id) {//Date arv,Airport orig, Airport des) {
+	public Flight(Plane p,int id, Airport orig, Airport des) {//Date arv) {
 		plane = p;
 		//arrival = arv;
 		//departure = d;
-		//origin = orig;
-		//dest = des;
+		origin = orig;
+		dest = des;
 		//distance = origin.distFromBase + dest.distFromBase;
-		if (id == 0) {
-			flightID = (flightCtrl.getMax()) + 1;
-		}
-		else{
-			flightID = id;
-		}
+		flightID = id;
 		passengers = plane.seats;
 	}
 	
@@ -46,11 +34,11 @@ public class Flight {
 	public Date getDeparture() {
 		return departure;
 	}
-	public Airport getOrigin() {
-		return origin;
+	public String getOrigin() {
+		return origin.getCountry();
 	}
-	public Airport getDest() {
-		return dest;
+	public String getDest() {
+		return dest.getCountry();
 	}
 	public int getFlightID() {
 		return flightID;

@@ -3,9 +3,9 @@ public class Destination {
 	String country;
 	int distFromBase;
 	//coordinate
-	public Destination(String c, int d) { //ctor
+	public Destination(String c) { //ctor
 		country = c;
-		distFromBase = d;
+	//	distFromBase = d;
 		
 	}
 	public String getCountry() {

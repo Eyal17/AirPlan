@@ -3,11 +3,55 @@ package Model;
 public class Airport extends Destination {
 	int localTax;
 	double fuelPrice;
-	
-	public Airport(int tax, int fuelP, String c, int d) {
-		super(c,d);
-		localTax = tax;
-		fuelPrice = fuelP;
+	int distFromBase;
+
+	public Airport(String city) {
+		super(city);
+		switch(city){ 
+			case "New York":
+			{
+				localTax = 1000;
+				fuelPrice =  50;
+				distFromBase = 9109;
+				break;
+			}
+			case "Sydney":
+			{
+				localTax = 1500;
+				fuelPrice =  60;
+				distFromBase = 14171;
+				break;
+			}
+			case "Rome":
+			{
+				localTax = 800;
+				fuelPrice =  80;
+				distFromBase = 4044;
+				break;
+			}
+			case "Rio":
+			{
+				localTax = 500;
+				fuelPrice =  30;
+				distFromBase = 10281;
+				break;
+			}
+			case "Johannesburg":
+			{
+				localTax = 750;
+				fuelPrice =  70;
+				distFromBase = 9220;
+				break;
+			}
+			case "Tel Aviv":
+			{
+				localTax = 2200;
+				fuelPrice =  7000000;
+				distFromBase = 0;
+				break;
+			}
+			default: break;
+		}	
 	}
 	
 	public int getLocalTax() {
