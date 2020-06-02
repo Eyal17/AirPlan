@@ -14,10 +14,9 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
 import Controllers.Controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -46,7 +45,6 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	private JComboBox<Integer>yearBox;
 	private JLabel refLbl;
 	private JComboBox<String> destinationComboBox;
-	private JComboBox<String> originComboBox;
 
 
 	/* Constructor uses functions to initialize the page */
@@ -57,11 +55,12 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
-
+		
 		initialize();
 		setListeners();
 		buildFlightTable();
 		buildFleetTable();
+		flightTable.setAutoCreateRowSorter(true);
 	}
 	
 	/* A Function to initialize the graphical parameters in the page */
@@ -77,7 +76,6 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		
 		flightTable.setBounds(77, 107, 684, 330);
 
-		
 		/* Flight Board title parameters */ 
 		lblFlightBoard = new JLabel("Flight Board");
 		lblFlightBoard.setBounds(303, 30, 230, 49);
