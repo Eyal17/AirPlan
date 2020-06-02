@@ -52,7 +52,7 @@ public class FleetPanel extends JPanel implements ActionListener, MouseListener{
 		
 		
 		fleetTable = new JTable(fleetModel);
-		//fleetTable = new JTable(); // to design 
+//		fleetTable = new JTable(); // to design 
 
 		/* AirCraft title parameters */ 
 		lblAircraftFleet = new JLabel("AirCraft Fleet");
@@ -95,9 +95,10 @@ public class FleetPanel extends JPanel implements ActionListener, MouseListener{
 		deleteBtn.setBounds(36, 621, 130, 23);
 		add(deleteBtn);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(509, 0, 535, 681);
-		add(panel);
+		JPanel detailsPanel = new JPanel();
+		detailsPanel.setBounds(509, 0, 519, 681);
+		add(detailsPanel);
+		detailsPanel.setVisible(false);
 		
 		refreshLbl = new JLabel("refreshLbl");
 		refreshLbl.addMouseListener(new MouseAdapter() {
@@ -112,6 +113,23 @@ public class FleetPanel extends JPanel implements ActionListener, MouseListener{
 		refreshLbl.setIcon(new ImageIcon(refreshIcon));
 		refreshLbl.setBounds(329, 494, 35, 35);
 		add(refreshLbl);
+		
+		JLabel detailsBtn = new JLabel("New label");
+		detailsBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selectedRow = -1;
+				selectedRow = fleetTable.getSelectedRow();
+				if (selectedRow != -1) {
+					detailsPanel.setVisible(true);
+				}
+				else
+					detailsPanel.setVisible(false);
+				fleetTable.clearSelection();
+			}
+		});
+		detailsBtn.setBounds(287, 625, 66, 29);
+		add(detailsBtn);
 	}
 	
 	/*A Function to set all the listeners in the page */
