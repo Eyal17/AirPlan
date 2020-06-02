@@ -1,11 +1,13 @@
 package View;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.CardLayout;
@@ -14,17 +16,22 @@ import Controllers.Controller;
 
 public class HomeBuilder extends JFrame {
 
-	private JPanel contentPane;
 	private Controller viewCtrl;
+	private JPanel contentPane;
+	
 
 	public HomePanel homePanel;
 	public FleetPanel fleetPanel;
 	public FlightBoardPanel flightBoardPanel;
 	public MapControllerPanel mapPanel;
+	
 
 	public HomeBuilder(Controller ctrl) {
 		
 		viewCtrl = ctrl;
+		
+		Image exitIcon = new ImageIcon(this.getClass().getResource("/exit.png")).getImage();
+
 
 		setResizable(false);
 		setTitle("AirPlan");
@@ -36,11 +43,35 @@ public class HomeBuilder extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JPanel Viewpanel = new JPanel();
+		Viewpanel.setBounds(236, 0, 1044, 681);
+		contentPane.add(Viewpanel);
+		Viewpanel.setLayout(new CardLayout(0, 0));
+
+		homePanel = new HomePanel();
+		fleetPanel = new FleetPanel(viewCtrl);
+		flightBoardPanel = new FlightBoardPanel(viewCtrl);
+		mapPanel = new MapControllerPanel();
+
+		Viewpanel.add(homePanel, "name_78750354984400");
+		Viewpanel.add(fleetPanel, "name_78750381602200");
+		Viewpanel.add(flightBoardPanel, "name_78750403585200");
+		Viewpanel.add(mapPanel);
+
+		
+		MenuClicked(homePanel);
+		
 		JPanel NavBar = new JPanel();
 		NavBar.setBackground(new Color(37,104,162));
 		NavBar.setBounds(0, 0, 236, 680);
 		contentPane.add(NavBar);
 		NavBar.setLayout(null);
+		
+		JLabel exitBtn = new JLabel("");
+		exitBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		exitBtn.setBounds(5, 5, 25, 25);
+		exitBtn.setIcon(new ImageIcon(exitIcon));
+		NavBar.add(exitBtn);
 		
 		JPanel HomeBtn = new JPanel();
 		HomeBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -94,85 +125,74 @@ public class HomeBuilder extends JFrame {
 		lblMapController.setBounds(50, 11, 132, 37);
 		MapControllerBtn.add(lblMapController);
 		
-		JPanel Viewpanel = new JPanel();
-		Viewpanel.setBounds(236, 0, 1044, 681);
-		contentPane.add(Viewpanel);
-		Viewpanel.setLayout(new CardLayout(0, 0));
-
-		homePanel = new HomePanel();
-		fleetPanel = new FleetPanel(viewCtrl);
-		flightBoardPanel = new FlightBoardPanel(viewCtrl);
-		mapPanel = new MapControllerPanel();
-
-		Viewpanel.add(homePanel, "name_78750354984400");
-		Viewpanel.add(fleetPanel, "name_78750381602200");
-		Viewpanel.add(flightBoardPanel, "name_78750403585200");
-		Viewpanel.add(mapPanel);
-
-		
-		MenuClicked(homePanel);
-		
-		//Overrides
-		
-		HomeBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				HomeBtn.setBackground(new Color(51, 153, 255));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				HomeBtn.setBackground(new Color(37,104,162));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				MenuClicked(homePanel);
-			}
-		});
-		
-		AircraftFleetBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				AircraftFleetBtn.setBackground(new Color(102, 178, 255));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				AircraftFleetBtn.setBackground(new Color(37,104,162));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				MenuClicked(fleetPanel);
-			}
-		});
-		
-		FlightScheduleBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				FlightScheduleBtn.setBackground(new Color(153, 204, 255));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				FlightScheduleBtn.setBackground(new Color(37,104,162));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				MenuClicked(flightBoardPanel);
-			}
-		});
-		
-		MapControllerBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				MapControllerBtn.setBackground(new Color(180, 200, 255));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				MapControllerBtn.setBackground(new Color(37,104,162));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				MenuClicked(mapPanel);
-			}
-		});
+			
+			//Overrides
+			
+			HomeBtn.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					HomeBtn.setBackground(new Color(51, 153, 255));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					HomeBtn.setBackground(new Color(37,104,162));
+				}
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					MenuClicked(homePanel);
+				}
+			});
+			
+			AircraftFleetBtn.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					AircraftFleetBtn.setBackground(new Color(102, 178, 255));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					AircraftFleetBtn.setBackground(new Color(37,104,162));
+				}
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					MenuClicked(fleetPanel);
+				}
+			});
+			
+			FlightScheduleBtn.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					FlightScheduleBtn.setBackground(new Color(153, 204, 255));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					FlightScheduleBtn.setBackground(new Color(37,104,162));
+				}
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					MenuClicked(flightBoardPanel);
+				}
+			});
+			
+			MapControllerBtn.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					MapControllerBtn.setBackground(new Color(180, 200, 255));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					MapControllerBtn.setBackground(new Color(37,104,162));
+				}
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					MenuClicked(mapPanel);
+				}
+			});
+			exitBtn.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					System.exit(0);
+				}
+			});
 	}
 	
 	//Functions
@@ -181,5 +201,6 @@ public class HomeBuilder extends JFrame {
 				fleetPanel.setVisible(false);
 				flightBoardPanel.setVisible(false);
 				panel.setVisible(true);
+				
 			}
 }
