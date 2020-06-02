@@ -50,7 +50,6 @@ public class Controller {
 			Airport d = new Airport(dest);
 
 			Flight f = new Flight(p,fID, d,date);
-			System.out.println(f.getDeparture().getDay());
 			modelAP.flightRepo.add(f);
 			view.homeBulider.flightBoardPanel.buildFlightTable();
 		}
