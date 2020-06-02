@@ -11,21 +11,22 @@ public class Flight {
 	int distance;
 	double cost;
 	Plane plane;
-	//Date arrival;
+	Date toOrigin;
 	Date departure;
 	//Airport origin;
 	Airport dest;
 	ArrayList<Seat>[] passengers;
 	
-	public Flight(Plane p,int id, Airport des, Date d) {//Date arv) {
+	public Flight(Plane p,int id, Airport des, Date d1, Date d2) {//Date arv) {
 		plane = p;
-		//arrival = arv;
-		departure = d;
+		departure = d1;
+		toOrigin = d2;
 		//origin = orig;
 		dest = des;
 		//distance = origin.distFromBase + dest.distFromBase;
 		flightID = id;
 		passengers = plane.seats;
+
 	}
 	
 	public Plane getPlane() {
@@ -35,6 +36,11 @@ public class Flight {
 	public Date getDeparture() {
 		return departure;
 	}
+	
+	public Date getToOrigin() {
+		return toOrigin;
+	}
+
 
 
 	public String getDest() {

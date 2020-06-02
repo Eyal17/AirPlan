@@ -60,7 +60,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		setListeners();
 		buildFlightTable();
 		buildFleetTable();
-		flightTable.setAutoCreateRowSorter(true);
+		//flightTable.setAutoCreateRowSorter(true);
 	}
 	
 	/* A Function to initialize the graphical parameters in the page */
@@ -118,31 +118,30 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		PlaneTable.setViewportView(fleetTable);
 
 		
-		/* Building Date object for new flights */
 		dayBox = new JComboBox<Integer>();
-		for (int i = 1;i < 32;i++) {
+		for (int i = 0;i < 32;i++) {
 			dayBox.addItem(i);
 		}
-		//dayBox.setSelectedIndex(0);
+		dayBox.setSelectedItem(0);
 		dayBox.setBounds(580, 104, 57, 23);
 		add(dayBox);
 		
 		monthBox = new JComboBox<Integer>();
-		for (int i = 1;i < 13;i++) {
+		for (int i = 0;i < 13;i++) {
 			monthBox.addItem(i);
 		}
-		//monthBox.setSelectedIndex(0);
+		monthBox.setSelectedItem(0);
 		monthBox.setBounds(650, 104, 57, 23);
 		add(monthBox);
 		
 		yearBox = new JComboBox<Integer>();
+		yearBox.addItem(0);
 		for (int i = 2020;i < 2030;i++) {
 			yearBox.addItem(i);
 		}
-		//yearBox.setSelectedIndex(0);
+		yearBox.setSelectedItem(0);
 		yearBox.setBounds(720, 104, 57, 23);
 		add(yearBox);
-		
 		String [] destinationList = new String[] {"Choose a city", "New York","Sydney", "Rome", "Rio", "Johannesburg"};
 		destinationComboBox = new JComboBox<String>();
 		destinationComboBox.setBounds(580, 187, 116, 23);
@@ -213,24 +212,19 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 				if(destinationComboBox.getSelectedItem().equals("Choose a city")) {
 					JOptionPane.showMessageDialog(null, "Select destination");
 				}
+				else if(dayBox.getSelectedItem().equals(0) | monthBox.getSelectedItem().equals(0) | yearBox.getSelectedItem().equals(0)) {
+					JOptionPane.showMessageDialog(null, "Please fill in full departure date");}
 				else {
 					int day = (int)dayBox.getSelectedItem();
+					int dayAfter = day+1;
 					int month = (int)monthBox.getSelectedItem();
 					int year = (int)yearBox.getSelectedItem();
-					//DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					String destination = destinationComboBox.getSelectedItem().toString();
-					//String origin = originComboBox.getSelectedItem().toString();
-
-				//Date date = new Date();
-		     	//System.out.println(dateFormat); //2016/11/16 12:08:43	
-				//System.out.println(day + " " +  month + " " + year);
 					Date departureDate = new GregorianCalendar(year,month - 1,day).getTime();
-					System.out.println("departure date = " + departureDate);
-					//todo: need to make tests for date
-					
+					Date toOrigin = new GregorianCalendar(year,month - 1,dayAfter).getTime();					
 					int planeID =  (int) fleetModel.getValueAt(selectedRow, 0); 
-					viewCtrl.addFlight(planeID, destination, departureDate);	
-					//buildFlightTable();
+					viewCtrl.addFlight(planeID, destination, departureDate, toOrigin);
+					fleetTable.clearSelection();
 				}
 			}
 			else { /* The user must choose a plane to add a flight */
@@ -250,7 +244,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Choose a flight to delete.");
 			}
 		}
-		fleetTable.clearSelection();
+		//fleetTable.clearSelection();
 		flightTable.clearSelection();
 		flightTable.repaint();
 	}
