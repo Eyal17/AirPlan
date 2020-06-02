@@ -1,7 +1,10 @@
 package Model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Flight {
 	int flightID;
@@ -28,15 +31,12 @@ public class Flight {
 	public Plane getPlane() {
 		return plane;
 	}
-	public Date getArrival() {
-		return arrival;
-	}
+
 	public Date getDeparture() {
 		return departure;
 	}
-	public String getOrigin() {
-		return origin.getCountry();
-	}
+
+
 	public String getDest() {
 		return dest.getCountry();
 	}

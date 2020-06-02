@@ -204,17 +204,19 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 					int day = (int)dayBox.getSelectedItem();
 					int month = (int)monthBox.getSelectedItem();
 					int year = (int)yearBox.getSelectedItem();
-					DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+					//DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					String destination = destinationComboBox.getSelectedItem().toString();
 					//String origin = originComboBox.getSelectedItem().toString();
 
 				//Date date = new Date();
 		     	//System.out.println(dateFormat); //2016/11/16 12:08:43	
 				//System.out.println(day + " " +  month + " " + year);
-					Date selectedBox = new GregorianCalendar(year,month - 1,day).getTime();
-					System.out.println(dateFormat.format(selectedBox));
+					Date departureDate = new GregorianCalendar(year,month - 1,day).getTime();
+					
+					//todo: need to make tests for date
+					
 					int planeID =  (int) fleetModel.getValueAt(selectedRow, 0); 
-					viewCtrl.addFlight(planeID, destination, selectedBox);	
+					viewCtrl.addFlight(planeID, destination, departureDate);	
 					//buildFlightTable();
 				}
 			}

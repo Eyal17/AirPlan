@@ -25,6 +25,7 @@ public class FlightTableModel extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		Object temp = null;
+		
 		switch (columnIndex)
 		{
 		case 0:
@@ -37,7 +38,7 @@ public class FlightTableModel extends AbstractTableModel {
 			temp= flightList.get(rowIndex).getDest();
 			break;
 		case 3:
-			//temp= flightList.get(rowIndex).getDest();
+			temp= flightList.get(rowIndex).getDeparture();
 			break;
 		default: break;
 		}
