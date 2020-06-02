@@ -18,11 +18,12 @@ public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight>
 	public void add(Flight v) {
 		//flights.put(v.getFlightID(), v);
 		
-		String query = "INSERT INTO flightboard(flightid,planeid,destination,departure)" + "VALUES (" + 
+		String query = "INSERT INTO flightboard(flightid,planeid,destination,departure,toorigin)" + "VALUES (" + 
 				v.getFlightID() + "," + 
 				v.getPlane().getPlaneID() +",'"+  
 				v.getDest()+ "','{" +
-				v.getDeparture() + "}')";
+				v.getDeparture() + "}','{"+
+				v.getToOrigin() +"}')";
 				//v.getDeparture().getDate() + "," +
 				//(v.getDeparture().getMonth()+1) + "," +
 				//(v.getDeparture().getYear()+1900) + "}')";
@@ -67,15 +68,12 @@ public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight>
 			resultSet = DBManager.getInstance().readFromDB("SELECT * from flightboard join fleet using(planeid)");
 			while (resultSet.next()) { //.next() return true if we have more result + move to the next result (row)
 					Date date = resultSet.getDate(4);
-					//Date d = new GregorianCalendar((TimeZone) date).getTime();
-					System.out.println(date);
-					//int day = (int) date.getArray(0,1);
-					//System.out.println(day);
-					Flight flight = new Flight(new Plane(resultSet.getString(5),
+					Flight flight = new Flight(new Plane(resultSet.getString(6),
 							resultSet.getInt(1)),
 							resultSet.getInt(2),
 							new Airport(resultSet.getString(3)),
-							resultSet.getDate(4));
+							resultSet.getDate(4), 
+							resultSet.getDate(5));
 							//new GregorianCalendar(date).getTime());
 					flightsList.add(flight);
 			}

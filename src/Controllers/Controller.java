@@ -43,13 +43,13 @@ public class Controller {
 		return modelAP.fleetRepo.getTable();
 	}
 	
-	public void addFlight(int planeID, String dest, Date date) {
+	public void addFlight(int planeID, String dest, Date depart, Date toorigin) {
 		int fID = modelAP.flightRepo.getMaxID()+1;
 		Plane p = modelAP.fleetRepo.find(planeID);
 		if(p != null) {
 			Airport d = new Airport(dest);
 
-			Flight f = new Flight(p,fID, d,date);
+			Flight f = new Flight(p,fID, d,depart,toorigin);
 			modelAP.flightRepo.add(f);
 			view.homeBulider.flightBoardPanel.buildFlightTable();
 		}

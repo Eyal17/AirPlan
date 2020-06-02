@@ -45,7 +45,7 @@ public class FlightTableModel extends AbstractTableModel {
 			temp= flightList.get(rowIndex).getDeparture();
 			break;
 		case 4:
-			temp = flightList.get(rowIndex).getDeparture();
+			temp = flightList.get(rowIndex).getToOrigin();
 			break;
 		default: break;
 		}
