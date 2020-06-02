@@ -200,6 +200,7 @@ public class HomeBuilder extends JFrame {
 				homePanel.setVisible(false);
 				fleetPanel.setVisible(false);
 				flightBoardPanel.setVisible(false);
+				mapPanel.setVisible(false);
 				panel.setVisible(true);
 				
 			}

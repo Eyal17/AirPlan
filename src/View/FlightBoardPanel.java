@@ -20,6 +20,7 @@ import java.util.GregorianCalendar;
 import Controllers.Controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Cursor;
 
 
 
@@ -162,6 +163,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		
 		/* A function to refresh the tables when pressing the button */
 		refLbl = new JLabel("");
+		refLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		refLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
