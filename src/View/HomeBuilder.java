@@ -95,7 +95,7 @@ public class HomeBuilder extends JFrame {
 		MapControllerBtn.add(lblMapController);
 		
 		JPanel Viewpanel = new JPanel();
-		Viewpanel.setBounds(236, 0, 1044, 681);
+		Viewpanel.setBounds(236, 0, 1028, 681);
 		contentPane.add(Viewpanel);
 		Viewpanel.setLayout(new CardLayout(0, 0));
 

@@ -47,6 +47,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	private JLabel refLbl;
 	private JComboBox<String> destinationComboBox;
 	private JComboBox<String> originComboBox;
+	private JPanel panel;
 
 
 	/* Constructor uses functions to initialize the page */
@@ -69,11 +70,11 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		flightModel = new FlightTableModel();
 		fleetModel = new FleetTableModel();
 		
-		flightTable = new JTable(flightModel);
-		//flightTable = new JTable();//design
+		//flightTable = new JTable(flightModel);
+		flightTable = new JTable();//design
 		
-		fleetTable = new JTable(fleetModel);
-		//fleetTable = new JTable();//design
+		//fleetTable = new JTable(fleetModel);
+		fleetTable = new JTable();//design
 		
 		flightTable.setBounds(77, 107, 684, 330);
 
@@ -180,6 +181,10 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		refLbl.setIcon(new ImageIcon(refreshIcon));
 		refLbl.setBounds(571, 449, 35, 35);
 		add(refLbl);
+		
+		panel = new JPanel();
+		panel.setBounds(555, 0, 473, 681);
+		add(panel);
 	}
 	
 	/*A Function to set all the listeners in the page */
