@@ -16,8 +16,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
 import Controllers.Controller;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class FleetPanel extends JPanel implements ActionListener{
+public class FleetPanel extends JPanel implements ActionListener, MouseListener{
 	
 	/* Private variables we use in this page  */
 	private JTable fleetTable;
@@ -28,7 +31,7 @@ public class FleetPanel extends JPanel implements ActionListener{
 	private JButton addBtn;
 	private JButton deleteBtn;
 	private Controller viewCtrl;
-
+	private JLabel refreshLbl;
 	/* Constructor uses functions to initialize the page */
 	public FleetPanel(Controller ctrl) {
 		
@@ -46,6 +49,8 @@ public class FleetPanel extends JPanel implements ActionListener{
 	/* A Function to initialize the graphical parameters in the page */
 	public void initialize() {
 		fleetModel = new FleetTableModel();
+		
+		
 		fleetTable = new JTable(fleetModel);
 		//fleetTable = new JTable(); // to design 
 
@@ -94,7 +99,15 @@ public class FleetPanel extends JPanel implements ActionListener{
 		panel.setBounds(509, 0, 535, 681);
 		add(panel);
 		
-		JLabel refreshLbl = new JLabel("");
+		refreshLbl = new JLabel("refreshLbl");
+		refreshLbl.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				scrollPane.setVisible(false);
+				buildTable();
+				scrollPane.setVisible(true);
+			}
+		});
 		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
 		refreshLbl.setIcon(new ImageIcon(refreshIcon));
 		refreshLbl.setBounds(329, 494, 35, 35);
@@ -127,7 +140,6 @@ public class FleetPanel extends JPanel implements ActionListener{
 			if(selectedBox != ""){  /* Add plane functionality */
 				viewCtrl.addPlane(selectedBox);
 				//buildTable();
-				
 			}
 			else { /* The user must choose a plane type */
 				JOptionPane.showMessageDialog(null, "Please choose plane type. ");

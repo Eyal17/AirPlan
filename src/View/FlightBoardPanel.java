@@ -19,6 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import Controllers.Controller;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 
@@ -72,7 +74,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		
 		fleetTable = new JTable(fleetModel);
 		//fleetTable = new JTable();//design
-				
+		
 		flightTable.setBounds(77, 107, 684, 330);
 
 		
@@ -160,7 +162,20 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 //		originComboBox.setSelectedIndex(0);
 //		add(originComboBox);
 		
+		
+		/* A function to refresh the tables when pressing the button */
 		refLbl = new JLabel("");
+		refLbl.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				scrollPane.setVisible(false);
+				buildFleetTable();
+				buildFlightTable();
+				scrollPane.setVisible(true);
+			}
+		});
+		
+		
 		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
 		refLbl.setIcon(new ImageIcon(refreshIcon));
 		refLbl.setBounds(571, 449, 35, 35);
