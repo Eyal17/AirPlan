@@ -14,12 +14,12 @@ public class Flight {
 	Airport dest;
 	ArrayList<Seat>[] passengers;
 	
-	public Flight(Plane p,int id) {//Date arv,Airport orig, Airport des) {
+	public Flight(Plane p,int id, Airport orig, Airport des) {//Date arv) {
 		plane = p;
 		//arrival = arv;
 		//departure = d;
-		//origin = orig;
-		//dest = des;
+		origin = orig;
+		dest = des;
 		//distance = origin.distFromBase + dest.distFromBase;
 		flightID = id;
 		passengers = plane.seats;
@@ -34,11 +34,11 @@ public class Flight {
 	public Date getDeparture() {
 		return departure;
 	}
-	public Airport getOrigin() {
-		return origin;
+	public String getOrigin() {
+		return origin.getCountry();
 	}
-	public Airport getDest() {
-		return dest;
+	public String getDest() {
+		return dest.getCountry();
 	}
 	public int getFlightID() {
 		return flightID;

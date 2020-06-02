@@ -44,6 +44,8 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	private JComboBox<Integer>yearBox;
 	private JLabel refLbl;
 	private JComboBox<String> destinationComboBox;
+	private JComboBox<String> originComboBox;
+
 
 	/* Constructor uses functions to initialize the page */
 	public FlightBoardPanel(Controller ctrl) {
@@ -143,13 +145,22 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		
 		String [] destinationList = new String[] {"Choose a city", "New York","Sydney", "Rome", "Rio", "Johannesburg"};
 		destinationComboBox = new JComboBox<String>();
-		destinationComboBox.setBounds(580, 149, 116, 23);
+		destinationComboBox.setBounds(580, 187, 116, 23);
 		for (String i : destinationList) {
 			destinationComboBox.addItem(i);
 		}
-		destinationComboBox.setSelectedItem("");
+		destinationComboBox.setSelectedItem("Select arrival");
 		destinationComboBox.setSelectedIndex(0);
 		add(destinationComboBox);
+		
+		originComboBox = new JComboBox<String>();
+		originComboBox.setBounds(580, 153, 116, 23);
+		for (String i : destinationList) {
+			originComboBox.addItem(i);
+		}
+		originComboBox.setSelectedItem("Select departure");
+		originComboBox.setSelectedIndex(0);
+		add(originComboBox);
 		
 		refLbl = new JLabel("");
 		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
@@ -191,13 +202,17 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 				int month = (int)monthBox.getSelectedItem();
 				int year = (int)yearBox.getSelectedItem();
 				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+				String destination = destinationComboBox.getSelectedItem().toString();
+				String origin = originComboBox.getSelectedItem().toString();
+
+				System.out.println("Destination is: "+ destination);
 				//Date date = new Date();
 		     	//System.out.println(dateFormat.format(date)); //2016/11/16 12:08:43	
 				//System.out.println(day + " " +  month + " " + year);
 				Date selectedBox = new GregorianCalendar(year,month - 1,day).getTime();
 				System.out.println(dateFormat.format(selectedBox));
-				int p =  (int) fleetModel.getValueAt(selectedRow, 0);
-				viewCtrl.addFlight(p);	
+				int planeID =  (int) fleetModel.getValueAt(selectedRow, 0); 
+				viewCtrl.addFlight(planeID, origin, destination);	
 				buildFlightTable();
 				flightTable.invalidate();
 			}

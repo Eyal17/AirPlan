@@ -3,6 +3,8 @@ package Model.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import Model.Airport;
 import Model.Flight;
 import Model.Plane;
 
@@ -11,7 +13,8 @@ public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight>
 	@Override
 	public void add(Flight v) {
 		//flights.put(v.getFlightID(), v);
-		String query = "INSERT INTO flightboard(flightid,planeid)" + "VALUES (" + v.getFlightID() + "," + v.getPlane().getPlaneID() + ")";
+		System.out.println(v.toString());
+		String query = "INSERT INTO flightboard(flightid,planeid,origin,destination)" + "VALUES (" + v.getFlightID() + "," + v.getPlane().getPlaneID() +","+v.getOrigin() + "," + v.getDest()+ ")";
 		DBManager.getInstance().addToDB(query);
 	}
 	@Override
@@ -52,7 +55,7 @@ public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight>
 		try {
 			resultSet = DBManager.getInstance().readFromDB("SELECT * from flightboard join fleet using(planeid)");
 			while (resultSet.next()) { //.next() return true if we have more result + move to the next result (row)
-					Flight flight = new Flight(new Plane(resultSet.getString(3),resultSet.getInt(1)),resultSet.getInt(2));
+					Flight flight = new Flight(new Plane(resultSet.getString(5),resultSet.getInt(1)),resultSet.getInt(2), new Airport(resultSet.getString(3)), new Airport(resultSet.getString(4)));
 					flightsList.add(flight);
 			}
 		} catch (SQLException e) {

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import Model.Airport;
 import Model.Flight;
 import Model.Plane;
 import Model.Repository.ModelRepository;
@@ -39,11 +40,14 @@ public class Controller {
 		return modelAP.fleetRepo.getTable();
 	}
 	
-	public void addFlight(int planeID) {
+	public void addFlight(int planeID, String origin, String dest) {
 		int fID = modelAP.flightRepo.getMaxID()+1;
 		Plane p = modelAP.fleetRepo.find(planeID);
 		if(p != null) {
-			Flight f = new Flight(p,fID);
+			Airport o = new Airport(origin);
+			Airport d = new Airport(dest);
+
+			Flight f = new Flight(p,fID, o, d);
 			modelAP.flightRepo.add(f);
 		}
 		else {
