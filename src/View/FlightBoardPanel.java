@@ -225,7 +225,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		     	//System.out.println(dateFormat); //2016/11/16 12:08:43	
 				//System.out.println(day + " " +  month + " " + year);
 					Date departureDate = new GregorianCalendar(year,month - 1,day).getTime();
-					
+					System.out.println("departure date = " + departureDate);
 					//todo: need to make tests for date
 					
 					int planeID =  (int) fleetModel.getValueAt(selectedRow, 0); 

@@ -27,9 +27,9 @@ public class FlightTableModel extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		Object temp = null;
-		Date n = new GregorianCalendar(flightList.get(rowIndex).getDeparture().getYear(),
-				flightList.get(rowIndex).getDeparture().getMonth(),
-				flightList.get(rowIndex).getDeparture().getDate()+1).getTime();
+		//int day = flightList.get(rowIndex).getDeparture().getDate()+1;
+		//Date d = flightList.get(rowIndex).getDeparture();
+		//d.setDate(day);
 		switch (columnIndex)
 		{
 		case 0:
@@ -45,7 +45,8 @@ public class FlightTableModel extends AbstractTableModel {
 			temp= flightList.get(rowIndex).getDeparture();
 			break;
 		case 4:
-			temp = n;
+			temp = flightList.get(rowIndex).getDeparture();
+			break;
 		default: break;
 		}
 		return temp;
