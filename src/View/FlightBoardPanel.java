@@ -152,13 +152,13 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		destinationComboBox.setSelectedIndex(0);
 		add(destinationComboBox);
 		
-		originComboBox = new JComboBox<String>();
-		originComboBox.setBounds(580, 153, 116, 23);
-		for (String i : destinationList) {
-			originComboBox.addItem(i);
-		}
-		originComboBox.setSelectedIndex(0);
-		add(originComboBox);
+//		originComboBox = new JComboBox<String>();
+//		originComboBox.setBounds(580, 153, 116, 23);
+//		for (String i : destinationList) {
+//			originComboBox.addItem(i);
+//		}
+//		originComboBox.setSelectedIndex(0);
+//		add(originComboBox);
 		
 		refLbl = new JLabel("");
 		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
@@ -206,15 +206,15 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 					int year = (int)yearBox.getSelectedItem();
 					DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					String destination = destinationComboBox.getSelectedItem().toString();
-					String origin = originComboBox.getSelectedItem().toString();
+					//String origin = originComboBox.getSelectedItem().toString();
 
 				//Date date = new Date();
-		     	//System.out.println(dateFormat.format(date)); //2016/11/16 12:08:43	
+		     	//System.out.println(dateFormat); //2016/11/16 12:08:43	
 				//System.out.println(day + " " +  month + " " + year);
 					Date selectedBox = new GregorianCalendar(year,month - 1,day).getTime();
 					System.out.println(dateFormat.format(selectedBox));
 					int planeID =  (int) fleetModel.getValueAt(selectedRow, 0); 
-					viewCtrl.addFlight(planeID, origin, destination);	
+					viewCtrl.addFlight(planeID, destination, selectedBox);	
 					//buildFlightTable();
 				}
 			}

@@ -8,17 +8,17 @@ public class Flight {
 	int distance;
 	double cost;
 	Plane plane;
-	Date arrival;
+	//Date arrival;
 	Date departure;
-	Airport origin;
+	//Airport origin;
 	Airport dest;
 	ArrayList<Seat>[] passengers;
 	
-	public Flight(Plane p,int id, Airport orig, Airport des) {//Date arv) {
+	public Flight(Plane p,int id, Airport des, Date d) {//Date arv) {
 		plane = p;
 		//arrival = arv;
-		//departure = d;
-		origin = orig;
+		departure = d;
+		//origin = orig;
 		dest = des;
 		//distance = origin.distFromBase + dest.distFromBase;
 		flightID = id;

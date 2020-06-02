@@ -3,6 +3,7 @@ package Controllers;
 import View.View;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -42,14 +43,14 @@ public class Controller {
 		return modelAP.fleetRepo.getTable();
 	}
 	
-	public void addFlight(int planeID, String origin, String dest) {
+	public void addFlight(int planeID, String dest, Date date) {
 		int fID = modelAP.flightRepo.getMaxID()+1;
 		Plane p = modelAP.fleetRepo.find(planeID);
 		if(p != null) {
-			Airport o = new Airport(origin);
 			Airport d = new Airport(dest);
 
-			Flight f = new Flight(p,fID, o, d);
+			Flight f = new Flight(p,fID, d,date);
+			System.out.println(f.getDeparture().getDay());
 			modelAP.flightRepo.add(f);
 			view.homeBulider.flightBoardPanel.buildFlightTable();
 		}
