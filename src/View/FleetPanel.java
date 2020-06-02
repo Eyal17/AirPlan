@@ -91,7 +91,7 @@ public class FleetPanel extends JPanel implements ActionListener{
 		add(deleteBtn);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(493, 0, 535, 681);
+		panel.setBounds(509, 0, 535, 681);
 		add(panel);
 		
 		JLabel refreshLbl = new JLabel("");

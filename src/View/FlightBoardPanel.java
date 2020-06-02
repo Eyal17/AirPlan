@@ -149,7 +149,6 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		for (String i : destinationList) {
 			destinationComboBox.addItem(i);
 		}
-		destinationComboBox.setSelectedItem("Select arrival");
 		destinationComboBox.setSelectedIndex(0);
 		add(destinationComboBox);
 		
@@ -158,7 +157,6 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		for (String i : destinationList) {
 			originComboBox.addItem(i);
 		}
-		originComboBox.setSelectedItem("Select departure");
 		originComboBox.setSelectedIndex(0);
 		add(originComboBox);
 		
@@ -198,23 +196,27 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 			scrollPane.setVisible(true);
 	
 			if (selectedRow != -1) { /* Add flight functionallity */
-				int day = (int)dayBox.getSelectedItem();
-				int month = (int)monthBox.getSelectedItem();
-				int year = (int)yearBox.getSelectedItem();
-				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-				String destination = destinationComboBox.getSelectedItem().toString();
-				String origin = originComboBox.getSelectedItem().toString();
+				if(destinationComboBox.getSelectedItem().equals("Choose a city")) {
+					JOptionPane.showMessageDialog(null, "Select destination");
+				}
+				else {
+					int day = (int)dayBox.getSelectedItem();
+					int month = (int)monthBox.getSelectedItem();
+					int year = (int)yearBox.getSelectedItem();
+					DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+					String destination = destinationComboBox.getSelectedItem().toString();
+					String origin = originComboBox.getSelectedItem().toString();
 
-				System.out.println("Destination is: "+ destination);
 				//Date date = new Date();
 		     	//System.out.println(dateFormat.format(date)); //2016/11/16 12:08:43	
 				//System.out.println(day + " " +  month + " " + year);
-				Date selectedBox = new GregorianCalendar(year,month - 1,day).getTime();
-				System.out.println(dateFormat.format(selectedBox));
-				int planeID =  (int) fleetModel.getValueAt(selectedRow, 0); 
-				viewCtrl.addFlight(planeID, origin, destination);	
-				buildFlightTable();
-				flightTable.invalidate();
+					Date selectedBox = new GregorianCalendar(year,month - 1,day).getTime();
+					System.out.println(dateFormat.format(selectedBox));
+					int planeID =  (int) fleetModel.getValueAt(selectedRow, 0); 
+					viewCtrl.addFlight(planeID, origin, destination);	
+					buildFlightTable();
+					flightTable.invalidate();
+				}
 			}
 			else { /* The user must choose a plane to add a flight */
 				JOptionPane.showMessageDialog(null, "Choose a plane in order to create a flight!");

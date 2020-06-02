@@ -6,7 +6,7 @@ import Model.Flight;
 
 public class FlightTableModel extends AbstractTableModel {
 
-	private final String[] col = {"Flight ID", "Plane ID" };
+	private final String[] col = {"Flight ID", "Plane ID","From","To"};
 	private List<Flight> flightList;
 	
 	/* A Function to return the amount of rows in the arrayList of planes */
@@ -25,10 +25,22 @@ public class FlightTableModel extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		Object temp = null;
-		if(columnIndex==0)
+		switch (columnIndex)
+		{
+		case 0:
 			temp= flightList.get(rowIndex).getFlightID();
-		else if(columnIndex==1)
+			break;
+		case 1:
 			temp= flightList.get(rowIndex).getPlane().getPlaneID();
+			break;
+		case 2:
+			temp= flightList.get(rowIndex).getOrigin();
+			break;
+		case 3:
+			temp= flightList.get(rowIndex).getDest();
+			break;
+		default: break;
+		}
 		return temp;
 	}
 	/* A function to set the returned list to the table */

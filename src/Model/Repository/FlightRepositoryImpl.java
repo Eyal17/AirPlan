@@ -13,8 +13,11 @@ public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight>
 	@Override
 	public void add(Flight v) {
 		//flights.put(v.getFlightID(), v);
-		System.out.println(v.toString());
-		String query = "INSERT INTO flightboard(flightid,planeid,origin,destination)" + "VALUES (" + v.getFlightID() + "," + v.getPlane().getPlaneID() +","+v.getOrigin() + "," + v.getDest()+ ")";
+		String query = "INSERT INTO flightboard(flightid,planeid,origin,destination)" + "VALUES (" + 
+				v.getFlightID() + "," + 
+				v.getPlane().getPlaneID() +",'"+
+				v.getOrigin() + "','" + 
+				v.getDest()+ "')";
 		DBManager.getInstance().addToDB(query);
 	}
 	@Override
