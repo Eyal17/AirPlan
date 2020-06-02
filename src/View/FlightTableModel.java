@@ -1,12 +1,14 @@
 package View;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import Model.Flight;
 
 public class FlightTableModel extends AbstractTableModel {
 
-	private final String[] col = {"Flight ID", "Plane ID","Destination","Departure"};
+	private final String[] col = {"Flight ID", "Plane ID","Destination","Departure","Back to origin"};
 	private List<Flight> flightList;
 	
 	/* A Function to return the amount of rows in the arrayList of planes */
@@ -25,7 +27,9 @@ public class FlightTableModel extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		Object temp = null;
-		
+		Date n = new GregorianCalendar(flightList.get(rowIndex).getDeparture().getYear(),
+				flightList.get(rowIndex).getDeparture().getMonth(),
+				flightList.get(rowIndex).getDeparture().getDate()+1).getTime();
 		switch (columnIndex)
 		{
 		case 0:
@@ -40,6 +44,8 @@ public class FlightTableModel extends AbstractTableModel {
 		case 3:
 			temp= flightList.get(rowIndex).getDeparture();
 			break;
+		case 4:
+			temp = n;
 		default: break;
 		}
 		return temp;
