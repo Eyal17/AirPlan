@@ -178,6 +178,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	/*A Function to build the flight table from the database */
 	public void buildFlightTable() {
 	    flightModel.setList(viewCtrl.getFlightTable());
+	    flightTable.invalidate();
 	}
 	
 	/*A Function to build the fleet table from the database */
@@ -214,8 +215,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 					System.out.println(dateFormat.format(selectedBox));
 					int planeID =  (int) fleetModel.getValueAt(selectedRow, 0); 
 					viewCtrl.addFlight(planeID, origin, destination);	
-					buildFlightTable();
-					flightTable.invalidate();
+					//buildFlightTable();
 				}
 			}
 			else { /* The user must choose a plane to add a flight */
@@ -229,7 +229,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 			if (selectedRow != -1) {
 				int f =  (int) flightModel.getValueAt(selectedRow, 0);
 				viewCtrl.deleteFlight(f);	
-				buildFlightTable();
+				//buildFlightTable();
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Choose a flight to delete.");
