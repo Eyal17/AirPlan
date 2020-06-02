@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -58,10 +59,12 @@ public class FleetPanel extends JPanel implements ActionListener{
 		/* scrollPane parameters */ 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(74, 104, 245, 425);
+		scrollPane.setBorder(BorderFactory.createLineBorder(new Color(255,255,255),4));
 		scrollPane.getViewport().setBackground(Color.WHITE);
 		add(scrollPane);
 		scrollPane.setViewportView(fleetTable);
-		fleetTable.getTableHeader().setBackground(Color.WHITE);
+		fleetTable.getTableHeader().setBackground(new Color(37,114,162));
+		fleetTable.getTableHeader().setForeground (Color.WHITE);
 		fleetTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		
