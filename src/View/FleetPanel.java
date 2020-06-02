@@ -15,12 +15,14 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import Controllers.Controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class FleetPanel extends JPanel implements ActionListener, MouseListener{
+public class FleetPanel extends JPanel implements ActionListener {
 	
 	/* Private variables we use in this page  */
 	private JTable fleetTable;
@@ -111,6 +113,7 @@ public class FleetPanel extends JPanel implements ActionListener, MouseListener{
 		});
 		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
 		refreshLbl.setIcon(new ImageIcon(refreshIcon));
+		refreshLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		refreshLbl.setBounds(329, 494, 35, 35);
 		add(refreshLbl);
 		

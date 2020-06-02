@@ -14,6 +14,7 @@ import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import Controllers.Controller;
+import java.awt.Cursor;
 
 public class LogInPage extends JFrame {
 
@@ -29,6 +30,13 @@ public class LogInPage extends JFrame {
 		
 		viewCtrl = ctrl;
 		
+		Image midImg = new ImageIcon(this.getClass().getResource("/login_mid.png")).getImage();
+		Image signInIconHover = new ImageIcon(this.getClass().getResource("/send_button2.png")).getImage();
+		Image signInIcon = new ImageIcon(this.getClass().getResource("/send_button.png")).getImage();
+		Image managerSwitchIcon = new ImageIcon(this.getClass().getResource("/check_box_m1.png")).getImage();
+		Image userSwitchIcon = new ImageIcon(this.getClass().getResource("/check_box_c1.png")).getImage();
+		Image exitIcon = new ImageIcon(this.getClass().getResource("/exitBlue.png")).getImage();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1255, 688);
 		contentPane = new JPanel();
@@ -40,7 +48,6 @@ public class LogInPage extends JFrame {
 		setLocationRelativeTo(null);
 		
 		JLabel midLbl = new JLabel("");
-		Image midImg = new ImageIcon(this.getClass().getResource("/login_mid.png")).getImage();
 		midLbl.setIcon(new ImageIcon(midImg));
 		midLbl.setBounds(281, 102, 411, 481);
 		contentPane.add(midLbl);
@@ -77,16 +84,18 @@ public class LogInPage extends JFrame {
 		Right.add(passwordField);
 		
 		JLabel signInBtn = new JLabel("");
-		Image signInIconHover = new ImageIcon(this.getClass().getResource("/send_button2.png")).getImage();
-		Image signInIcon = new ImageIcon(this.getClass().getResource("/send_button.png")).getImage();
 		signInBtn.setIcon(new ImageIcon(signInIcon));
 		signInBtn.setBounds(557, 281, 60, 60);
 		Right.add(signInBtn);
 		
+		JLabel exitLbl = new JLabel("");
+		exitLbl.setIcon(new ImageIcon(exitIcon));
+		exitLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		exitLbl.setBounds(789, 5, 25, 25);
+		Right.add(exitLbl);
+		
 		JLabel leftLbl = new JLabel("");
 		flag = true;
-		Image managerSwitchIcon = new ImageIcon(this.getClass().getResource("/check_box_m1.png")).getImage();
-		Image userSwitchIcon = new ImageIcon(this.getClass().getResource("/check_box_c1.png")).getImage();
 		leftLbl.setIcon(new ImageIcon(managerSwitchIcon));
 		leftLbl.setBounds(167, 146, 120, 388);
 		contentPane.add(leftLbl);
@@ -117,6 +126,12 @@ public class LogInPage extends JFrame {
 					leftLbl.setIcon(new ImageIcon(managerSwitchIcon));
 					flag = true;
 				}
+			}
+		});
+		exitLbl.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
 			}
 		});
 	}
