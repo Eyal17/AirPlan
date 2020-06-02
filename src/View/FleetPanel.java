@@ -126,7 +126,7 @@ public class FleetPanel extends JPanel implements ActionListener{
 			scrollPane.setVisible(true);	
 			if(selectedBox != ""){  /* Add plane functionality */
 				viewCtrl.addPlane(selectedBox);
-				buildTable();
+				//buildTable();
 				
 			}
 			else { /* The user must choose a plane type */
@@ -141,7 +141,7 @@ public class FleetPanel extends JPanel implements ActionListener{
 			if (selectedRow != -1) {
 				int p =  (int) fleetModel.getValueAt(selectedRow, 0);
 				viewCtrl.deletePlane(p);
-				buildTable(); // should do it from controller
+				//buildTable(); // should do it from controller
 			}
 			else {JOptionPane.showMessageDialog(null, "Choose a plane to delete.");}
 			fleetTable.repaint();	

@@ -25,6 +25,7 @@ public class Controller {
 		int pID =modelAP.fleetRepo.getMaxID()+1;
 		Plane p = new Plane(model,pID);
 		modelAP.fleetRepo.add(p);
+		view.homeBulider.fleetPanel.buildTable();
 	}
 	 
 	public void deletePlane(int id){
@@ -34,6 +35,7 @@ public class Controller {
 		else {
 			modelAP.fleetRepo.delete(id);
 		}
+		view.homeBulider.fleetPanel.buildTable();
 	}
 	
 	public ArrayList<Plane> getFleetTable() {
@@ -49,6 +51,7 @@ public class Controller {
 
 			Flight f = new Flight(p,fID, o, d);
 			modelAP.flightRepo.add(f);
+			view.homeBulider.flightBoardPanel.buildFlightTable();
 		}
 		else {
 			System.out.println("Error!");
@@ -57,6 +60,7 @@ public class Controller {
 	
 	public void deleteFlight(int id) {
 		modelAP.flightRepo.delete(id);
+		view.homeBulider.flightBoardPanel.buildFlightTable();
 	}
 	
 	boolean isPlaneExistInFlights(int id) {
