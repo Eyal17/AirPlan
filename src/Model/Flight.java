@@ -41,8 +41,6 @@ public class Flight {
 		return toOrigin;
 	}
 
-
-
 	public String getDest() {
 		return dest.getCountry();
 	}
@@ -53,14 +51,9 @@ public class Flight {
 	public void setPlane(Plane p) {
 		plane = p;
 	}
-	public void setArrival(Date a) {
-		arrival = a;
-	}
+
 	public void setDeparture(Date d) {
 		departure = d;
-	}
-	public void setOrigin(Airport o) {
-		origin = o;
 	}
 	public void setDest(Airport d) {
 		dest = d;
@@ -71,9 +64,9 @@ public class Flight {
 		return "Flight [flightID=" + flightID + ", plane=" + plane + ", passengers=" + passengers + "]";
 	}
 	
-	Date getFlightDuration() {
-		//Date time = arrival + distance*plane.speed;
-		return arrival; // return time
-	
-	}
+//	Date getFlightDuration() {
+//		Date time = departure.getTime() + distance*plane.speed;
+//		return time; // return time
+//	
+//	}
 }
