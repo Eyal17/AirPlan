@@ -7,6 +7,7 @@ public class Aircraft {
 	int fuelPerKm;
 	int speed;
 	int []rowsPerClass = new int[3] ;//FIRST, BUSINESS, ECONOMY
+	String PictureName;
 	
 	public Aircraft(String m) {
 		switch(m) {
@@ -17,6 +18,7 @@ public class Aircraft {
 			fuelPerKm = 10;
 			speed = 900;
 			setnumOfRows(4, 4, 20);
+			PictureName = "Image777";
 			break;
 		case "Boeing 737":
 			planeModel = m;
@@ -25,6 +27,7 @@ public class Aircraft {
 			fuelPerKm = 10;
 			speed = 1000;
 			setnumOfRows(8, 8, 40);
+			PictureName = "Image737";
 			break;
 		case "Boeing 787":
 			planeModel = m;
@@ -33,6 +36,7 @@ public class Aircraft {
 			fuelPerKm = 10;
 			speed = 1000;
 			setnumOfRows(8, 8, 40);
+			PictureName = "Image787";
 			break;
 		case "Airbus A380":
 			planeModel = m;
@@ -41,6 +45,7 @@ public class Aircraft {
 			fuelPerKm = 10;
 			speed = 1500;
 			setnumOfRows(8, 8, 40);
+			PictureName = "ImageA380";
 			break;
 		default:
 			//throw/exception
@@ -64,9 +69,9 @@ public class Aircraft {
 	public int getSpeed() {
 		return speed;
 	}
-//	public int getPicture() {
-//		return speed;
-//	}
+	public String getPictureName() {
+		return PictureName;
+	}
 	public int getnumOfRows() {
 		return rowsPerClass[0]+rowsPerClass[1]+rowsPerClass[2];
 	}
