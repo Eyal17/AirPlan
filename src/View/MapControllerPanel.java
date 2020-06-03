@@ -106,41 +106,46 @@ public class MapControllerPanel extends JPanel {
 		mapLbl.setBounds(0, 11, 1028, 494);
 		add(mapLbl);
 		
-		distanceTextBox = new JTextPane();
-		distanceTextBox.setBackground(Color.WHITE);
-		distanceTextBox.setBounds(406, 578, 213, 34);
-		add(distanceTextBox);
-		
-		taxTextBox = new JTextPane();
-		taxTextBox.setBackground(Color.WHITE);
-		taxTextBox.setBounds(406, 614, 213, 34);
-		add(taxTextBox);
-		
-		fuelTextBox = new JTextPane();
-		fuelTextBox.setBackground(Color.WHITE);
-		fuelTextBox.setBounds(406, 542, 213, 34);
-		add(fuelTextBox);
-		
-		airportName = new JTextPane();
-		airportName.setBackground(Color.WHITE);
-		airportName.setBounds(406, 504, 213, 34);
-		add(airportName);
-		
-		fuelTextLabel = new JLabel("Fuel price per gallon");
-		fuelTextLabel.setBounds(236, 542, 160, 34);
-		add(fuelTextLabel);
-		
-		distanceTextLabel = new JLabel("Distance from origin:");
-		distanceTextLabel.setBounds(236, 578, 160, 34);
-		add(distanceTextLabel);
+		JPanel bgPanel = new JPanel();
+		bgPanel.setBounds(387, 504, 365, 153);
+		add(bgPanel);
+		bgPanel.setLayout(null);
 		
 		lblNewLabel = new JLabel("Tax price:");
-		lblNewLabel.setBounds(236, 614, 160, 34);
-		add(lblNewLabel);
+		lblNewLabel.setBounds(10, 108, 100, 20);
+		bgPanel.add(lblNewLabel);
 		
-		airportTextLabel = new JLabel("Airport in");
-		airportTextLabel.setBounds(236, 504, 160, 34);
-		add(airportTextLabel);
+		distanceTextLabel = new JLabel("Distance from origin:");
+		distanceTextLabel.setBounds(10, 77, 129, 20);
+		bgPanel.add(distanceTextLabel);
+		
+		fuelTextLabel = new JLabel("Fuel price per gallon:");
+		fuelTextLabel.setBounds(10, 43, 129, 20);
+		bgPanel.add(fuelTextLabel);
+		
+		airportTextLabel = new JLabel("Airport City:");
+		airportTextLabel.setBounds(10, 12, 100, 20);
+		bgPanel.add(airportTextLabel);
+		
+		fuelTextBox = new JTextPane();
+		fuelTextBox.setBounds(170, 43, 129, 20);
+		bgPanel.add(fuelTextBox);
+		fuelTextBox.setBackground(new Color(240,240,240));
+		
+		distanceTextBox = new JTextPane();
+		distanceTextBox.setBounds(170, 77, 129, 20);
+		bgPanel.add(distanceTextBox);
+		distanceTextBox.setBackground(new Color(240,240,240));
+		
+		taxTextBox = new JTextPane();
+		taxTextBox.setBounds(170, 108, 129, 20);
+		bgPanel.add(taxTextBox);
+		taxTextBox.setBackground(new Color(240,240,240));
+		
+		airportName = new JTextPane();
+		airportName.setBounds(170, 12, 129, 20);
+		bgPanel.add(airportName);
+		airportName.setBackground(new Color(240,240,240));
 //		
 
 		setInfoFalse();
@@ -327,7 +332,4 @@ public class MapControllerPanel extends JPanel {
 		airportName.setText(airport);
 		fuelTextBox.setText(Double.toString(viewCtrl.getAirport(airport).getFuelPrice()));
 	}
-	
-
-
 }
