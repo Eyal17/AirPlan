@@ -5,16 +5,39 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import Controllers.Controller;
+import Model.Airport;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTextPane;
+import javax.swing.JTextField;
 
 public class MapControllerPanel extends JPanel {
+	
+	private Controller viewCtrl;
+	private JTextPane distanceTextBox;
+	private JTextPane taxTextBox;
+	private JTextPane fuelTextBox;
+	private JTextPane airportName;
+	private JLabel fuelTextLabel;
+	private JLabel distanceTextLabel;
+	private JLabel lblNewLabel;
+	private JLabel airportTextLabel;
 
-	public MapControllerPanel() {
+	
+	
+	int airportTax = 0;
+	public MapControllerPanel(Controller view) {
+		
+		
+		viewCtrl = view;
+		//setInfoFalse(); // hiding the information about flights untill someone clicks a button
 		setBackground(new Color(198,198,198));
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
@@ -83,6 +106,45 @@ public class MapControllerPanel extends JPanel {
 		mapLbl.setBounds(0, 11, 1028, 494);
 		add(mapLbl);
 		
+		distanceTextBox = new JTextPane();
+		distanceTextBox.setBackground(Color.WHITE);
+		distanceTextBox.setBounds(406, 578, 213, 34);
+		add(distanceTextBox);
+		
+		taxTextBox = new JTextPane();
+		taxTextBox.setBackground(Color.WHITE);
+		taxTextBox.setBounds(406, 614, 213, 34);
+		add(taxTextBox);
+		
+		fuelTextBox = new JTextPane();
+		fuelTextBox.setBackground(Color.WHITE);
+		fuelTextBox.setBounds(406, 542, 213, 34);
+		add(fuelTextBox);
+		
+		airportName = new JTextPane();
+		airportName.setBackground(Color.WHITE);
+		airportName.setBounds(406, 504, 213, 34);
+		add(airportName);
+		
+		fuelTextLabel = new JLabel("Fuel price per gallon");
+		fuelTextLabel.setBounds(236, 542, 160, 34);
+		add(fuelTextLabel);
+		
+		distanceTextLabel = new JLabel("Distance from origin:");
+		distanceTextLabel.setBounds(236, 578, 160, 34);
+		add(distanceTextLabel);
+		
+		lblNewLabel = new JLabel("Tax price:");
+		lblNewLabel.setBounds(236, 614, 160, 34);
+		add(lblNewLabel);
+		
+		airportTextLabel = new JLabel("Airport in");
+		airportTextLabel.setBounds(236, 504, 160, 34);
+		add(airportTextLabel);
+//		
+		
+		
+		setInfoFalse();
 		
 		// Oveerides
 		telAvivLbl.addMouseListener(new MouseAdapter() {
@@ -105,6 +167,7 @@ public class MapControllerPanel extends JPanel {
 				newYorkLbl.setIcon(new ImageIcon(locationIcon));
 			}
 		});
+		
 		sydneyLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -116,8 +179,15 @@ public class MapControllerPanel extends JPanel {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				taxTextBox.setText(Integer.toString(viewCtrl.getAirport("Syndey").getLocalTax()));
+				distanceTextBox.setText(Double.toString(viewCtrl.getAirport("Syndey").getDistance()));
+				airportName.setText("Sydney Airport");
+				fuelTextBox.setText(Double.toString(viewCtrl.getAirport("Syndey").getFuelPrice()));
+			//	updateInfo("Sydney");
+				setInfoTrue();
 			}
 		});
+		
 		RomeLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -179,5 +249,31 @@ public class MapControllerPanel extends JPanel {
 			}
 		});
 		
+
 	}
+	
+	public void setInfoFalse()
+	{
+		taxTextBox.setVisible(false);
+		distanceTextBox.setVisible(false);
+		airportName.setVisible(false);
+		fuelTextBox.setVisible(false);
+	}
+	
+	public void setInfoTrue()
+	{
+		taxTextBox.setVisible(true);
+		distanceTextBox.setVisible(true);
+		airportName.setVisible(true);
+		fuelTextBox.setVisible(true);
+	}
+	
+//	public void updateInfo(String airport)
+//	{
+//		taxTextBox.setText(Integer.toString(viewCtrl.getAirport(airport).getLocalTax()));
+//		distanceTextBox.setText(Double.toString(viewCtrl.getAirport(airport).getDistance()));
+//		airportName.setText(airport + "Airport");
+//		fuelTextBox.setText(Double.toString(viewCtrl.getAirport(airport).getFuelPrice()));
+//	}
+
 }

@@ -51,7 +51,7 @@ public class HomeBuilder extends JFrame {
 		homePanel = new HomePanel();
 		fleetPanel = new FleetPanel(viewCtrl);
 		flightBoardPanel = new FlightBoardPanel(viewCtrl);
-		mapPanel = new MapControllerPanel();
+		mapPanel = new MapControllerPanel(viewCtrl);
 
 		Viewpanel.add(homePanel, "name_78750354984400");
 		Viewpanel.add(fleetPanel, "name_78750381602200");
