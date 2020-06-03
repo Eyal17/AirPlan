@@ -21,6 +21,7 @@ import Controllers.Controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
+import javax.swing.JTextField;
 
 
 
@@ -79,14 +80,14 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 
 		/* Flight Board title parameters */ 
 		lblFlightBoard = new JLabel("Flight Board");
-		lblFlightBoard.setBounds(303, 30, 230, 49);
+		lblFlightBoard.setBounds(71, 30, 230, 49);
 		lblFlightBoard.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFlightBoard.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		add(lblFlightBoard);
 		
 		/* Plane Table title parameters */ 
 		lblPlaneTable = new JLabel("Plane Table");
-		lblPlaneTable.setBounds(773, 35, 220, 39);
+		lblPlaneTable.setBounds(390, 35, 220, 39);
 		lblPlaneTable.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlaneTable.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		add(lblPlaneTable);
@@ -95,26 +96,26 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		scrollPane = new JScrollPane();
 		scrollPane.setBackground(Color.WHITE);
 		scrollPane.getViewport().setBackground(Color.WHITE);
-		scrollPane.setBounds(176, 89, 368, 378);
+		scrollPane.setBounds(26, 90, 368, 378);
 		add(scrollPane);
 		scrollPane.setViewportView(flightTable);
 		
 		/* Add button parameters */ 
 		addBtn = new JButton("Add new flight");
-		addBtn.setBounds(10, 118, 130, 23);
+		addBtn.setBounds(622, 201, 130, 23);
 		add(addBtn);
 		
 		
 		/* Delete button parameters */
 		deleteBtn = new JButton("Delete flight");
-		deleteBtn.setBounds(10, 173, 130, 23);
+		deleteBtn.setBounds(622, 235, 130, 23);
 		add(deleteBtn);
 		
 		/* scrollPane for PlaneTable parameters */
 		PlaneTable = new JScrollPane();
 		PlaneTable.setBackground(Color.WHITE);
 		PlaneTable.getViewport().setBackground(Color.WHITE);
-		PlaneTable.setBounds(787, 89, 188, 378);
+		PlaneTable.setBounds(404, 89, 188, 378);
 		add(PlaneTable);
 		PlaneTable.setViewportView(fleetTable);
 
@@ -124,7 +125,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 			dayBox.addItem(i);
 		}
 		dayBox.setSelectedItem(0);
-		dayBox.setBounds(580, 104, 57, 23);
+		dayBox.setBounds(622, 104, 57, 23);
 		add(dayBox);
 		
 		monthBox = new JComboBox<Integer>();
@@ -132,7 +133,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 			monthBox.addItem(i);
 		}
 		monthBox.setSelectedItem(0);
-		monthBox.setBounds(650, 104, 57, 23);
+		monthBox.setBounds(689, 104, 57, 23);
 		add(monthBox);
 		
 		yearBox = new JComboBox<Integer>();
@@ -141,11 +142,11 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 			yearBox.addItem(i);
 		}
 		yearBox.setSelectedItem(0);
-		yearBox.setBounds(720, 104, 57, 23);
+		yearBox.setBounds(756, 104, 57, 23);
 		add(yearBox);
 		String [] destinationList = new String[] {"Choose a city", "New York","Sydney", "Rome", "Rio", "Cape Town", "Madrid", "Bangkok", "Delhi"};
 		destinationComboBox = new JComboBox<String>();
-		destinationComboBox.setBounds(580, 187, 116, 23);
+		destinationComboBox.setBounds(622, 138, 116, 23);
 		for (String i : destinationList) {
 			destinationComboBox.addItem(i);
 		}
@@ -177,7 +178,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		
 		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
 		refLbl.setIcon(new ImageIcon(refreshIcon));
-		refLbl.setBounds(571, 449, 35, 35);
+		refLbl.setBounds(622, 433, 35, 35);
 		add(refLbl);
 	}
 	
