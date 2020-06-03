@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.CardLayout;
 import java.awt.Cursor;
 import Controllers.Controller;
+import java.awt.event.MouseMotionAdapter;
 
 public class HomeBuilder extends JFrame {
 
@@ -25,6 +26,9 @@ public class HomeBuilder extends JFrame {
 	public FlightBoardPanel flightBoardPanel;
 	public MapControllerPanel mapPanel;
 	
+	private int mouseX;
+	private int mouseY;
+	
 
 	public HomeBuilder(Controller ctrl) {
 		
@@ -32,7 +36,7 @@ public class HomeBuilder extends JFrame {
 		
 		Image exitIcon = new ImageIcon(this.getClass().getResource("/exit.png")).getImage();
 
-
+		
 		setResizable(false);
 		setTitle("AirPlan");
 		setUndecorated(true);
@@ -66,6 +70,26 @@ public class HomeBuilder extends JFrame {
 		NavBar.setBounds(0, 0, 236, 680);
 		contentPane.add(NavBar);
 		NavBar.setLayout(null);
+		
+		JLabel moveLbl = new JLabel("");
+		moveLbl.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				mouseX = e.getX();
+				mouseY = e.getY();
+			}
+		});
+		moveLbl.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int kordinatX = e.getXOnScreen();
+				int kordinatY = e.getYOnScreen();
+				
+				setLocation(kordinatX - mouseX, kordinatY - mouseY);
+			}
+		});
+		moveLbl.setBounds(40, 0, 196, 30);
+		NavBar.add(moveLbl);
 		
 		JLabel exitBtn = new JLabel("");
 		exitBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
