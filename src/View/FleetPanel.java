@@ -84,7 +84,7 @@ public class FleetPanel extends JPanel implements ActionListener {
 		planeChoice.addItem("Boeing 787");
 		planeChoice.setSelectedItem("");
 		planeChoice.setSelectedIndex(0);
-		planeChoice.setBounds(221, 566, 60, 22);
+		planeChoice.setBounds(176, 566, 111, 22);
 		add(planeChoice);
 		
 		
@@ -134,7 +134,7 @@ public class FleetPanel extends JPanel implements ActionListener {
 				fleetTable.clearSelection();
 			}
 		});
-		detailsBtn.setBounds(287, 625, 66, 29);
+		detailsBtn.setBounds(365, 149, 66, 29);
 		add(detailsBtn);
 	}
 	

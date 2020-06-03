@@ -142,8 +142,7 @@ public class MapControllerPanel extends JPanel {
 		airportTextLabel.setBounds(236, 504, 160, 34);
 		add(airportTextLabel);
 //		
-		
-		
+
 		setInfoFalse();
 		
 		// Oveerides
@@ -299,6 +298,10 @@ public class MapControllerPanel extends JPanel {
 	
 	public void setInfoFalse()
 	{
+		fuelTextLabel.setVisible(false);
+		distanceTextLabel.setVisible(false);
+		lblNewLabel.setVisible(false);
+		airportTextLabel.setVisible(false);
 		taxTextBox.setVisible(false);
 		distanceTextBox.setVisible(false);
 		airportName.setVisible(false);
@@ -307,6 +310,10 @@ public class MapControllerPanel extends JPanel {
 	
 	public void setInfoTrue()
 	{
+		fuelTextLabel.setVisible(true);
+		distanceTextLabel.setVisible(true);
+		lblNewLabel.setVisible(true);
+		airportTextLabel.setVisible(true);
 		taxTextBox.setVisible(true);
 		distanceTextBox.setVisible(true);
 		airportName.setVisible(true);
@@ -320,5 +327,7 @@ public class MapControllerPanel extends JPanel {
 		airportName.setText(airport);
 		fuelTextBox.setText(Double.toString(viewCtrl.getAirport(airport).getFuelPrice()));
 	}
+	
+
 
 }
