@@ -226,10 +226,14 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 					Date toOrigin = new GregorianCalendar(year,month - 1,dayAfter).getTime();					
 					int planeID =  (int) fleetModel.getValueAt(selectedRow, 0); 
 					String planeType = (String) fleetModel.getValueAt(selectedRow, 1); 
-					double cost = viewCtrl.getAirport(destination).calculator(planeType,planeID);
+					double []cost = viewCtrl.getAirport(destination).calculator(planeType,planeID);
 					viewCtrl.addFlight(planeID, destination, departureDate, toOrigin);
 					fleetTable.clearSelection();
-					JOptionPane.showMessageDialog(null, "Recommended price per tickect: " + cost);
+					JOptionPane.showMessageDialog(null, "Flight added succesfully!\nFlight details: \nDestination = " +
+														destination + "\nDeparture date = " + departureDate +
+							 							"\nRecommended price for each class:\nFirst = " + String.format("%.2f", cost[0]) +
+														"\nBusiness = " + String.format("%.2f", cost[1]) +
+														"\nEconomy = " + String.format("%.2f",cost[2]));
 				}
 			}
 			else { /* The user must choose a plane to add a flight */
