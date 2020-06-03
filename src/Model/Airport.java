@@ -11,56 +11,56 @@ public class Airport extends Destination {
 			case "New York":
 			{
 				localTax = 1000;
-				fuelPrice =  50;
+				fuelPrice =  3;
 				distFromBase = 9109;
 				break;
 			}
 			case "Sydney":
 			{
 				localTax = 1500;
-				fuelPrice =  60;
+				fuelPrice =  3.2;
 				distFromBase = 14171;
 				break;
 			}
 			case "Rome":
 			{
 				localTax = 800;
-				fuelPrice =  80;
+				fuelPrice =  3.1;
 				distFromBase = 4044;
 				break;
 			}
 			case "Rio":
 			{
 				localTax = 500;
-				fuelPrice =  30;
+				fuelPrice =  2.7;
 				distFromBase = 10281;
 				break;
 			}
 			case "Cape Town":
 			{
 				localTax = 750;
-				fuelPrice =  70;
+				fuelPrice =  2.9;
 				distFromBase = 9220;
 				break;
 			}
 			case "Madrid":
 			{
 				localTax = 600;
-				fuelPrice =  60;
+				fuelPrice =  3;
 				distFromBase = 5464;
 				break;
 			}
 			case "Bangkok":
 			{
 				localTax = 550;
-				fuelPrice =  55;
+				fuelPrice =  2.6;
 				distFromBase = 6924;
 				break;
 			}
 			case "Delhi":
 			{
 				localTax = 350;
-				fuelPrice =  30;
+				fuelPrice =  2.5;
 				distFromBase = 4048;
 				break;
 			}
@@ -95,21 +95,15 @@ public class Airport extends Destination {
 	
 	
 	
-	//public double calculator(Plane p) {
-		//fuelprice, localtax,distfrombase,plane(fuelTank ,maxKm,fuelPerKm,numOfSeats)
-		//dist = 1000
-		//fuelprice = 10
-		//localtax = 200
-		//plane 727(fuelTank = 150000;
-		//maxKm = 15000;
-		//fuelPerKm = 10;
-		//numOfSeats = 100;)
-		//if (p.name == "727"){
-		//	cost = ((this.distFromBase*p.getFuelPerKm()) * fuelprice + localTax) / 100 // = minimum price for a ticket
-		//}
-		//else if(p.name == "737"){
-		//	cost = ((this.distFromBase*p.getFuelPerKm()) * fuelprice + localTax) / 200 // = minimum price for a ticket
-		//}
-		//return cost;
-	//}
+	public double calculator(String model,int id) {
+		Plane p = new Plane(model,id);
+		double cost = 0;
+		if (p.getName() == "Boeing 777"){
+			cost = (((distFromBase*p.getFuelPerKm()) * fuelPrice) + localTax) / 100; // = minimum price for a ticket
+		}
+		else {
+			cost = (((distFromBase*p.getFuelPerKm()) * fuelPrice) + localTax) / 200; // = minimum price for a ticket
+		}
+		return cost;
+	}
 }

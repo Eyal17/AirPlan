@@ -79,7 +79,7 @@ public class Controller {
 	}
 	
 	public Airport getAirport(String airport) {
-		return new Airport("Sydney");
+		return new Airport(airport);
 	}
 
 }
