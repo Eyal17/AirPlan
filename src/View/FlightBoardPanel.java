@@ -81,8 +81,8 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		flightModel = new FlightTableModel();
 		fleetModel = new FleetTableModel();
 		
-		//flightTable = new JTable(flightModel);
-		flightTable = new JTable(); 	 //  @@@@@@@@ TO Design version
+		flightTable = new JTable(flightModel);
+		//flightTable = new JTable(); 	 //  @@@@@@@@ TO Design version
 		
 		flightTable.setBounds(77, 107, 684, 330);
 
@@ -177,8 +177,8 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 				addBtn.setBounds(182, 515, 130, 23);
 				detailsPanel.add(addBtn);
 				
-				//fleetTable = new JTable(fleetModel);
-				fleetTable = new JTable(); 	 //  @@@@@@@@ TO Design version
+				fleetTable = new JTable(fleetModel);
+				//fleetTable = new JTable(); 	 //  @@@@@@@@ TO Design version
 				
 				PlaneTable = new JScrollPane();
 				

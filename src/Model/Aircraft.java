@@ -61,6 +61,12 @@ public class Aircraft {
 	public int getFuelPerKm() {
 		return fuelPerKm;
 	}
+	public int getSpeed() {
+		return speed;
+	}
+//	public int getPicture() {
+//		return speed;
+//	}
 	public int getnumOfRows() {
 		return rowsPerClass[0]+rowsPerClass[1]+rowsPerClass[2];
 	}

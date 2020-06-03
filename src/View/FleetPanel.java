@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
+
+
 import javax.swing.JTable;
 import java.awt.Font;
 import java.awt.Image;
@@ -21,6 +23,8 @@ import Controllers.Controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JTextField;
+import javax.swing.JList;
 
 public class FleetPanel extends JPanel implements ActionListener {
 	
@@ -34,6 +38,17 @@ public class FleetPanel extends JPanel implements ActionListener {
 	private JButton deleteBtn;
 	private Controller viewCtrl;
 	private JLabel refreshLbl;
+	public JTextField SpeedTextField;
+	public JTextField FuelTextField;
+	public JTextField KmTextField;
+	public JTextField TankTextField;
+	public JTextField modelTextField;
+	private JLabel planePhotoLbl;
+	private JLabel FuelTankSizeLbl;
+	private JLabel KmRangeLbl;
+	private JLabel fuelKmLbl;
+	private JLabel speedLbl;
+
 	/* Constructor uses functions to initialize the page */
 	public FleetPanel(Controller ctrl) {
 		
@@ -53,10 +68,15 @@ public class FleetPanel extends JPanel implements ActionListener {
 		
 		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
 		Image detailsIcon = new ImageIcon(this.getClass().getResource("/info.png")).getImage();
+		Image Image737 = new ImageIcon(this.getClass().getResource("/737.jpg")).getImage();
+		Image Image777 = new ImageIcon(this.getClass().getResource("/777.jpg")).getImage();
+		Image Image787 = new ImageIcon(this.getClass().getResource("/787.jpg")).getImage();
+		//Image ImageA380 = new ImageIcon(this.getClass().getResource("A380.jpg")).getImage();
+
 
 		
 		fleetModel = new FleetTableModel();
-		fleetTable = new JTable(fleetModel);  // @@@@@@@@@@@@@@@@2 Design version
+		fleetTable = new JTable(fleetModel);
 		//fleetTable = new JTable(); // to design 
 
 		/* AirCraft title parameters */ 
@@ -105,6 +125,67 @@ public class FleetPanel extends JPanel implements ActionListener {
 		JPanel detailsPanel = new JPanel();
 		detailsPanel.setBounds(509, 0, 519, 681);
 		add(detailsPanel);
+		detailsPanel.setLayout(null);
+		
+		SpeedTextField = new JTextField();
+		SpeedTextField.setBounds(291, 634, 157, 25);
+		detailsPanel.add(SpeedTextField);
+		SpeedTextField.setColumns(10);
+		
+		JLabel aircraftInfoLbl = new JLabel("Aircraft Information:");
+		aircraftInfoLbl.setFont(new Font("Stencil", Font.BOLD, 31));
+		aircraftInfoLbl.setBounds(57, 390, 403, 39);
+		detailsPanel.add(aircraftInfoLbl);
+		
+		JLabel modelLbl = new JLabel("Model:");
+		modelLbl.setFont(new Font("Stencil", Font.PLAIN, 20));
+		modelLbl.setBounds(78, 467, 75, 25);
+		detailsPanel.add(modelLbl);
+		
+		FuelTankSizeLbl = new JLabel("Tank Size:");
+		FuelTankSizeLbl.setFont(new Font("Stencil", Font.PLAIN, 20));
+		FuelTankSizeLbl.setBounds(78, 508, 115, 25);
+		detailsPanel.add(FuelTankSizeLbl);
+		
+		KmRangeLbl = new JLabel("KM Range:");
+		KmRangeLbl.setFont(new Font("Stencil", Font.PLAIN, 20));
+		KmRangeLbl.setBounds(78, 549, 115, 25);
+		detailsPanel.add(KmRangeLbl);
+		
+		fuelKmLbl = new JLabel("Fuel Per Km:");
+		fuelKmLbl.setFont(new Font("Stencil", Font.PLAIN, 20));
+		fuelKmLbl.setBounds(78, 592, 132, 25);
+		detailsPanel.add(fuelKmLbl);
+		
+		speedLbl = new JLabel("Speed:");
+		speedLbl.setFont(new Font("Stencil", Font.PLAIN, 20));
+		speedLbl.setBounds(78, 633, 75, 25);
+		detailsPanel.add(speedLbl);
+		
+		FuelTextField = new JTextField();
+		FuelTextField.setColumns(10);
+		FuelTextField.setBounds(291, 593, 157, 25);
+		detailsPanel.add(FuelTextField);
+		
+		KmTextField = new JTextField();
+		KmTextField.setColumns(10);
+		KmTextField.setBounds(291, 550, 157, 25);
+		detailsPanel.add(KmTextField);
+		
+		TankTextField = new JTextField();
+		TankTextField.setColumns(10);
+		TankTextField.setBounds(291, 509, 157, 25);
+		detailsPanel.add(TankTextField);
+		
+		modelTextField = new JTextField();
+		modelTextField.setColumns(10);
+		modelTextField.setBounds(291, 468, 157, 25);
+		detailsPanel.add(modelTextField);
+		
+		planePhotoLbl = new JLabel("");
+		planePhotoLbl.setIcon(new ImageIcon(Image737));
+		planePhotoLbl.setBounds(103, 81, 310, 215);
+		detailsPanel.add(planePhotoLbl);
 		detailsPanel.setVisible(false);
 	
 		
@@ -137,7 +218,27 @@ public class FleetPanel extends JPanel implements ActionListener {
 				int selectedRow = -1;
 				selectedRow = fleetTable.getSelectedRow();
 				if (selectedRow != -1) {
+					String model = (String)fleetTable.getValueAt(selectedRow, 1);
+					viewCtrl.setAircraftDetails(model);
+					switch(model)
+					{
+					case "Boeing 777":
+						planePhotoLbl.setIcon(new ImageIcon(Image777));
+						break;
+					case "Boeing 737":
+						planePhotoLbl.setIcon(new ImageIcon(Image737));
+						break;
+					case "Boeing 787":
+						planePhotoLbl.setIcon(new ImageIcon(Image787));
+						break;
+					case "Airbus A380":
+						planePhotoLbl.setIcon(new ImageIcon(Image737));
+						break;
+						default: break;
+					}
+					
 					detailsPanel.setVisible(true);
+					
 				}
 				else
 					detailsPanel.setVisible(false);
@@ -196,4 +297,24 @@ public class FleetPanel extends JPanel implements ActionListener {
 	public JTable getFleetTable() {
 		return fleetTable;
 	}
+	
+	public void updateInfo(String airport)
+	{
+		SpeedTextField.setText();
+		FuelTextField.setText();
+		KmTextField.setText();
+		TankTextField.setText();
+		modelTextField.setText();
+	}
+	
+//	private JTextField SpeedTextField;
+//	private JTextField FuelTextField;
+//	private JTextField KmTextField;
+//	private JTextField TankTextField;
+//	private JTextField modelTextField;
+//	private JLabel planePhotoLbl;
+//	private JLabel FuelTankSizeLbl;
+//	private JLabel KmRangeLbl;
+//	private JLabel fuelKmLbl;
+//	private JLabel speedLbl;
 }
