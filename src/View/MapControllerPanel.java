@@ -29,6 +29,7 @@ public class MapControllerPanel extends JPanel {
 	private JLabel distanceTextLabel;
 	private JLabel lblNewLabel;
 	private JLabel airportTextLabel;
+	private JPanel bgPanel;
 
 	
 	
@@ -106,8 +107,8 @@ public class MapControllerPanel extends JPanel {
 		mapLbl.setBounds(0, 11, 1028, 494);
 		add(mapLbl);
 		
-		JPanel bgPanel = new JPanel();
-		bgPanel.setBounds(387, 504, 365, 153);
+		bgPanel = new JPanel();
+		bgPanel.setBounds(387, 504, 304, 153);
 		add(bgPanel);
 		bgPanel.setLayout(null);
 		
@@ -311,10 +312,12 @@ public class MapControllerPanel extends JPanel {
 		distanceTextBox.setVisible(false);
 		airportName.setVisible(false);
 		fuelTextBox.setVisible(false);
+		bgPanel.setVisible(false);
 	}
 	
 	public void setInfoTrue()
 	{
+		bgPanel.setVisible(true);
 		fuelTextLabel.setVisible(true);
 		distanceTextLabel.setVisible(true);
 		lblNewLabel.setVisible(true);

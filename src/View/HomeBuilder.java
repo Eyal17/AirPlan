@@ -72,22 +72,6 @@ public class HomeBuilder extends JFrame {
 		NavBar.setLayout(null);
 		
 		JLabel moveLbl = new JLabel("");
-		moveLbl.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				mouseX = e.getX();
-				mouseY = e.getY();
-			}
-		});
-		moveLbl.addMouseMotionListener(new MouseMotionAdapter() {
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				int kordinatX = e.getXOnScreen();
-				int kordinatY = e.getYOnScreen();
-				
-				setLocation(kordinatX - mouseX, kordinatY - mouseY);
-			}
-		});
 		moveLbl.setBounds(40, 0, 196, 30);
 		NavBar.add(moveLbl);
 		
@@ -143,7 +127,7 @@ public class HomeBuilder extends JFrame {
 		MapControllerBtn.setBounds(0, 312, 236, 59);
 		NavBar.add(MapControllerBtn);
 		
-		JLabel lblMapController = new JLabel("Map Controller");
+		JLabel lblMapController = new JLabel("Map View");
 		lblMapController.setForeground(Color.WHITE);
 		lblMapController.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		lblMapController.setBounds(50, 11, 132, 37);
@@ -198,6 +182,7 @@ public class HomeBuilder extends JFrame {
 					flightBoardPanel.buildFleetTable();
 					flightBoardPanel.getFleetTable().invalidate();
 					flightBoardPanel.getScrollPane().setVisible(true);
+					flightBoardPanel.detailsPanel.setVisible(false);
 				}
 			});
 			
@@ -219,6 +204,23 @@ public class HomeBuilder extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					System.exit(0);
+				}
+			});
+			
+			moveLbl.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent e) {
+					mouseX = e.getX();
+					mouseY = e.getY();
+				}
+			});
+			moveLbl.addMouseMotionListener(new MouseMotionAdapter() {
+				@Override
+				public void mouseDragged(MouseEvent e) {
+					int kordinatX = e.getXOnScreen();
+					int kordinatY = e.getYOnScreen();
+					
+					setLocation(kordinatX - mouseX, kordinatY - mouseY);
 				}
 			});
 	}

@@ -4,9 +4,7 @@ import View.View;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.swing.JOptionPane;
-
 import Model.Aircraft;
 import Model.Airport;
 import Model.Flight;
@@ -90,8 +88,6 @@ public class Controller {
 		view.homeBulider.fleetPanel.KmTextField.setText(Integer.toString(a.getMaxKm()));
 		view.homeBulider.fleetPanel.TankTextField.setText(Integer.toString(a.getFuelTank()));
 		view.homeBulider.fleetPanel.modelTextField.setText(a.getName());
-		//Double.toString(viewCtrl.getAirport(airport)
-	//	fuelTextBox.setText(Double.toString(viewCtrl.getAirport(airport).getFuelPrice()));
 
 	}
 

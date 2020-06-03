@@ -6,27 +6,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
-
-
 import javax.swing.JTable;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Cursor;
-
 import Controllers.Controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JTextField;
-import javax.swing.JList;
 
-public class FleetPanel extends JPanel implements ActionListener {
+
+@SuppressWarnings("serial")
+public class FleetPanel extends JPanel {
 	
 	/* Private variables we use in this page  */
 	private JTable fleetTable;
@@ -34,20 +28,24 @@ public class FleetPanel extends JPanel implements ActionListener {
 	private JLabel lblAircraftFleet;
 	private JScrollPane scrollPane;
 	private JComboBox<String> planeChoice;
-	private JButton addBtn;
-	private JButton deleteBtn;
+//	private JButton addBtn;
+//	private JButton deleteBtn;
 	private Controller viewCtrl;
 	private JLabel refreshLbl;
+	private JLabel FuelTankSizeLbl;
+	private JLabel KmRangeLbl;
+	private JLabel fuelKmLbl;
+	private JLabel speedLbl;
+	public JLabel addPlaneLbl;
+	public JLabel deletePlaneLbl;
 	public JTextField SpeedTextField;
 	public JTextField FuelTextField;
 	public JTextField KmTextField;
 	public JTextField TankTextField;
 	public JTextField modelTextField;
-	private JLabel planePhotoLbl;
-	private JLabel FuelTankSizeLbl;
-	private JLabel KmRangeLbl;
-	private JLabel fuelKmLbl;
-	private JLabel speedLbl;
+	public JLabel planePhotoLbl;
+
+
 
 	/* Constructor uses functions to initialize the page */
 	public FleetPanel(Controller ctrl) {
@@ -59,7 +57,7 @@ public class FleetPanel extends JPanel implements ActionListener {
 		setLayout(null);
 
 		initialize();
-		setListeners();
+		//setListeners();
 		buildTable();
 	}
 	
@@ -68,20 +66,20 @@ public class FleetPanel extends JPanel implements ActionListener {
 		
 		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
 		Image detailsIcon = new ImageIcon(this.getClass().getResource("/info.png")).getImage();
+		Image addIcon = new ImageIcon(this.getClass().getResource("/add.png")).getImage();
+		Image deleteIcon = new ImageIcon(this.getClass().getResource("/remove.png")).getImage();
 		Image Image737 = new ImageIcon(this.getClass().getResource("/737.jpg")).getImage();
 		Image Image777 = new ImageIcon(this.getClass().getResource("/777.jpg")).getImage();
 		Image Image787 = new ImageIcon(this.getClass().getResource("/787.jpg")).getImage();
-		//Image ImageA380 = new ImageIcon(this.getClass().getResource("A380.jpg")).getImage();
+		Image ImageA380 = new ImageIcon(this.getClass().getResource("/A380.jpg")).getImage();
 
-
-		
 		fleetModel = new FleetTableModel();
 		fleetTable = new JTable(fleetModel);
-		//fleetTable = new JTable(); // to design 
+//		fleetTable = new JTable(); // to design 
 
 		/* AirCraft title parameters */ 
 		lblAircraftFleet = new JLabel("AirCraft Fleet");
-		lblAircraftFleet.setBounds(74, 23, 230, 49);
+		lblAircraftFleet.setBounds(80, 30, 230, 49);
 		lblAircraftFleet.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAircraftFleet.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		add(lblAircraftFleet);
@@ -91,11 +89,11 @@ public class FleetPanel extends JPanel implements ActionListener {
 		scrollPane.setBounds(74, 104, 245, 425);
 		scrollPane.setBorder(BorderFactory.createLineBorder(new Color(255,255,255),4));
 		scrollPane.getViewport().setBackground(Color.WHITE);
-		add(scrollPane);
 		scrollPane.setViewportView(fleetTable);
 		fleetTable.getTableHeader().setBackground(new Color(37,114,162));
 		fleetTable.getTableHeader().setForeground (Color.WHITE);
 		fleetTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(scrollPane);
 		
 		
 		/* Choosing plane type combobox parameters */ 
@@ -107,20 +105,20 @@ public class FleetPanel extends JPanel implements ActionListener {
 		planeChoice.addItem("Boeing 787");
 		planeChoice.setSelectedItem("");
 		planeChoice.setSelectedIndex(0);
-		planeChoice.setBounds(176, 566, 111, 22);
+		planeChoice.setBounds(375, 120, 111, 22);
 		add(planeChoice);
 		
 		
-		/* Add button parameters */ 
-		addBtn = new JButton("Add new plane");
-		addBtn.setBounds(36, 566, 130, 23);
-		add(addBtn);
-		
-		
-		/* Delete button parameters */ 
-		deleteBtn = new JButton("Delete plane");
-		deleteBtn.setBounds(36, 621, 130, 23);
-		add(deleteBtn);
+//		/* Add button parameters */ 
+//		addBtn = new JButton("Add new plane");
+//		addBtn.setBounds(36, 566, 130, 23);
+//		add(addBtn);
+//		
+//		
+//		/* Delete button parameters */ 
+//		deleteBtn = new JButton("Delete plane");
+//		deleteBtn.setBounds(36, 621, 130, 23);
+//		add(deleteBtn);
 		
 		JPanel detailsPanel = new JPanel();
 		detailsPanel.setBounds(509, 0, 519, 681);
@@ -154,7 +152,7 @@ public class FleetPanel extends JPanel implements ActionListener {
 		
 		fuelKmLbl = new JLabel("Fuel Per Km:");
 		fuelKmLbl.setFont(new Font("Stencil", Font.PLAIN, 20));
-		fuelKmLbl.setBounds(78, 592, 132, 25);
+		fuelKmLbl.setBounds(78, 592, 157, 25);
 		detailsPanel.add(fuelKmLbl);
 		
 		speedLbl = new JLabel("Speed:");
@@ -192,14 +190,28 @@ public class FleetPanel extends JPanel implements ActionListener {
 		refreshLbl = new JLabel("refreshLbl");
 		refreshLbl.setIcon(new ImageIcon(refreshIcon));
 		refreshLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		refreshLbl.setBounds(329, 188, 30, 30);
+		refreshLbl.setBounds(329, 235, 30, 30);
 		add(refreshLbl);
 		
 		JLabel detailsBtn = new JLabel("");
 		detailsBtn.setIcon(new ImageIcon(detailsIcon));
 		detailsBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		detailsBtn.setBounds(329, 115, 30, 30);
+		detailsBtn.setBounds(329, 195, 30, 30);
 		add(detailsBtn);
+		
+		/*add button */
+		addPlaneLbl = new JLabel("");
+		addPlaneLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		addPlaneLbl.setIcon(new ImageIcon(addIcon));
+		addPlaneLbl.setBounds(329, 115, 30, 30);
+		add(addPlaneLbl);
+		
+		/*delete button */
+		deletePlaneLbl = new JLabel("");
+		deletePlaneLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		deletePlaneLbl.setIcon(new ImageIcon(deleteIcon));
+		deletePlaneLbl.setBounds(329, 155, 30, 30);
+		add(deletePlaneLbl);
 		
 		//Overrides
 		
@@ -232,29 +244,66 @@ public class FleetPanel extends JPanel implements ActionListener {
 						planePhotoLbl.setIcon(new ImageIcon(Image787));
 						break;
 					case "Airbus A380":
-						planePhotoLbl.setIcon(new ImageIcon(Image737));
+						planePhotoLbl.setIcon(new ImageIcon(ImageA380));
 						break;
 						default: break;
-					}
-					
-					detailsPanel.setVisible(true);
-					
+					}		
+					detailsPanel.setVisible(true);		
 				}
-				else
+				else {
+					JOptionPane.showMessageDialog(null, "Select plane to get details");
 					detailsPanel.setVisible(false);
+				}
 				fleetTable.clearSelection();
 			}
 		});
 		
+		addPlaneLbl.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				scrollPane.setVisible(false);
+				String selectedBox = planeChoice.getSelectedItem().toString();
+				scrollPane.setVisible(true);	
+				if(selectedBox != ""){  /* Add plane functionality */
+					viewCtrl.addPlane(selectedBox);
+					//buildTable();
+				}
+				else { /* The user must choose a plane type */
+					JOptionPane.showMessageDialog(null, "Please choose plane type. ");
+				}
+				fleetTable.clearSelection();
+
+			}
+		});
+		
+		deletePlaneLbl.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selectedRow = -1;
+				selectedRow = fleetTable.getSelectedRow();
+				if (selectedRow != -1) {
+					int p =  (int) fleetModel.getValueAt(selectedRow, 0);
+					viewCtrl.deletePlane(p);
+					//buildTable(); // should do it from controller
+				}
+				else 
+					JOptionPane.showMessageDialog(null, "Choose a plane to delete.");
+				fleetTable.repaint();
+				fleetTable.clearSelection();
+			}
+		});
+		
+		
+		
 	}
 	
 	/*A Function to set all the listeners in the page */
-	public void setListeners() { 
-		addBtn.addActionListener(this);
-		addBtn.setActionCommand("add plane");
-		deleteBtn.addActionListener(this);
-		deleteBtn.setActionCommand("delete plane");
-	}
+//	public void setListeners() { 
+//		addBtn.addActionListener(this);
+//		addBtn.setActionCommand("add plane");
+//		deleteBtn.addActionListener(this);
+//		deleteBtn.setActionCommand("delete plane");
+//	}
 	
 	/*A Function to build the fleet table from the database */
 	public void buildTable()
@@ -263,58 +312,40 @@ public class FleetPanel extends JPanel implements ActionListener {
 		fleetTable.invalidate();
 	}
 
-	/*A Function for all of the actions performed buttons */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		/* Add plane functionality when pressing the button */
-		if(e.getActionCommand().equals("add plane")) {
-			scrollPane.setVisible(false);
-			String selectedBox = planeChoice.getSelectedItem().toString();
-			scrollPane.setVisible(true);	
-			if(selectedBox != ""){  /* Add plane functionality */
-				viewCtrl.addPlane(selectedBox);
-				//buildTable();
-			}
-			else { /* The user must choose a plane type */
-				JOptionPane.showMessageDialog(null, "Please choose plane type. ");
-			}
-		
-		}
-		/* Delete plane functionality when pressing the button */
-		if(e.getActionCommand().equals("delete plane")) {
-			int selectedRow = -1;
-			selectedRow = fleetTable.getSelectedRow();
-			if (selectedRow != -1) {
-				int p =  (int) fleetModel.getValueAt(selectedRow, 0);
-				viewCtrl.deletePlane(p);
-				//buildTable(); // should do it from controller
-			}
-			else {JOptionPane.showMessageDialog(null, "Choose a plane to delete.");}
-			fleetTable.repaint();	
-		}
-		fleetTable.clearSelection();
-	}
+//	/*A Function for all of the actions performed buttons */
+//	@Override
+//	public void actionPerformed(ActionEvent e) {
+//		/* Add plane functionality when pressing the button */
+//		if(e.getActionCommand().equals("add plane")) {
+//			scrollPane.setVisible(false);
+//			String selectedBox = planeChoice.getSelectedItem().toString();
+//			scrollPane.setVisible(true);	
+//			if(selectedBox != ""){  /* Add plane functionality */
+//				viewCtrl.addPlane(selectedBox);
+//				//buildTable();
+//			}
+//			else { /* The user must choose a plane type */
+//				JOptionPane.showMessageDialog(null, "Please choose plane type. ");
+//			}
+//		
+//		}
+//		/* Delete plane functionality when pressing the button */
+//		if(e.getActionCommand().equals("delete plane")) {
+//			int selectedRow = -1;
+//			selectedRow = fleetTable.getSelectedRow();
+//			if (selectedRow != -1) {
+//				int p =  (int) fleetModel.getValueAt(selectedRow, 0);
+//				viewCtrl.deletePlane(p);
+//				//buildTable(); // should do it from controller
+//			}
+//			else {JOptionPane.showMessageDialog(null, "Choose a plane to delete.");}
+//			fleetTable.repaint();	
+//		}
+//		fleetTable.clearSelection();
+//	}
+	
 	public JTable getFleetTable() {
 		return fleetTable;
 	}
 	
-	public void updateInfo(String airport)
-	{
-		SpeedTextField.setText();
-		FuelTextField.setText();
-		KmTextField.setText();
-		TankTextField.setText();
-		modelTextField.setText();
-	}
-	
-//	private JTextField SpeedTextField;
-//	private JTextField FuelTextField;
-//	private JTextField KmTextField;
-//	private JTextField TankTextField;
-//	private JTextField modelTextField;
-//	private JLabel planePhotoLbl;
-//	private JLabel FuelTankSizeLbl;
-//	private JLabel KmRangeLbl;
-//	private JLabel fuelKmLbl;
-//	private JLabel speedLbl;
 }

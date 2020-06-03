@@ -8,7 +8,7 @@ import Model.Flight;
 
 public class FlightTableModel extends AbstractTableModel {
 
-	private final String[] col = {"Flight ID", "Plane ID","Destination","Departure","Back to origin"};
+	private final String[] col = {"Flight ID", "Plane ID","Destination","Departure","Back Date"};
 	private List<Flight> flightList;
 	
 	/* A Function to return the amount of rows in the arrayList of planes */

@@ -2,6 +2,7 @@ package View;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,7 +22,7 @@ import Controllers.Controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
-import javax.swing.JTextField;
+
 
 
 
@@ -29,18 +30,16 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	
 	/* Private variables we use in this page  */
 
+	private Controller viewCtrl;
 	private JTable flightTable;
 	private JTable fleetTable;
 	private FlightTableModel flightModel;
 	private FleetTableModel fleetModel;
-	
-	private Controller viewCtrl;
-
 	private JLabel lblFlightBoard;
 	private JLabel lblPlaneTable;
 	private JScrollPane scrollPane;
 	private JButton addBtn;
-	private JButton deleteBtn;
+	//private JButton deleteBtn;
 	private JScrollPane PlaneTable;
 	private JComboBox<Integer> dayBox;
 	private JComboBox<Integer>monthBox;
@@ -49,6 +48,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	private JLabel refLbl;
 	private JLabel addDetailsLbl;
 	private JLabel deleteLbl;
+	public JPanel detailsPanel;
 
 	
 
@@ -82,13 +82,13 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		fleetModel = new FleetTableModel();
 		
 		flightTable = new JTable(flightModel);
-		//flightTable = new JTable(); 	 //  @@@@@@@@ TO Design version
+//		flightTable = new JTable(); 	 //  @@@@@@@@ TO Design version
 		
-		flightTable.setBounds(77, 107, 684, 330);
+		//flightTable.setBounds(77, 107, 684, 330);
 
 		/* Flight Board title parameters */ 
 		lblFlightBoard = new JLabel("Flight Board");
-		lblFlightBoard.setBounds(75, 11, 230, 49);
+		lblFlightBoard.setBounds(115, 30, 230, 49);
 		lblFlightBoard.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFlightBoard.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		add(lblFlightBoard);
@@ -98,11 +98,14 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		/* scrollPane parameters */ 
 		scrollPane = new JScrollPane();
 		scrollPane.setBackground(Color.WHITE);
+		scrollPane.setBorder(BorderFactory.createLineBorder(new Color(255,255,255),4));
 		scrollPane.getViewport().setBackground(Color.WHITE);
-		scrollPane.setBounds(26, 90, 368, 378);
-		add(scrollPane);
+		scrollPane.setBounds(0, 90, 459, 567);
 		scrollPane.setViewportView(flightTable);
-		
+		add(scrollPane);
+		flightTable.getTableHeader().setBackground(new Color(37,114,162));
+		flightTable.getTableHeader().setForeground (Color.WHITE);
+		flightTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 18));
 
 		
 //		originComboBox = new JComboBox<String>();
@@ -117,24 +120,24 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		addDetailsLbl = new JLabel("");
 		addDetailsLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		addDetailsLbl.setIcon(new ImageIcon(addPanelIcon));
-		addDetailsLbl.setBounds(404, 90, 30, 30);
+		addDetailsLbl.setBounds(469, 90, 30, 30);
 		add(addDetailsLbl);
 		
 		/*delete btn */
 		deleteLbl = new JLabel("");
 		deleteLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		deleteLbl.setIcon(new ImageIcon(deleteIcon));
-		deleteLbl.setBounds(404, 130, 30, 30);
+		deleteLbl.setBounds(469, 130, 30, 30);
 		add(deleteLbl);
 		
 		/* A function to refresh the tables when pressing the button */
 		refLbl = new JLabel("");
 		refLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		refLbl.setIcon(new ImageIcon(refreshIcon));
-		refLbl.setBounds(404, 170, 30, 30);
+		refLbl.setBounds(469, 170, 30, 30);
 		add(refLbl);
 		
-		JPanel detailsPanel = new JPanel();
+		detailsPanel = new JPanel();
 		detailsPanel.setBounds(509, 0, 519, 681);
 		add(detailsPanel);
 		detailsPanel.setLayout(null);
@@ -178,7 +181,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 				detailsPanel.add(addBtn);
 				
 				fleetTable = new JTable(fleetModel);
-				//fleetTable = new JTable(); 	 //  @@@@@@@@ TO Design version
+//				fleetTable = new JTable(); 	 //  @@@@@@@@ TO Design version
 				
 				PlaneTable = new JScrollPane();
 				
@@ -196,9 +199,9 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 				lblPlaneTable.setFont(new Font("Tahoma", Font.PLAIN, 30));
 				
 				/* Delete button parameters */
-				deleteBtn = new JButton("Delete flight");
-				deleteBtn.setBounds(175, 497, 130, 23);
-				add(deleteBtn);
+//				deleteBtn = new JButton("Delete flight");
+//				deleteBtn.setBounds(175, 497, 130, 23);
+//				add(deleteBtn);
 		detailsPanel.setVisible(false);
 		
 		//Overrides
@@ -242,8 +245,8 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	public void setListeners() {
 		addBtn.addActionListener(this);
 		addBtn.setActionCommand("add flight");
-		deleteBtn.addActionListener(this);
-		deleteBtn.setActionCommand("delete flight");
+//		deleteBtn.addActionListener(this);
+//		deleteBtn.setActionCommand("delete flight");
 	}
 	
 	/*A Function to build the flight table from the database */
@@ -267,7 +270,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 			selectedRow = fleetTable.getSelectedRow();
 			scrollPane.setVisible(true);
 	
-			if (selectedRow != -1) { /* Add flight functionallity */
+			if (selectedRow != -1) { /* Add flight functionality */
 				if(destinationComboBox.getSelectedItem().equals("Choose a city")) {
 					JOptionPane.showMessageDialog(null, "Select destination");
 				}
@@ -297,20 +300,20 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Choose a plane in order to create a flight!");
 			}
 		}
-		
-		/* Delete flight functionality when pressing the button */
-		if(e.getActionCommand().equals("delete flight")) {
-			selectedRow = flightTable.getSelectedRow();
-			if (selectedRow != -1) {
-				int f =  (int) flightModel.getValueAt(selectedRow, 0);
-				viewCtrl.deleteFlight(f);	
-				//buildFlightTable();
-			}
-			else {
-				JOptionPane.showMessageDialog(null, "Choose a flight to delete.");
-			}
-		}
-		//fleetTable.clearSelection();
+//		
+//		/* Delete flight functionality when pressing the button */
+//		if(e.getActionCommand().equals("delete flight")) {
+//			selectedRow = flightTable.getSelectedRow();
+//			if (selectedRow != -1) {
+//				int f =  (int) flightModel.getValueAt(selectedRow, 0);
+//				viewCtrl.deleteFlight(f);	
+//				//buildFlightTable();
+//			}
+//			else {
+//				JOptionPane.showMessageDialog(null, "Choose a flight to delete.");
+//			}
+//		}
+//		//fleetTable.clearSelection();
 		flightTable.clearSelection();
 		flightTable.repaint();
 	}
