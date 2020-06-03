@@ -33,7 +33,6 @@ public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight>
 	public void delete(Integer id) {
 		//flights.remove(id);		
 		String query = "DELETE from flightboard WHERE flightboard.flightid=" + id;
-		System.out.println(id);
 		DBManager.getInstance().deleteFromDB(query);
 	}
 
