@@ -170,6 +170,10 @@ public class HomeBuilder extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					MenuClicked(flightBoardPanel);
+					flightBoardPanel.getScrollPane().setVisible(false);
+					flightBoardPanel.buildFleetTable();
+					flightBoardPanel.getFleetTable().invalidate();
+					flightBoardPanel.getScrollPane().setVisible(true);
 				}
 			});
 			

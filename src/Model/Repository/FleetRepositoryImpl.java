@@ -9,7 +9,7 @@ public class FleetRepositoryImpl implements TemplateRepository<Integer, Plane> {
 	
 	@Override
 	public void add(Plane p) {
-		String query = "INSERT INTO fleet(model,planeid)" + "VALUES (" + p.getName() + "," + p.getPlaneID() + ")";
+		String query = "INSERT INTO fleet(model,planeid)" + "VALUES ('" + p.getName() + "'," + p.getPlaneID() + ")";
 		DBManager.getInstance().addToDB(query);
 	}
 

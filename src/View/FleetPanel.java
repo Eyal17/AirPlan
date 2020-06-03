@@ -78,8 +78,10 @@ public class FleetPanel extends JPanel implements ActionListener {
 		/* Choosing plane type combobox parameters */ 
 		planeChoice = new JComboBox<String>();
 		planeChoice.addItem("");
-		planeChoice.addItem("727");
-		planeChoice.addItem("737");
+		planeChoice.addItem("Boeing 777");
+		planeChoice.addItem("Boeing 737");
+		planeChoice.addItem("Airbus A380");
+		planeChoice.addItem("Boeing 787");
 		planeChoice.setSelectedItem("");
 		planeChoice.setSelectedIndex(0);
 		planeChoice.setBounds(221, 566, 60, 22);
@@ -101,6 +103,7 @@ public class FleetPanel extends JPanel implements ActionListener {
 		detailsPanel.setBounds(509, 0, 519, 681);
 		add(detailsPanel);
 		detailsPanel.setVisible(false);
+	
 		
 		refreshLbl = new JLabel("refreshLbl");
 		refreshLbl.addMouseListener(new MouseAdapter() {
@@ -180,5 +183,8 @@ public class FleetPanel extends JPanel implements ActionListener {
 			fleetTable.repaint();	
 		}
 		fleetTable.clearSelection();
+	}
+	public JTable getFleetTable() {
+		return fleetTable;
 	}
 }

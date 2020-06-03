@@ -36,12 +36,30 @@ public class Airport extends Destination {
 				distFromBase = 10281;
 				break;
 			}
-			case "Johannesburg":
+			case "Cape Town":
 			{
 				localTax = 750;
 				fuelPrice =  70;
 				distFromBase = 9220;
 				break;
+			}
+			case "Madrid":
+			{
+				localTax = 600;
+				fuelPrice =  60;
+				distFromBase = 5464;
+			}
+			case "Bangkok":
+			{
+				localTax = 550;
+				fuelPrice =  55;
+				distFromBase = 6924;
+			}
+			case "Delhi":
+			{
+				localTax = 350;
+				fuelPrice =  30;
+				distFromBase = 4048;
 			}
 			case "Tel Aviv":
 			{

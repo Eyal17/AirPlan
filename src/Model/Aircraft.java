@@ -10,7 +10,7 @@ public class Aircraft {
 	
 	public Aircraft(String m) {
 		switch(m) {
-		case "727":
+		case "Boeing 777":
 			planeModel = m;
 			fuelTankSize = 150000;
 			maxKmPerFlight = 15000;
@@ -18,12 +18,28 @@ public class Aircraft {
 			speed = 900;
 			setnumOfRows(4, 4, 20);
 			break;
-		case "737":
+		case "Boeing 737":
 			planeModel = m;
 			fuelTankSize = 200000;
 			maxKmPerFlight = 20000;
 			fuelPerKm = 10;
 			speed = 1000;
+			setnumOfRows(8, 8, 40);
+			break;
+		case "Boeing 787":
+			planeModel = m;
+			fuelTankSize = 250000;
+			maxKmPerFlight = 30000;
+			fuelPerKm = 10;
+			speed = 1000;
+			setnumOfRows(8, 8, 40);
+			break;
+		case "Airbus A380":
+			planeModel = m;
+			fuelTankSize = 300000;
+			maxKmPerFlight = 35000;
+			fuelPerKm = 10;
+			speed = 1500;
 			setnumOfRows(8, 8, 40);
 			break;
 		default:
