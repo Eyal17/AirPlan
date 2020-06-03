@@ -151,20 +151,32 @@ public class MapControllerPanel extends JPanel {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				telAvivLbl.setIcon(new ImageIcon(locationHoverIcon));
+				telAvivLbl.setToolTipText("Tel Aviv");
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				telAvivLbl.setIcon(new ImageIcon(locationIcon));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				updateInfo("Tel Aviv");
+				setInfoTrue();
 			}
 		});
 		newYorkLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				newYorkLbl.setIcon(new ImageIcon(locationHoverIcon));
+				newYorkLbl.setToolTipText("New York");
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				newYorkLbl.setIcon(new ImageIcon(locationIcon));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				updateInfo("New York");
+				setInfoTrue();
 			}
 		});
 		
@@ -172,6 +184,7 @@ public class MapControllerPanel extends JPanel {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				sydneyLbl.setIcon(new ImageIcon(locationHoverIcon));
+				sydneyLbl.setToolTipText("Sydney");
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -179,11 +192,7 @@ public class MapControllerPanel extends JPanel {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				taxTextBox.setText(Integer.toString(viewCtrl.getAirport("Syndey").getLocalTax()));
-				distanceTextBox.setText(Double.toString(viewCtrl.getAirport("Syndey").getDistance()));
-				airportName.setText("Sydney Airport");
-				fuelTextBox.setText(Double.toString(viewCtrl.getAirport("Syndey").getFuelPrice()));
-			//	updateInfo("Sydney");
+				updateInfo("Sydney");
 				setInfoTrue();
 			}
 		});
@@ -192,60 +201,96 @@ public class MapControllerPanel extends JPanel {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				RomeLbl.setIcon(new ImageIcon(locationHoverIcon));
+				RomeLbl.setToolTipText("Rome");
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				RomeLbl.setIcon(new ImageIcon(locationIcon));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				updateInfo("Rome");
+				setInfoTrue();
 			}
 		});
 		RioLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				RioLbl.setIcon(new ImageIcon(locationHoverIcon));
+				RioLbl.setToolTipText("Rio");
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				RioLbl.setIcon(new ImageIcon(locationIcon));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				updateInfo("Rio");
+				setInfoTrue();
 			}
 		});
 		capeTownLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				capeTownLbl.setIcon(new ImageIcon(locationHoverIcon));
+				capeTownLbl.setToolTipText("Cape Town");
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				capeTownLbl.setIcon(new ImageIcon(locationIcon));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				updateInfo("Cape Town");
+				setInfoTrue();
 			}
 		});
 		madridLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				madridLbl.setIcon(new ImageIcon(locationHoverIcon));
+				madridLbl.setToolTipText("Madrid");
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				madridLbl.setIcon(new ImageIcon(locationIcon));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				updateInfo("Madrid");
+				setInfoTrue();
 			}
 		});
 		bangkokLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				bangkokLbl.setIcon(new ImageIcon(locationHoverIcon));
+				bangkokLbl.setToolTipText("Bangkok");
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				bangkokLbl.setIcon(new ImageIcon(locationIcon));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				updateInfo("Bangkok");
+				setInfoTrue();
 			}
 		});
 		delhiLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				delhiLbl.setIcon(new ImageIcon(locationHoverIcon));
+				delhiLbl.setToolTipText("Delhi");
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				delhiLbl.setIcon(new ImageIcon(locationIcon));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				updateInfo("Delhi");
+				setInfoTrue();
 			}
 		});
 		
@@ -268,12 +313,12 @@ public class MapControllerPanel extends JPanel {
 		fuelTextBox.setVisible(true);
 	}
 	
-//	public void updateInfo(String airport)
-//	{
-//		taxTextBox.setText(Integer.toString(viewCtrl.getAirport(airport).getLocalTax()));
-//		distanceTextBox.setText(Double.toString(viewCtrl.getAirport(airport).getDistance()));
-//		airportName.setText(airport + "Airport");
-//		fuelTextBox.setText(Double.toString(viewCtrl.getAirport(airport).getFuelPrice()));
-//	}
+	public void updateInfo(String airport)
+	{
+		taxTextBox.setText(Integer.toString(viewCtrl.getAirport(airport).getLocalTax()));
+		distanceTextBox.setText(Double.toString(viewCtrl.getAirport(airport).getDistance()));
+		airportName.setText(airport);
+		fuelTextBox.setText(Double.toString(viewCtrl.getAirport(airport).getFuelPrice()));
+	}
 
 }
