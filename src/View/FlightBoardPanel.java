@@ -45,9 +45,12 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	private JComboBox<Integer> dayBox;
 	private JComboBox<Integer>monthBox;
 	private JComboBox<Integer>yearBox;
-	private JLabel refLbl;
 	private JComboBox<String> destinationComboBox;
+	private JLabel refLbl;
+	private JLabel addDetailsLbl;
+	private JLabel deleteLbl;
 
+	
 
 	/* Constructor uses functions to initialize the page */
 	public FlightBoardPanel(Controller ctrl) {
@@ -67,30 +70,30 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	
 	/* A Function to initialize the graphical parameters in the page */
 	public void initialize() {
+		
+		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
+		//Image detailsIcon = new ImageIcon(this.getClass().getResource("/info.png")).getImage();
+		Image addPanelIcon = new ImageIcon(this.getClass().getResource("/add.png")).getImage();
+		Image deleteIcon = new ImageIcon(this.getClass().getResource("/remove.png")).getImage();
+
+
+		
 		flightModel = new FlightTableModel();
 		fleetModel = new FleetTableModel();
 		
-		flightTable = new JTable(flightModel);
-		//flightTable = new JTable();//design
-		
-		fleetTable = new JTable(fleetModel);
-		//fleetTable = new JTable();//design
+		//flightTable = new JTable(flightModel);
+		flightTable = new JTable(); 	 //  @@@@@@@@ TO Design version
 		
 		flightTable.setBounds(77, 107, 684, 330);
 
 		/* Flight Board title parameters */ 
 		lblFlightBoard = new JLabel("Flight Board");
-		lblFlightBoard.setBounds(71, 30, 230, 49);
+		lblFlightBoard.setBounds(75, 11, 230, 49);
 		lblFlightBoard.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFlightBoard.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		add(lblFlightBoard);
 		
 		/* Plane Table title parameters */ 
-		lblPlaneTable = new JLabel("Plane Table");
-		lblPlaneTable.setBounds(390, 35, 220, 39);
-		lblPlaneTable.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPlaneTable.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		add(lblPlaneTable);
 		
 		/* scrollPane parameters */ 
 		scrollPane = new JScrollPane();
@@ -100,58 +103,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		add(scrollPane);
 		scrollPane.setViewportView(flightTable);
 		
-		/* Add button parameters */ 
-		addBtn = new JButton("Add new flight");
-		addBtn.setBounds(622, 201, 130, 23);
-		add(addBtn);
-		
-		
-		/* Delete button parameters */
-		deleteBtn = new JButton("Delete flight");
-		deleteBtn.setBounds(622, 235, 130, 23);
-		add(deleteBtn);
-		
-		/* scrollPane for PlaneTable parameters */
-		PlaneTable = new JScrollPane();
-		PlaneTable.setBackground(Color.WHITE);
-		PlaneTable.getViewport().setBackground(Color.WHITE);
-		PlaneTable.setBounds(404, 89, 188, 378);
-		add(PlaneTable);
-		PlaneTable.setViewportView(fleetTable);
 
-		
-		dayBox = new JComboBox<Integer>();
-		for (int i = 0;i < 32;i++) {
-			dayBox.addItem(i);
-		}
-		dayBox.setSelectedItem(0);
-		dayBox.setBounds(622, 104, 57, 23);
-		add(dayBox);
-		
-		monthBox = new JComboBox<Integer>();
-		for (int i = 0;i < 13;i++) {
-			monthBox.addItem(i);
-		}
-		monthBox.setSelectedItem(0);
-		monthBox.setBounds(689, 104, 57, 23);
-		add(monthBox);
-		
-		yearBox = new JComboBox<Integer>();
-		yearBox.addItem(0);
-		for (int i = 2020;i < 2030;i++) {
-			yearBox.addItem(i);
-		}
-		yearBox.setSelectedItem(0);
-		yearBox.setBounds(756, 104, 57, 23);
-		add(yearBox);
-		String [] destinationList = new String[] {"Choose a city", "New York","Sydney", "Rome", "Rio", "Cape Town", "Madrid", "Bangkok", "Delhi"};
-		destinationComboBox = new JComboBox<String>();
-		destinationComboBox.setBounds(622, 138, 116, 23);
-		for (String i : destinationList) {
-			destinationComboBox.addItem(i);
-		}
-		destinationComboBox.setSelectedIndex(0);
-		add(destinationComboBox);
 		
 //		originComboBox = new JComboBox<String>();
 //		originComboBox.setBounds(580, 153, 116, 23);
@@ -161,10 +113,95 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 //		originComboBox.setSelectedIndex(0);
 //		add(originComboBox);
 		
+		/* Add panel */
+		addDetailsLbl = new JLabel("");
+		addDetailsLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		addDetailsLbl.setIcon(new ImageIcon(addPanelIcon));
+		addDetailsLbl.setBounds(404, 90, 30, 30);
+		add(addDetailsLbl);
+		
+		/*delete btn */
+		deleteLbl = new JLabel("");
+		deleteLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		deleteLbl.setIcon(new ImageIcon(deleteIcon));
+		deleteLbl.setBounds(404, 130, 30, 30);
+		add(deleteLbl);
 		
 		/* A function to refresh the tables when pressing the button */
 		refLbl = new JLabel("");
 		refLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		refLbl.setIcon(new ImageIcon(refreshIcon));
+		refLbl.setBounds(404, 170, 30, 30);
+		add(refLbl);
+		
+		JPanel detailsPanel = new JPanel();
+		detailsPanel.setBounds(509, 0, 519, 681);
+		add(detailsPanel);
+		detailsPanel.setLayout(null);
+		
+				dayBox = new JComboBox<Integer>();
+				for (int i = 0;i < 32;i++) {
+					dayBox.addItem(i);
+				}
+				dayBox.setBounds(160, 88, 57, 23);
+				detailsPanel.add(dayBox);
+				dayBox.setSelectedItem(0);
+				
+				monthBox = new JComboBox<Integer>();
+				for (int i = 0;i < 13;i++) {
+					monthBox.addItem(i);
+				}
+				monthBox.setBounds(227, 88, 57, 23);
+				detailsPanel.add(monthBox);
+				monthBox.setSelectedItem(0);
+				
+				yearBox = new JComboBox<Integer>();
+				for (int i = 2020;i < 2030;i++) {
+					yearBox.addItem(i);
+				}
+				yearBox.setBounds(294, 88, 57, 23);
+				detailsPanel.add(yearBox);
+				yearBox.addItem(0);
+				yearBox.setSelectedItem(0);
+				
+				
+				destinationComboBox = new JComboBox<String>();
+				String [] destinationList = new String[] {"Choose a city", "New York","Sydney", "Rome", "Rio", "Cape Town", "Madrid", "Bangkok", "Delhi"};
+				for (String i : destinationList) {
+					destinationComboBox.addItem(i);
+				}
+				destinationComboBox.setBounds(160, 139, 116, 23);
+				detailsPanel.add(destinationComboBox);
+				destinationComboBox.setSelectedIndex(0);
+				addBtn = new JButton("Add new flight");
+				addBtn.setBounds(182, 515, 130, 23);
+				detailsPanel.add(addBtn);
+				
+				//fleetTable = new JTable(fleetModel);
+				fleetTable = new JTable(); 	 //  @@@@@@@@ TO Design version
+				
+				PlaneTable = new JScrollPane();
+				
+				PlaneTable.setBounds(160, 193, 188, 291);
+				detailsPanel.add(PlaneTable);
+				PlaneTable.setBackground(Color.WHITE);
+				PlaneTable.getViewport().setBackground(Color.WHITE);
+				PlaneTable.setViewportView(fleetTable);
+				
+				/* Add button parameters */
+				lblPlaneTable = new JLabel("Add Flight");
+				lblPlaneTable.setBounds(147, 21, 220, 39);
+				detailsPanel.add(lblPlaneTable);
+				lblPlaneTable.setHorizontalAlignment(SwingConstants.CENTER);
+				lblPlaneTable.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				
+				/* Delete button parameters */
+				deleteBtn = new JButton("Delete flight");
+				deleteBtn.setBounds(175, 497, 130, 23);
+				add(deleteBtn);
+		detailsPanel.setVisible(false);
+		
+		//Overrides
 		refLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -175,11 +212,30 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 			}
 		});
 		
+		addDetailsLbl.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				detailsPanel.setVisible(!detailsPanel.isVisible());
+			}
+		});
 		
-		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
-		refLbl.setIcon(new ImageIcon(refreshIcon));
-		refLbl.setBounds(622, 433, 35, 35);
-		add(refLbl);
+		deleteLbl.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selectedRow = -1;
+				selectedRow = flightTable.getSelectedRow();
+				if (selectedRow != -1) {
+					int f =  (int) flightModel.getValueAt(selectedRow, 0);
+					viewCtrl.deleteFlight(f);	
+					buildFlightTable();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Choose a flight to delete.");
+				}
+				flightTable.clearSelection();
+				flightTable.repaint();
+			}
+		});
 	}
 	
 	/*A Function to set all the listeners in the page */

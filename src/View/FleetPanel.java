@@ -50,10 +50,13 @@ public class FleetPanel extends JPanel implements ActionListener {
 	
 	/* A Function to initialize the graphical parameters in the page */
 	public void initialize() {
+		
+		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
+		Image detailsIcon = new ImageIcon(this.getClass().getResource("/info.png")).getImage();
+
+		
 		fleetModel = new FleetTableModel();
-		
-		
-		fleetTable = new JTable(fleetModel);
+		fleetTable = new JTable(fleetModel);  // @@@@@@@@@@@@@@@@2 Design version
 		//fleetTable = new JTable(); // to design 
 
 		/* AirCraft title parameters */ 
@@ -106,6 +109,19 @@ public class FleetPanel extends JPanel implements ActionListener {
 	
 		
 		refreshLbl = new JLabel("refreshLbl");
+		refreshLbl.setIcon(new ImageIcon(refreshIcon));
+		refreshLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		refreshLbl.setBounds(329, 188, 30, 30);
+		add(refreshLbl);
+		
+		JLabel detailsBtn = new JLabel("");
+		detailsBtn.setIcon(new ImageIcon(detailsIcon));
+		detailsBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		detailsBtn.setBounds(329, 115, 30, 30);
+		add(detailsBtn);
+		
+		//Overrides
+		
 		refreshLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -114,13 +130,7 @@ public class FleetPanel extends JPanel implements ActionListener {
 				scrollPane.setVisible(true);
 			}
 		});
-		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
-		refreshLbl.setIcon(new ImageIcon(refreshIcon));
-		refreshLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		refreshLbl.setBounds(329, 494, 35, 35);
-		add(refreshLbl);
 		
-		JLabel detailsBtn = new JLabel("New label");
 		detailsBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -134,8 +144,7 @@ public class FleetPanel extends JPanel implements ActionListener {
 				fleetTable.clearSelection();
 			}
 		});
-		detailsBtn.setBounds(365, 149, 66, 29);
-		add(detailsBtn);
+		
 	}
 	
 	/*A Function to set all the listeners in the page */

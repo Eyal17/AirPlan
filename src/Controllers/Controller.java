@@ -60,7 +60,7 @@ public class Controller {
 	
 	public void deleteFlight(int id) {
 		modelAP.flightRepo.delete(id);
-		view.homeBulider.flightBoardPanel.buildFlightTable();
+		//view.homeBulider.flightBoardPanel.buildFlightTable();
 	}
 	
 	boolean isPlaneExistInFlights(int id) {
