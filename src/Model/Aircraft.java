@@ -64,6 +64,9 @@ public class Aircraft {
 	public int getnumOfRows() {
 		return rowsPerClass[0]+rowsPerClass[1]+rowsPerClass[2];
 	}
+	public int[] getRowsPerClass() {
+		return rowsPerClass;
+	}
 	
 	
 	public void setName(String n) {
