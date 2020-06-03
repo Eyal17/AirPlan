@@ -77,5 +77,9 @@ public class Controller {
 		}
 		else { JOptionPane.showMessageDialog(null, "Failed!");}
 	}
+	
+	public Airport getAirport(String airport) {
+		return new Airport("Sydney");
+	}
 
 }

@@ -48,18 +48,21 @@ public class Airport extends Destination {
 				localTax = 600;
 				fuelPrice =  60;
 				distFromBase = 5464;
+				break;
 			}
 			case "Bangkok":
 			{
 				localTax = 550;
 				fuelPrice =  55;
 				distFromBase = 6924;
+				break;
 			}
 			case "Delhi":
 			{
 				localTax = 350;
 				fuelPrice =  30;
 				distFromBase = 4048;
+				break;
 			}
 			case "Tel Aviv":
 			{
@@ -79,12 +82,18 @@ public class Airport extends Destination {
 		return fuelPrice;
 	}
 	
+	public double getDistance() {
+		return distFromBase;
+	}
+	
 	public void setLocalTax(int l) {
 		localTax = l;
 	}
 	public void setFuelPrice(double f) {
 		fuelPrice = f;
 	}
+	
+	
 	
 	//public double calculator(Plane p) {
 		//fuelprice, localtax,distfrombase,plane(fuelTank ,maxKm,fuelPerKm,numOfSeats)
