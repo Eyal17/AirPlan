@@ -143,7 +143,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		yearBox.setSelectedItem(0);
 		yearBox.setBounds(720, 104, 57, 23);
 		add(yearBox);
-		String [] destinationList = new String[] {"Choose a city", "New York","Sydney", "Rome", "Rio", "Johannesburg"};
+		String [] destinationList = new String[] {"Choose a city", "New York","Sydney", "Rome", "Rio", "Cape Town", "Madrid", "Bangkok", "Delhi"};
 		destinationComboBox = new JComboBox<String>();
 		destinationComboBox.setBounds(580, 187, 116, 23);
 		for (String i : destinationList) {
@@ -249,5 +249,14 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		//fleetTable.clearSelection();
 		flightTable.clearSelection();
 		flightTable.repaint();
+	}
+	public JTable getFlightTable() {
+		return flightTable;
+	}
+	public JTable getFleetTable() {
+		return fleetTable;
+	}
+	public JScrollPane getScrollPane() {
+		return scrollPane;
 	}
 }

@@ -2,6 +2,7 @@ package View;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import java.awt.Color;
@@ -37,13 +38,13 @@ public class MapControllerPanel extends JPanel {
 		
 		JLabel sydneyLbl = new JLabel("");
 		sydneyLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		sydneyLbl.setBounds(842, 370, 41, 52);
+		sydneyLbl.setBounds(897, 367, 41, 52);
 		sydneyLbl.setIcon(new ImageIcon(locationIcon));
 		add(sydneyLbl);
 		
 		JLabel RomeLbl = new JLabel("");
 		RomeLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		RomeLbl.setBounds(455, 155, 41, 52);
+		RomeLbl.setBounds(511, 154, 41, 52);
 		RomeLbl.setIcon(new ImageIcon(locationIcon));
 		add(RomeLbl);
 		
@@ -58,6 +59,24 @@ public class MapControllerPanel extends JPanel {
 		capeTownLbl.setBounds(530, 378, 41, 52);
 		capeTownLbl.setIcon(new ImageIcon(locationIcon));
 		add(capeTownLbl);
+		
+		JLabel madridLbl = new JLabel("");
+		madridLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		madridLbl.setBounds(459, 165, 41, 52);
+		madridLbl.setIcon(new ImageIcon(locationIcon));
+		add(madridLbl);
+		
+		JLabel bangkokLbl = new JLabel("");
+		bangkokLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		bangkokLbl.setBounds(757, 242, 41, 52);
+		bangkokLbl.setIcon(new ImageIcon(locationIcon));
+		add(bangkokLbl);
+		
+		JLabel delhiLbl = new JLabel("");
+		delhiLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		delhiLbl.setBounds(684, 186, 41, 52);
+		delhiLbl.setIcon(new ImageIcon(locationIcon));
+		add(delhiLbl);
 		
 		JLabel mapLbl = new JLabel("");
 		mapLbl.setIcon(new ImageIcon(mapIcon));
@@ -95,6 +114,9 @@ public class MapControllerPanel extends JPanel {
 			public void mouseExited(MouseEvent e) {
 				sydneyLbl.setIcon(new ImageIcon(locationIcon));
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
 		});
 		RomeLbl.addMouseListener(new MouseAdapter() {
 			@Override
@@ -126,5 +148,36 @@ public class MapControllerPanel extends JPanel {
 				capeTownLbl.setIcon(new ImageIcon(locationIcon));
 			}
 		});
+		madridLbl.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				madridLbl.setIcon(new ImageIcon(locationHoverIcon));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				madridLbl.setIcon(new ImageIcon(locationIcon));
+			}
+		});
+		bangkokLbl.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				bangkokLbl.setIcon(new ImageIcon(locationHoverIcon));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				bangkokLbl.setIcon(new ImageIcon(locationIcon));
+			}
+		});
+		delhiLbl.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				delhiLbl.setIcon(new ImageIcon(locationHoverIcon));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				delhiLbl.setIcon(new ImageIcon(locationIcon));
+			}
+		});
+		
 	}
 }
