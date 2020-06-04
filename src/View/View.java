@@ -30,10 +30,10 @@ public class View{
 		login = new LogInPage(viewCtrl);
 		homeBulider = new HomeBuilder(viewCtrl);
 		
-//		login.setVisible(true);
-//		homeBulider.setVisible(false);
-		login.setVisible(false);
-		homeBulider.setVisible(true);
+		login.setVisible(true);
+		homeBulider.setVisible(false);
+//		login.setVisible(false); 		// FOR TESTS
+//		homeBulider.setVisible(true);  // FOR TESTS
 	}
 }
 
