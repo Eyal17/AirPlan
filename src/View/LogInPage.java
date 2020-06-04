@@ -100,6 +100,8 @@ public class LogInPage extends JFrame {
 		leftLbl.setBounds(167, 146, 120, 388);
 		contentPane.add(leftLbl);
 		
+		leftLbl.setVisible(false); // checker log in need an update!
+		
 		signInBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

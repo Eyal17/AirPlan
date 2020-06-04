@@ -1,13 +1,8 @@
 package Model.Repository;
 
-import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
-
 import Model.Airport;
 import Model.Flight;
 import Model.Plane;
@@ -66,7 +61,6 @@ public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight>
 		try {
 			resultSet = DBManager.getInstance().readFromDB("SELECT * from flightboard join fleet using(planeid) ORDER BY departure ASC");
 			while (resultSet.next()) { //.next() return true if we have more result + move to the next result (row)
-					Date date = resultSet.getDate(4);
 					Flight flight = new Flight(new Plane(resultSet.getString(6),
 							resultSet.getInt(1)),
 							resultSet.getInt(2),
