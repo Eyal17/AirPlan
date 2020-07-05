@@ -69,8 +69,14 @@ public class Controller {
 	public ArrayList<Flight> getFlightTable(){
 		return modelAP.flightRepo.getTable();
 	}
-	public void loginValidation(String user,String password) {
-		if (password.equals(modelAP.loginRepo.valid(user))) {
+	
+	public void loginValidation(String user,char[] password) {
+		String encryptedPassword = "";
+		for (char i : password) {
+			encryptedPassword += (char)(i + user.hashCode()%26);
+			encryptedPassword += (char)(i + user.hashCode()%20);
+		}
+		if (encryptedPassword.equals(modelAP.loginRepo.valid(user))) {
 			view.login.setVisible(false);
 			view.homeBulider.setVisible(true);
 		}

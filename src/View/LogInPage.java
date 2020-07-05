@@ -105,7 +105,8 @@ public class LogInPage extends JFrame {
 		signInBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				viewCtrl.loginValidation(textField.getText(),passwordField.getText().toString());
+				viewCtrl.loginValidation(textField.getText(),passwordField.getPassword());
+				passwordField.setText("");	
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
