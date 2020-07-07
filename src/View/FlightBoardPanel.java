@@ -47,6 +47,9 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	private JLabel refLbl;
 	private JLabel addDetailsLbl;
 	private JLabel deleteLbl;
+	private JLabel choosePlane;
+	private JLabel chooseDate;
+	private JLabel chooseDestination;
 	public JPanel detailsPanel;
 
 	
@@ -74,7 +77,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		fleetModel = new FleetTableModel();
 		
 		flightTable = new JTable(flightModel);
-//		flightTable = new JTable(); 	 //  @@@@@@@@ TO Design version
+     	//flightTable = new JTable(); 	 //  @@@@@@@@ TO Design version
 	
 
 		/* Flight Board title parameters */ 
@@ -124,6 +127,26 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		add(detailsPanel);
 		detailsPanel.setLayout(null);
 		
+		
+		/* Instructions Labels creation */
+		choosePlane = new JLabel("Choose plane: ");
+		choosePlane.setFont(new Font("HP Simplified", Font.BOLD, 14));
+		choosePlane.setBounds(25, 191, 120, 16);
+		detailsPanel.add(choosePlane);
+		
+		
+		chooseDate = new JLabel("Departure date:");
+		chooseDate.setFont(new Font("HP Simplified", Font.BOLD, 14));
+		chooseDate.setBounds(25, 91, 120, 16);
+		detailsPanel.add(chooseDate);
+		
+		
+		chooseDestination = new JLabel("Destination:");
+		chooseDestination.setFont(new Font("HP Simplified", Font.BOLD, 14));
+		chooseDestination.setBounds(25, 142, 157, 16);
+		detailsPanel.add(chooseDestination);
+		
+		
 				dayBox = new JComboBox<Integer>();
 				for (int i = 0;i < 32;i++) {
 					dayBox.addItem(i);
@@ -155,7 +178,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 				for (String i : destinationList) {
 					destinationComboBox.addItem(i);
 				}
-				destinationComboBox.setBounds(160, 139, 116, 23);
+				destinationComboBox.setBounds(160, 141, 116, 23);
 				detailsPanel.add(destinationComboBox);
 				destinationComboBox.setSelectedIndex(0);
 				addBtn = new JButton("Add new flight");
@@ -163,7 +186,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 				detailsPanel.add(addBtn);
 				
 				fleetTable = new JTable(fleetModel);
-//				fleetTable = new JTable(); 	 //  @@@@@@@@ TO Design version
+     			//fleetTable = new JTable(); 	 //  @@@@@@@@ TO Design version
 				
 				PlaneTable = new JScrollPane();
 				
