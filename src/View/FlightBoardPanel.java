@@ -258,6 +258,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	/*A Function to build the fleet table from the database */
 	public void buildFleetTable() {
 		fleetModel.setList(viewCtrl.getFleetTable());
+		fleetTable.invalidate();
 	}
 
 	/*A Function for all of the actions performed buttons */

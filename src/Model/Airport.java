@@ -3,7 +3,9 @@ package Model;
 public class Airport extends Destination {
 	int localTax;
 	double fuelPrice;
-	int distFromBase;
+	//int distFromBase;
+
+	/* A constructor to build an Airport with different parameters per airport */
 
 	public Airport(String city) {
 		super(city);
@@ -75,6 +77,8 @@ public class Airport extends Destination {
 		}	
 	}
 	
+	
+	/* Getters for Airport class */
 	public int getLocalTax() {
 		return localTax;
 	}
@@ -82,9 +86,9 @@ public class Airport extends Destination {
 		return fuelPrice;
 	}
 	
-	public double getDistance() {
-		return distFromBase;
-	}
+	
+	/* Setters for Airport class */
+
 	
 	public void setLocalTax(int l) {
 		localTax = l;
@@ -94,7 +98,7 @@ public class Airport extends Destination {
 	}
 	
 	
-	
+	/* A function to calculate the price for ticket, depending on various parameters */
 	public double[] calculator(String model,int planeId) {
 		Plane p = new Plane(model,planeId);
 		double []cost = {0,0,0};

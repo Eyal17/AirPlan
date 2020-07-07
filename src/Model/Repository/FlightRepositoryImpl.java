@@ -9,10 +9,9 @@ import Model.Plane;
 
 public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight> {
 
+	/* A function to add a new flight to the database */
 	@Override
-	public void add(Flight v) {
-		//flights.put(v.getFlightID(), v);
-		
+	public void add(Flight v) {		
 		String query = "INSERT INTO flightboard(flightid,planeid,destination,departure,toorigin)" + "VALUES (" + 
 				v.getFlightID() + "," + 
 				v.getPlane().getPlaneID() +",'"+  
@@ -24,13 +23,14 @@ public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight>
 				//(v.getDeparture().getYear()+1900) + "}')";
 		DBManager.getInstance().addToDB(query);
 	}
+	/* A function to delete a flight from the database */
 	@Override
 	public void delete(Integer id) {
-		//flights.remove(id);		
 		String query = "DELETE from flightboard WHERE flightboard.flightid=" + id;
 		DBManager.getInstance().deleteFromDB(query);
 	}
 
+	/* A function to check if a plane exists in the database */
 	public boolean isPlaneExist(int pID) {
 		String query = "SELECT * from flightboard WHERE flightboard.planeid =" + pID;
 		try {
@@ -52,11 +52,8 @@ public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight>
 		ResultSet resultSet;
 		ArrayList<Flight> flightsList = new ArrayList<Flight>();
 		//
-		
-		
 		// here we need to split to load from db for the first time and update the list after each func
 		// get table shuold take only the list
-		
 		//
 		try {
 			resultSet = DBManager.getInstance().readFromDB("SELECT * from flightboard join fleet using(planeid) ORDER BY departure ASC");
@@ -67,7 +64,6 @@ public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight>
 							new Airport(resultSet.getString(3)),
 							resultSet.getDate(4), 
 							resultSet.getDate(5));
-							//new GregorianCalendar(date).getTime());
 					flightsList.add(flight);
 			}
 		} catch (SQLException e) {
@@ -77,6 +73,7 @@ public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight>
 		return flightsList;
 	}
 	
+	/* A function to return the current maximum ID for flights that exists in the database, to avoid ID duplication  */
 	public int getMaxID(){
 		ResultSet resultSet = null;
 		int max = 0;
@@ -88,12 +85,8 @@ public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight>
 			e.printStackTrace();
 		}
 		if(max == 0) {
-			return 4999;
+			return 4999; // a number to indicate that there are no current flights
 		}
 		return max;
-	}
-	
-	
-	
-	
+	}	
 }

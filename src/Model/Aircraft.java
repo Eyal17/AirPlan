@@ -7,8 +7,9 @@ public class Aircraft {
 	int fuelPerKm;
 	int speed;
 	int []rowsPerClass = new int[3] ;//FIRST, BUSINESS, ECONOMY
-	String PictureName;
+	String pictureName;
 	
+	/* A constructor to build an aircraft with different parameters per plane */
 	public Aircraft(String m) {
 		switch(m) {
 		case "Boeing 777":
@@ -18,7 +19,7 @@ public class Aircraft {
 			fuelPerKm = 10;
 			speed = 900;
 			setnumOfRows(4, 4, 20);
-			PictureName = "Image777";
+			pictureName = "Image777";
 			break;
 		case "Boeing 737":
 			planeModel = m;
@@ -27,7 +28,7 @@ public class Aircraft {
 			fuelPerKm = 10;
 			speed = 1000;
 			setnumOfRows(8, 8, 40);
-			PictureName = "Image737";
+			pictureName = "Image737";
 			break;
 		case "Boeing 787":
 			planeModel = m;
@@ -36,7 +37,7 @@ public class Aircraft {
 			fuelPerKm = 10;
 			speed = 1000;
 			setnumOfRows(8, 8, 40);
-			PictureName = "Image787";
+			pictureName = "Image787";
 			break;
 		case "Airbus A380":
 			planeModel = m;
@@ -45,7 +46,7 @@ public class Aircraft {
 			fuelPerKm = 10;
 			speed = 1500;
 			setnumOfRows(8, 8, 40);
-			PictureName = "ImageA380";
+			pictureName = "ImageA380";
 			break;
 		default:
 			//throw/exception
@@ -53,13 +54,15 @@ public class Aircraft {
 		}
 		
 	};
-
+	
+	/* Getters for Aircraft class */
 	public String getName() {
 		return planeModel;
 	}
 	public int getFuelTank() {
 		return fuelTankSize;
 	}
+
 	public int getMaxKm() {
 		return maxKmPerFlight;
 	}
@@ -70,7 +73,7 @@ public class Aircraft {
 		return speed;
 	}
 	public String getPictureName() {
-		return PictureName;
+		return pictureName;
 	}
 	public int getnumOfRows() {
 		return rowsPerClass[0]+rowsPerClass[1]+rowsPerClass[2];
@@ -79,7 +82,7 @@ public class Aircraft {
 		return rowsPerClass;
 	}
 	
-	
+	/* Setters for Aircraft class */
 	public void setName(String n) {
 		planeModel = n;
 	}

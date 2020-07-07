@@ -7,22 +7,22 @@ import Model.Plane;
 
 public class FleetRepositoryImpl implements TemplateRepository<Integer, Plane> {
 	
+	/* A function to add a new plane to the fleet with an SQL query */
 	@Override
 	public void add(Plane p) {
 		String query = "INSERT INTO fleet(model,planeid)" + "VALUES ('" + p.getName() + "'," + p.getPlaneID() + ")";
 		DBManager.getInstance().addToDB(query);
 	}
-
+	
+	/* A function to delete a specific plane from the fleet with an SQL query */
 	@Override
 	public void delete(Integer id) {
-		//fleet.remove(id);
 		String query = "DELETE from fleet WHERE fleet.planeid=" + id;
 		DBManager.getInstance().deleteFromDB(query);
 	}
-
-	//@Override
+	
+	/* A function to find a specific plane from the fleet with an SQL query */
 	public Plane find(Integer id) {
-		//return fleet.get(id);
 		String query = "SELECT * from fleet WHERE fleet.planeid =" + id;
 		try {
 			ResultSet result = DBManager.getInstance().readFromDB(query);
@@ -34,6 +34,7 @@ public class FleetRepositoryImpl implements TemplateRepository<Integer, Plane> {
 		return new Plane("",0);
 	}
 
+	
 	@Override
 	public ArrayList<Plane> getTable() {
 		ResultSet resultSet;
@@ -56,6 +57,7 @@ public class FleetRepositoryImpl implements TemplateRepository<Integer, Plane> {
 		return fleet;
 	}
 	
+	/* A function to return the current maximum ID for planes that exists in the database, to avoid ID duplication  */
 	@Override
 	public int getMaxID() {
 		ResultSet resultSet = null;
