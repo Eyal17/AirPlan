@@ -70,9 +70,9 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	/* A Function to initialize the graphical parameters in the page */
 	public void initialize() {
 		Image refreshIcon = new ImageIcon(this.getClass().getResource("/refresh.png")).getImage();
-		//Image detailsIcon = new ImageIcon(this.getClass().getResource("/info.png")).getImage();
 		Image addPanelIcon = new ImageIcon(this.getClass().getResource("/add.png")).getImage();
 		Image deleteIcon = new ImageIcon(this.getClass().getResource("/remove.png")).getImage();
+		
 		
 		flightModel = new FlightTableModel();
 		fleetModel = new FleetTableModel();
@@ -107,6 +107,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		addDetailsLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		addDetailsLbl.setIcon(new ImageIcon(addPanelIcon));
 		addDetailsLbl.setBounds(469, 90, 30, 30);
+		addDetailsLbl.setToolTipText("Add new flight");
 		add(addDetailsLbl);
 		
 		/*delete btn */
@@ -114,6 +115,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		deleteLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		deleteLbl.setIcon(new ImageIcon(deleteIcon));
 		deleteLbl.setBounds(469, 130, 30, 30);
+		deleteLbl.setToolTipText("Delete flight");
 		add(deleteLbl);
 		
 		/* A button to refresh the tables when pressing the button */
@@ -121,6 +123,7 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 		refLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		refLbl.setIcon(new ImageIcon(refreshIcon));
 		refLbl.setBounds(469, 170, 30, 30);
+		refLbl.setToolTipText("Refresh");
 		add(refLbl);
 		
 		detailsPanel = new JPanel();

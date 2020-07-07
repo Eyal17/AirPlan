@@ -192,12 +192,14 @@ public class FleetPanel extends JPanel {
 		refreshLbl.setIcon(new ImageIcon(refreshIcon));
 		refreshLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		refreshLbl.setBounds(329, 235, 30, 30);
+		refreshLbl.setToolTipText("Refresh");
 		add(refreshLbl);
 		
 		JLabel detailsBtn = new JLabel("");
 		detailsBtn.setIcon(new ImageIcon(detailsIcon));
 		detailsBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		detailsBtn.setBounds(329, 195, 30, 30);
+		detailsBtn.setToolTipText("Plane info");
 		add(detailsBtn);
 		
 		/*add button */
@@ -205,6 +207,7 @@ public class FleetPanel extends JPanel {
 		addPlaneLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		addPlaneLbl.setIcon(new ImageIcon(addIcon));
 		addPlaneLbl.setBounds(329, 115, 30, 30);
+		addPlaneLbl.setToolTipText("Add new plane");
 		add(addPlaneLbl);
 		
 		/*delete button */
@@ -212,6 +215,7 @@ public class FleetPanel extends JPanel {
 		deletePlaneLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		deletePlaneLbl.setIcon(new ImageIcon(deleteIcon));
 		deletePlaneLbl.setBounds(329, 155, 30, 30);
+		deletePlaneLbl.setToolTipText("Delete plane");
 		add(deletePlaneLbl);
 		
 		//Overrides
