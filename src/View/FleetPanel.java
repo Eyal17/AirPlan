@@ -75,7 +75,7 @@ public class FleetPanel extends JPanel {
 
 		fleetModel = new FleetTableModel();
 		fleetTable = new JTable(fleetModel);
-//		fleetTable = new JTable(); // to design 
+	//	fleetTable = new JTable(); // to design 
 
 		/* AirCraft title parameters */ 
 		lblAircraftFleet = new JLabel("AirCraft Fleet");
@@ -114,6 +114,8 @@ public class FleetPanel extends JPanel {
 		detailsPanel.setLayout(null);
 		
 		SpeedTextField = new JTextField();
+		SpeedTextField.setBorder(null);
+		SpeedTextField.setBackground(new Color(240, 240, 240));
 		SpeedTextField.setBounds(291, 634, 157, 25);
 		detailsPanel.add(SpeedTextField);
 		SpeedTextField.setColumns(10);
@@ -152,21 +154,29 @@ public class FleetPanel extends JPanel {
 		detailsPanel.add(speedLbl);
 		
 		FuelTextField = new JTextField();
+		FuelTextField.setBorder(null);
+		FuelTextField.setBackground(new Color(240, 240, 240));
 		FuelTextField.setColumns(10);
 		FuelTextField.setBounds(291, 593, 157, 25);
 		detailsPanel.add(FuelTextField);
 		
 		KmTextField = new JTextField();
+		KmTextField.setBorder(null);
+		KmTextField.setBackground(new Color(240, 240, 240));
 		KmTextField.setColumns(10);
 		KmTextField.setBounds(291, 550, 157, 25);
 		detailsPanel.add(KmTextField);
 		
 		TankTextField = new JTextField();
+		TankTextField.setBorder(null);
+		TankTextField.setBackground(new Color(240, 240, 240));
 		TankTextField.setColumns(10);
 		TankTextField.setBounds(291, 509, 157, 25);
 		detailsPanel.add(TankTextField);
 		
 		modelTextField = new JTextField();
+		modelTextField.setBorder(null);
+		modelTextField.setBackground(new Color(240, 240, 240));
 		modelTextField.setColumns(10);
 		modelTextField.setBounds(291, 468, 157, 25);
 		detailsPanel.add(modelTextField);
