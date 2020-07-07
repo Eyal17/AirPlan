@@ -18,7 +18,7 @@ public class Aircraft {
 			planeModel = m;
 			fuelTankSize = 150000;
 			maxKmPerFlight = 15000;
-			fuelPerKm = 10;
+			fuelPerKm = 5;
 			speed = 900;
 			setnumOfRows(4, 4, 20);
 			pictureName = "Image777";
@@ -27,7 +27,7 @@ public class Aircraft {
 			planeModel = m;
 			fuelTankSize = 200000;
 			maxKmPerFlight = 20000;
-			fuelPerKm = 10;
+			fuelPerKm = 4;
 			speed = 1000;
 			setnumOfRows(8, 8, 40);
 			pictureName = "Image737";
@@ -36,7 +36,7 @@ public class Aircraft {
 			planeModel = m;
 			fuelTankSize = 250000;
 			maxKmPerFlight = 30000;
-			fuelPerKm = 10;
+			fuelPerKm = 5;
 			speed = 1000;
 			setnumOfRows(8, 8, 40);
 			pictureName = "Image787";
@@ -45,7 +45,7 @@ public class Aircraft {
 			planeModel = m;
 			fuelTankSize = 300000;
 			maxKmPerFlight = 35000;
-			fuelPerKm = 10;
+			fuelPerKm = 6;
 			speed = 1500;
 			setnumOfRows(8, 8, 40);
 			pictureName = "ImageA380";
