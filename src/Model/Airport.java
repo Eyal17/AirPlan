@@ -73,7 +73,8 @@ public class Airport extends Destination {
 				distFromBase = 0;
 				break;
 			}
-			default: break;
+			default:
+				throw new IllegalArgumentException("Destination invalid!");
 		}	
 	}
 	

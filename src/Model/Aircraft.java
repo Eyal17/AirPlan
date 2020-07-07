@@ -1,5 +1,7 @@
 package Model;
 
+import javax.swing.JOptionPane;
+
 public class Aircraft {
 	String planeModel;
 	int fuelTankSize;
@@ -49,8 +51,8 @@ public class Aircraft {
 			pictureName = "ImageA380";
 			break;
 		default:
-			//throw/exception
-			System.out.println("plane not exist");
+			System.out.println("Plane not exist");
+			throw new IllegalArgumentException("Model not exist");
 		}
 		
 	};

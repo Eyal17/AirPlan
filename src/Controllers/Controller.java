@@ -82,7 +82,10 @@ public class Controller {
 			view.login.setVisible(false);
 			view.homeBulider.setVisible(true);
 		}
-		else { JOptionPane.showMessageDialog(null, "Failed!");}
+		else { 
+			JOptionPane.showMessageDialog(null, "Failed!");
+			throw new IllegalArgumentException("User not exist");
+			}
 	}
 	
 	/* A function to return the airport chosen */

@@ -29,7 +29,7 @@ public class FleetRepositoryImpl implements TemplateRepository<Integer, Plane> {
 			if (result.next())
 				return new Plane(result.getString(1), id);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new IllegalArgumentException("Invalid ID");
 		}
 		return new Plane("",0);
 	}
