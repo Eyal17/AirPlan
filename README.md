@@ -11,8 +11,8 @@
    * Singleton - Design pattern. (Class: DBManager)
    * Repository Pattern - Communication with database works through repositories.
    
-3. The project holds the data online, with a cloud database of AWS. (Amazon)
-   We use Postgres database in this project.
+3. The project holds the data online, with a cloud database of AWS. (Amazon)  
+     We use Postgres database in this project.
    
 4. **Cloning / Installation instructions:**
    * There is no need to initialize \ download any kind of database. (it will initiate automatically)
