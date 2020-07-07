@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 public class LoginRepository {
 
+	/* A function to validate the login with the username + password. */
 	public String valid(String user) {
 		String query = "SELECT * from login WHERE login.user = '" + user + "'";
 		try {

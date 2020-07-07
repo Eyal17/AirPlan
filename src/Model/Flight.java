@@ -10,22 +10,20 @@ public class Flight {
 	Plane plane;
 	Date toOrigin;
 	Date departure;
-	//Airport origin;
 	Airport dest;
 	ArrayList<Seat>[] passengers;
 	
-	public Flight(Plane p,int id, Airport des, Date d1, Date d2) {//Date arv) {
+	/* A constructor for Flight */
+	public Flight(Plane p,int id, Airport des, Date d1, Date d2) {
 		plane = p;
 		departure = d1;
 		toOrigin = d2;
-		//origin = orig;
 		dest = des;
-		//distance = origin.distFromBase + dest.distFromBase;
 		flightID = id;
 		passengers = plane.seats;
-
 	}
 	
+	/* Getters for flight class */
 	public Plane getPlane() {
 		return plane;
 	}
@@ -45,6 +43,7 @@ public class Flight {
 		return flightID;
 	}
 	
+	/* Setters for flight class */
 	public void setPlane(Plane p) {
 		plane = p;
 	}
@@ -60,10 +59,4 @@ public class Flight {
 	public String toString() {
 		return "Flight [flightID=" + flightID + ", plane=" + plane + ", passengers=" + passengers + "]";
 	}
-	
-//	Date getFlightDuration() {
-//		Date time = departure.getTime() + distance*plane.speed;
-//		return time; // return time
-//	
-//	}
 }

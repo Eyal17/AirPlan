@@ -7,32 +7,22 @@ import java.util.ArrayList;
 public class Plane extends Aircraft {
 	final int planeID; 
 	ArrayList<Seat>[] seats;
-//	FleetRepositoryImpl fleetRep = new FleetRepositoryImpl();
-//	FleetController fleetCtrl = new FleetController(null, fleetRep);
-	
+	/* Constructor for plane */
 	public Plane(String model, int id) {
 		super(model);
-		setSeats(rowsPerClass[0] + rowsPerClass[1] + rowsPerClass[2]);
+		setSeats(rowsPerClass[0] + rowsPerClass[1] + rowsPerClass[2]); // Building a seat array template
 		planeID = id;
 	}
 	
+	/* Getters */
 	public int getPlaneID() {
 		return planeID;
 	}
 	
-	// toString
-//	public void print() {
-//		System.out.println("name: " + this.getName());
-//		System.out.println("fuel per KM: " + this.getFuelPerKm());
-//		System.out.println("fuel tank size: " + this.getFuelTank());
-//		System.out.println("number of rows: " + this.getnumOfRows());
-//		System.out.println("plane ID: " + planeID);
-//	}
 
-
+	/* A function to set up the seats arrangement in the plane */
 	@SuppressWarnings("unchecked")
 	void setSeats(int rows) {
-		//int rows = numOfRows[0] + numOfRows[1] + numOfRows[2];
 		seats =  new ArrayList[rows];
         for (int i = 0; i < rows; i++) { 
             seats[i] = new ArrayList<Seat>();
@@ -54,6 +44,7 @@ public class Plane extends Aircraft {
         } 
 	}
 	
+	/* A function to create a string of the the plane details */
 	@Override
 	public String toString() {
 		return  "\nModel: " + this.getName() +

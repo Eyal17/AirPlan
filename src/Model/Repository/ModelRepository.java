@@ -7,6 +7,7 @@ public class ModelRepository {
 	public final FlightRepositoryImpl flightRepo;
 	public final LoginRepository loginRepo;
 	
+	/* A class to hold all the repository variables and create instances */
 	public ModelRepository() {
 		airportRepo = new AirportRepositoryImpl();
 		fleetRepo = new FleetRepositoryImpl();

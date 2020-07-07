@@ -6,6 +6,7 @@ public class Seat extends PlaneClass {
 	int checkIn;
 	classType travelClass;
 	
+	/*A constructor to build the seats */
 	public Seat(String seatType, String seatN, int chkIn) {
 		switch(seatType) {
 		case "FIRST":
@@ -27,18 +28,21 @@ public class Seat extends PlaneClass {
 		checkIn = chkIn;
 	}
 
+	/* Getters */
 	public String getSeatNum() {
 		return seatNum;
 	}
 	public int getCheckIn() {
 		return checkIn;
 	}
+	/* Setters */
 	public void setSeatNum(String s) {
 		seatNum = s;
 	}
 	public void setCheckIn(int c) {
 		checkIn = c;
 	}
+	
 	public void print() {
 		System.out.println(travelClass + " class. Price: " + seatPrice + ". Number of seat: " + seatNum + ". Passenger: " + checkIn);
 	}

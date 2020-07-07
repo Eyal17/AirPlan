@@ -2,17 +2,17 @@ package Model;
 public class Destination {
 	String country;
 	int distFromBase;
-	//coordinate
-	public Destination(String c) { //ctor
-		country = c;
-	//	distFromBase = d;
-		
+	
+	/* A constructor for destination */
+	public Destination(String c) { 
+		country = c;		
 	}
+	/* Getters for Destination class */
 	public String getCountry() {
 		return country;
 	}
-
-	public double getDistFromBase() {
+	
+	public double getDistance() {
 		return distFromBase;
 	}	
 }
