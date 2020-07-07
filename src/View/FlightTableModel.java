@@ -27,9 +27,6 @@ public class FlightTableModel extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		Object temp = null;
-		//int day = flightList.get(rowIndex).getDeparture().getDate()+1;
-		//Date d = flightList.get(rowIndex).getDeparture();
-		//d.setDate(day);
 		switch (columnIndex)
 		{
 		case 0:
@@ -56,6 +53,7 @@ public class FlightTableModel extends AbstractTableModel {
 		this.flightList= flightReadyTable;
 	}
 	
+	/* A function to return the column name by index */
 	public String getColumnName(int c) {
 		return col[c];
 	}

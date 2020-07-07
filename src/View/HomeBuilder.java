@@ -57,6 +57,7 @@ public class HomeBuilder extends JFrame {
 		flightBoardPanel = new FlightBoardPanel(viewCtrl);
 		mapPanel = new MapControllerPanel(viewCtrl);
 
+		/* Adding buttons to the panel */
 		Viewpanel.add(homePanel, "name_78750354984400");
 		Viewpanel.add(fleetPanel, "name_78750381602200");
 		Viewpanel.add(flightBoardPanel, "name_78750403585200");
@@ -225,8 +226,8 @@ public class HomeBuilder extends JFrame {
 			});
 	}
 	
-	//Functions
-			public void MenuClicked(JPanel panel) {
+	/* A function to set all the panels FALSE except for the panel we currently pressed */
+	public void MenuClicked(JPanel panel) {
 				homePanel.setVisible(false);
 				fleetPanel.setVisible(false);
 				flightBoardPanel.setVisible(false);

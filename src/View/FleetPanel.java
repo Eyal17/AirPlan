@@ -108,18 +108,6 @@ public class FleetPanel extends JPanel {
 		planeChoice.setBounds(375, 120, 111, 22);
 		add(planeChoice);
 		
-		
-//		/* Add button parameters */ 
-//		addBtn = new JButton("Add new plane");
-//		addBtn.setBounds(36, 566, 130, 23);
-//		add(addBtn);
-//		
-//		
-//		/* Delete button parameters */ 
-//		deleteBtn = new JButton("Delete plane");
-//		deleteBtn.setBounds(36, 621, 130, 23);
-//		add(deleteBtn);
-		
 		JPanel detailsPanel = new JPanel();
 		detailsPanel.setBounds(509, 0, 519, 681);
 		add(detailsPanel);
@@ -129,6 +117,9 @@ public class FleetPanel extends JPanel {
 		SpeedTextField.setBounds(291, 634, 157, 25);
 		detailsPanel.add(SpeedTextField);
 		SpeedTextField.setColumns(10);
+		
+		
+		/* Aircraft information design :*/
 		
 		JLabel aircraftInfoLbl = new JLabel("Aircraft Information:");
 		aircraftInfoLbl.setFont(new Font("Stencil", Font.BOLD, 31));
@@ -215,6 +206,7 @@ public class FleetPanel extends JPanel {
 		
 		//Overrides
 		
+		/* A function to refresh the table */
 		refreshLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -224,6 +216,8 @@ public class FleetPanel extends JPanel {
 			}
 		});
 		
+		/* A function to get details for a plane, from the table */
+
 		detailsBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

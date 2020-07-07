@@ -35,7 +35,8 @@ public class FleetTableModel extends AbstractTableModel {
 	public void setList(ArrayList<Plane> fleetReadyTable) {
 		fleetList = fleetReadyTable;
 	}
-	
+	/* A function to return the column name from the table */
+
 	public String getColumnName(int c) {
 		return col[c];
 	}
