@@ -17,7 +17,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
 import Controllers.Controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,12 +24,9 @@ import java.text.SimpleDateFormat;
 import java.awt.Cursor;
 
 
-
-
+@SuppressWarnings("serial")
 public class FlightBoardPanel extends JPanel implements ActionListener {
 	
-	/* Private variables we use in this page  */
-
 	private Controller viewCtrl;
 	private JTable flightTable;
 	private JTable fleetTable;
@@ -53,7 +49,6 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 	private JLabel chooseDestination;
 	public JPanel detailsPanel;
 
-	
 
 	/* Constructor uses functions to initialize the page */
 	public FlightBoardPanel(Controller ctrl) {

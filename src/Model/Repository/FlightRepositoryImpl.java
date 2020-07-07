@@ -37,9 +37,6 @@ public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight>
 			ResultSet result = DBManager.getInstance().readFromDB(query);
 			if (result.next()) // check if there are flights with this plane id
 				return true;
-			else {
-				throw new IllegalArgumentException("Plane not exist");
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

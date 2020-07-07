@@ -1,26 +1,21 @@
 package View;
 
+import Controllers.Controller;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-
-import Controllers.Controller;
-import Model.Airport;
-
+import javax.swing.JTextPane;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JTextPane;
-import javax.swing.JTextField;
 
+
+
+@SuppressWarnings("serial")
 public class MapControllerPanel extends JPanel {
 	
-	/* All private JLabels and JTextPanes declarations */
 	private Controller viewCtrl;
 	private JTextPane distanceTextBox;
 	private JTextPane taxTextBox;
@@ -33,6 +28,8 @@ public class MapControllerPanel extends JPanel {
 	private JPanel bgPanel;
 	
 	int airportTax = 0;
+	
+	
 	public MapControllerPanel(Controller view) {
 		
 		viewCtrl = view;

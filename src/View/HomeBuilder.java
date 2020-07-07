@@ -15,21 +15,20 @@ import java.awt.Cursor;
 import Controllers.Controller;
 import java.awt.event.MouseMotionAdapter;
 
+@SuppressWarnings("serial")
 public class HomeBuilder extends JFrame {
 
 	private Controller viewCtrl;
 	private JPanel contentPane;
+	private int mouseX;
+	private int mouseY;
 	
-
 	public HomePanel homePanel;
 	public FleetPanel fleetPanel;
 	public FlightBoardPanel flightBoardPanel;
 	public MapControllerPanel mapPanel;
+		
 	
-	private int mouseX;
-	private int mouseY;
-	
-
 	public HomeBuilder(Controller ctrl) {
 		
 		viewCtrl = ctrl;
@@ -136,7 +135,6 @@ public class HomeBuilder extends JFrame {
 		
 			
 			//Overrides
-			
 			HomeBtn.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseEntered(MouseEvent e) {
