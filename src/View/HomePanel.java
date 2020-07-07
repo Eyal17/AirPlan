@@ -50,7 +50,7 @@ public class HomePanel extends JPanel {
 		add(motText);
 		
 		ArrayList<String> arr = new ArrayList<String>();
-		arr.add('"' + "Your limitation—it’s only your imagination" + '"');
+		arr.add('"' + "Your limitation-it's only your imagination" + '"');
 		arr.add('"' + "Push yourself, because no one else is going to do it for you" + '"');
 		arr.add('"' + "Sometimes later becomes never. Do it now" + '"');
 		arr.add('"' + "Great things never come from comfort zones" + '"');
@@ -59,7 +59,7 @@ public class HomePanel extends JPanel {
 		arr.add('"' + "Wake up with determination. Go to bed with satisfaction" + '"');
 		arr.add('"' + "Do something today that your future self will thank you for" + '"');
 		arr.add('"' + "Little things make big days" + '"');
-		arr.add('"' + "Don’t wait for opportunity. Create it" + '"');
+		arr.add('"' + "Don't wait for opportunity. Create it" + '"');
 		
 		rand = new Random();
 		
