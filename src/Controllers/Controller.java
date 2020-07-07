@@ -81,6 +81,7 @@ public class Controller {
 		if (encryptedPassword.equals(modelAP.loginRepo.valid(user))) {
 			view.login.setVisible(false);
 			view.homeBulider.setVisible(true);
+			view.homeBulider.homePanel.userNameLbl.setText(user.substring(0, 1).toUpperCase() + user.substring(1));
 		}
 		else { 
 			JOptionPane.showMessageDialog(null, "Failed!");
