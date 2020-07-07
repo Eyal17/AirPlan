@@ -21,6 +21,7 @@ import java.util.GregorianCalendar;
 import Controllers.Controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 import java.awt.Cursor;
 
 
@@ -254,12 +255,14 @@ public class FlightBoardPanel extends JPanel implements ActionListener {
 					double []cost = viewCtrl.getAirport(destination).calculator(planeType,planeID);
 					viewCtrl.addFlight(planeID, destination, departureDate, toOrigin);
 					fleetTable.clearSelection();
+					SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+					String dateFormat = simpleDateFormat.format(departureDate);
 					JOptionPane.showMessageDialog(null, "Flight added succesfully!\nFlight details: \nDestination = " +
-														destination + "\nDeparture date = " + departureDate +
+														destination + "\nDeparture date = " + dateFormat +
 							 							"\nRecommended price for each class:\nFirst = " + String.format("%.2f", cost[0]) +
 														"\nBusiness = " + String.format("%.2f", cost[1]) +
 														"\nEconomy = " + String.format("%.2f",cost[2]));
-				}
+				}		
 			}
 			else { /* The user must choose a plane to add a flight */
 				JOptionPane.showMessageDialog(null, "Choose a plane in order to create a flight!");
