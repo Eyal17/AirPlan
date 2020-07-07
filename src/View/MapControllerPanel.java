@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 
 public class MapControllerPanel extends JPanel {
 	
+	/* All private JLabels and JTextPanes declarations */
 	private Controller viewCtrl;
 	private JTextPane distanceTextBox;
 	private JTextPane taxTextBox;
@@ -30,23 +31,17 @@ public class MapControllerPanel extends JPanel {
 	private JLabel lblNewLabel;
 	private JLabel airportTextLabel;
 	private JPanel bgPanel;
-
-	
 	
 	int airportTax = 0;
 	public MapControllerPanel(Controller view) {
 		
-		
 		viewCtrl = view;
-		//setInfoFalse(); // hiding the information about flights untill someone clicks a button
 		setBackground(new Color(198,198,198));
 		setBounds(0, 0, 1028, 681);
 		setLayout(null);
 		Image mapIcon = new ImageIcon(this.getClass().getResource("/map.png")).getImage();
 		Image locationIcon = new ImageIcon(this.getClass().getResource("/location.png")).getImage();
 		Image locationHoverIcon = new ImageIcon(this.getClass().getResource("/location2.png")).getImage();
-	//	Image mapIcon = new ImageIcon(this.getClass().getResource("/map.png")).getImage();
-	//	Image mapIcon = new ImageIcon(this.getClass().getResource("/map.png")).getImage();
 		
 		JLabel telAvivLbl = new JLabel("");
 		telAvivLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -151,7 +146,6 @@ public class MapControllerPanel extends JPanel {
 
 		setInfoFalse();
 		
-		// Oveerides
 		telAvivLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -298,10 +292,9 @@ public class MapControllerPanel extends JPanel {
 				setInfoTrue();
 			}
 		});
-		
-
 	}
 	
+	/* A function to hide all labels */
 	public void setInfoFalse()
 	{
 		fuelTextLabel.setVisible(false);
@@ -315,6 +308,8 @@ public class MapControllerPanel extends JPanel {
 		bgPanel.setVisible(false);
 	}
 	
+	/* A function to show all labels */
+
 	public void setInfoTrue()
 	{
 		bgPanel.setVisible(true);
@@ -328,6 +323,7 @@ public class MapControllerPanel extends JPanel {
 		fuelTextBox.setVisible(true);
 	}
 	
+	/* A function to set info on the screen from the airport object */
 	public void updateInfo(String airport)
 	{
 		taxTextBox.setText(Integer.toString(viewCtrl.getAirport(airport).getLocalTax()));

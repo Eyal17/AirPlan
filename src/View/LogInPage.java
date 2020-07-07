@@ -30,6 +30,8 @@ public class LogInPage extends JFrame {
 		
 		viewCtrl = ctrl;
 		
+		
+		// Loading images icons
 		Image midImg = new ImageIcon(this.getClass().getResource("/login_mid.png")).getImage();
 		Image signInIconHover = new ImageIcon(this.getClass().getResource("/send_button2.png")).getImage();
 		Image signInIcon = new ImageIcon(this.getClass().getResource("/send_button.png")).getImage();
