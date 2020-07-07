@@ -53,16 +53,6 @@ class FlightTest {
 	}
 	
 	@Test
-	public void ifPlaneExistFailedWhenNotExist() {
-		try {
-			model.flightRepo.isPlaneExist(1);
-			Assertions.fail("the plane exist but its not true");
-		} catch(IllegalArgumentException e) {
-			Assertions.assertEquals("Plane not exist", e.getMessage());
-		}
-	}
-	
-	@Test
 	public void getAirportFailedWhenDestIsNotExist() {
 		try {
 			ctrl.getAirport("Haifa");

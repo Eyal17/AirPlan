@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import Model.Plane;
 
+@SuppressWarnings("serial")
 public class FleetTableModel extends AbstractTableModel {
 
 	private final String[] col = {"Plane ID", "Plane Model" };

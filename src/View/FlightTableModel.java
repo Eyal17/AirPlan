@@ -1,11 +1,10 @@
 package View;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import Model.Flight;
 
+@SuppressWarnings("serial")
 public class FlightTableModel extends AbstractTableModel {
 
 	private final String[] col = {"Flight ID", "Plane ID","Destination","Departure","Back Date"};

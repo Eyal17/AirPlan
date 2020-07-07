@@ -16,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import Controllers.Controller;
 import java.awt.Cursor;
 
+@SuppressWarnings("serial")
 public class LogInPage extends JFrame {
 
 	private JPanel contentPane;
@@ -29,7 +30,6 @@ public class LogInPage extends JFrame {
 	public LogInPage(Controller ctrl) {
 		
 		viewCtrl = ctrl;
-		
 		
 		// Loading images icons
 		Image midImg = new ImageIcon(this.getClass().getResource("/login_mid.png")).getImage();

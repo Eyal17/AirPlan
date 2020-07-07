@@ -10,15 +10,16 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Random;
 
+@SuppressWarnings("serial")
 public class HomePanel extends JPanel {
-	
-	Image globeGif = new ImageIcon(this.getClass().getResource("/globe2.gif")).getImage();
 	
 	public JLabel userNameLbl;
 	JLabel welcomeLbl;
 	JLabel globeGifLbl;
 	JLabel motText;
+	
 	Random rand;
+	Image globeGif = new ImageIcon(this.getClass().getResource("/globe2.gif")).getImage();
 
 	public HomePanel() {
 		setBounds(0, 0, 1028, 681);

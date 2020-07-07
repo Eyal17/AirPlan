@@ -1,7 +1,5 @@
 package Model;
 
-import javax.swing.JOptionPane;
-
 public class Aircraft {
 	String planeModel;
 	int fuelTankSize;
