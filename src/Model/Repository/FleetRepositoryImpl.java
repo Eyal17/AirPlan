@@ -39,11 +39,6 @@ public class FleetRepositoryImpl implements TemplateRepository<Integer, Plane> {
 	public ArrayList<Plane> getTable() {
 		ResultSet resultSet;
 		ArrayList<Plane> fleet = new ArrayList<Plane>();
-		//
-		// here we need to split to load from db for the first time and update the list after each func
-		// get table shuold take only the list
-		//
-		
 		try {
 			resultSet = DBManager.getInstance().readFromDB("SELECT * from fleet ORDER BY planeid ASC");
 			while (resultSet.next()) { //.next() return true if we have more result + move to the next result (row)

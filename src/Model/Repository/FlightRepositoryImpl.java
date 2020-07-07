@@ -51,10 +51,7 @@ public class FlightRepositoryImpl implements TemplateRepository<Integer, Flight>
 	public ArrayList<Flight> getTable() {
 		ResultSet resultSet;
 		ArrayList<Flight> flightsList = new ArrayList<Flight>();
-		//
-		// here we need to split to load from db for the first time and update the list after each func
-		// get table shuold take only the list
-		//
+
 		try {
 			resultSet = DBManager.getInstance().readFromDB("SELECT * from flightboard join fleet using(planeid) ORDER BY departure ASC");
 			while (resultSet.next()) { //.next() return true if we have more result + move to the next result (row)
