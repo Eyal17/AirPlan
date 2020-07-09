@@ -7,11 +7,10 @@ import java.sql.SQLException;
 
 
 public class DBManager {
-	
+	///////////////////////////////
+	/* Design pattern - Singleton */
+    ///////////////////////////////
 	private static Connection connection;
-		///////////////////////////////
-		/* Design pattern - Singleton */
-	    ///////////////////////////////
 	private static final DBManager instance= new DBManager();
 	private DBManager( ) {} // constructor 
 	public static DBManager getInstance() 
